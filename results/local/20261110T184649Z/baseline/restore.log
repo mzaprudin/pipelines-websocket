@@ -1,0 +1,6 @@
+  Determining projects to restore...
+  Restored /home/m/projects/zero-split-work/source/src/GapSonar.TransportLab/GapSonar.TransportLab.csproj (in 1.22 sec).
+  Restored /home/m/projects/zero-split-work/source/samples/GapSonar.TransportLab.Demo/GapSonar.TransportLab.Demo.csproj (in 1.22 sec).
+  Restored /home/m/projects/zero-split-work/source/benchmarks/WebSocketLoadTest/WebSocketLoadTest.csproj (in 1.22 sec).
+  Restored /home/m/projects/zero-split-work/source/benchmarks/GapSonar.TransportLab.Benchmarks/GapSonar.TransportLab.Benchmarks.csproj (in 1.22 sec).
+  Restored /home/m/projects/zero-split-work/source/tests/GapSonar.TransportLab.Tests/GapSonar.TransportLab.Tests.csproj (in 1.22 sec).

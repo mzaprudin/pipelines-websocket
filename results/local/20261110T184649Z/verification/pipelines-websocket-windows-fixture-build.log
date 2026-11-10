@@ -1,0 +1,11 @@
+  Pipelines.WebSockets -> /home/m/projects/pipelines-websocket/src/Pipelines.WebSockets/bin/Release/net10.0/Pipelines.WebSockets.dll
+  Pipelines.WebSockets.Demo -> /home/m/projects/pipelines-websocket/samples/Pipelines.WebSockets.Demo/bin/Release/net10.0/Pipelines.WebSockets.Demo.dll
+  WebSocketLoadTest -> /home/m/projects/pipelines-websocket/benchmarks/WebSocketLoadTest/bin/Release/net10.0/WebSocketLoadTest.dll
+  Pipelines.WebSockets.Benchmarks -> /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks.dll
+  Pipelines.WebSockets.Tests -> /home/m/projects/pipelines-websocket/tests/Pipelines.WebSockets.Tests/bin/Release/net10.0/GapSonar.TransportLab.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.05

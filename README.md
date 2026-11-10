@@ -62,15 +62,15 @@ Echo measures a verified roundtrip through a local peer. Streaming: 87-byte JSON
 
 | Method | Mean | Error (99.9% CI) | Allocated B/op | Speedup |
 |---|---:|---:|---:|---:|
-| `EchoRoundtrip (PayloadBytes=128&StandardClient=False)` | 31.61 µs | 856.69 ns | 575 B | — |
-| `EchoRoundtrip (PayloadBytes=128&StandardClient=True)` | 32.61 µs | 950.02 ns | 579 B | — |
-| `EchoRoundtrip (PayloadBytes=4096&StandardClient=False)` | 37.68 µs | 687.36 ns | 580 B | — |
-| `EchoRoundtrip (PayloadBytes=4096&StandardClient=True)` | 38.80 µs | 1.64 µs | 581 B | — |
+| `EchoRoundtrip (PayloadBytes=128&StandardClient=False)` | 33.88 µs | 1.89 µs | 582 B | — |
+| `EchoRoundtrip (PayloadBytes=128&StandardClient=True)` | 32.65 µs | 857.37 ns | 580 B | — |
+| `EchoRoundtrip (PayloadBytes=4096&StandardClient=False)` | 38.71 µs | 1.01 µs | 581 B | — |
+| `EchoRoundtrip (PayloadBytes=4096&StandardClient=True)` | 38.48 µs | 1.34 µs | 580 B | — |
 
 | Client | Messages/s | CPU ms / 1M | Allocated kB / 1M |
 |---|---:|---:|---:|
-| standard | 45,332,015 | 356 | 0.053 |
-| pipeline | 70,983,348 | 276 | 0.012 |
+| standard | 42,695,264 | 380 | 0.054 |
+| pipeline | 69,954,803 | 277 | 0.012 |
 
 <!-- LOCAL_RESULTS_END -->
 

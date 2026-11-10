@@ -1,0 +1,28 @@
+[
+  [
+    "dotnet",
+    "restore",
+    "GapSonar.TransportLab.sln",
+    "--locked-mode"
+  ],
+  [
+    "dotnet",
+    "build",
+    "GapSonar.TransportLab.sln",
+    "-c",
+    "Release",
+    "--no-restore"
+  ],
+  [
+    "dotnet",
+    "test",
+    "tests/GapSonar.TransportLab.Tests",
+    "-c",
+    "Release",
+    "--no-build",
+    "--logger",
+    "trx;LogFileName=baseline.trx",
+    "--results-directory",
+    "/home/m/projects/zero-split-work/verification"
+  ]
+]
