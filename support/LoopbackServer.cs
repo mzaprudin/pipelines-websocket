@@ -19,11 +19,18 @@ internal sealed class LoopbackServer : IDisposable
     private readonly TcpListener _listener = new(IPAddress.Loopback, 0);
     /// <summary>Optional certificate for local TLS verification.</summary>
     private readonly X509Certificate2? _certificate;
+    /// <summary>Whether this server owns a Windows-compatible private-key copy.</summary>
+    private readonly bool _ownsCertificate;
 
     /// <summary>Starts a server accessible only on the local machine.</summary>
     public LoopbackServer(X509Certificate2? certificate = null)
     {
-        _certificate = certificate;
+        // Schannel cannot use the ephemeral key produced by CertificateRequest.
+        // Default key storage gives Windows a temporary named key, deleted on disposal.
+        _certificate = certificate is not null && OperatingSystem.IsWindows()
+            ? X509CertificateLoader.LoadPkcs12(certificate.Export(X509ContentType.Pkcs12), password: null)
+            : certificate;
+        _ownsCertificate = !ReferenceEquals(_certificate, certificate);
         _listener.Start();
         var endpoint = (IPEndPoint)_listener.LocalEndpoint;
         Uri = new Uri($"{(certificate is null ? "ws" : "wss")}://localhost:{endpoint.Port}/echo");
@@ -107,8 +114,12 @@ internal sealed class LoopbackServer : IDisposable
         throw new InvalidDataException("Upgrade request exceeded the limit.");
     }
 
-    /// <summary>Stops accepting new connections.</summary>
-    public void Dispose() => _listener.Stop();
+    /// <summary>Stops accepting connections and releases any server-owned private key.</summary>
+    public void Dispose()
+    {
+        _listener.Stop();
+        if (_ownsCertificate) _certificate?.Dispose();
+    }
 }
 
 /// <summary>Owns a local peer socket and its underlying TCP/TLS connection.</summary>

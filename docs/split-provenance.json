@@ -7,7 +7,8 @@
     "PoolRental<T> is internal in each assembly",
     "JSON routing implementations moved verbatim from benchmark file to library; namespaces preserved",
     "Harness paths and standalone samples/scripts",
-    "Text tooling explicitly uses UTF-8 on Linux and Windows; preserved test assembly name supports unchanged process tests"
+    "Text tooling explicitly uses UTF-8 on Linux and Windows; preserved test assembly name supports unchanged process tests",
+    "Loopback TLS test peer imports an owned temporary named private key on Windows for Schannel; library and test assertions unchanged"
   ],
   "files": [
     {
@@ -1574,7 +1575,7 @@
       "source": "support/LoopbackServer.cs",
       "destination": "support/LoopbackServer.cs",
       "sourceSha256": "e66f2a26f395de679649e630e46237b7840a4c4c265e13d9215214018b0245a9",
-      "destinationSha256": "e66f2a26f395de679649e630e46237b7840a4c4c265e13d9215214018b0245a9"
+      "destinationSha256": "ecf7a7b2994fa0160ab38daada1a92e34abafc43569546822f3aaeb755a431d1"
     },
     {
       "source": "support/RoundtripSession.cs",
