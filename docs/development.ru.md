@@ -11,7 +11,7 @@ dotnet test tests/Pipelines.WebSockets.Tests -c Release --no-build
 dotnet run -c Release --no-build --project samples/Pipelines.WebSockets.Demo
 ```
 
-Для чистой проверки создайте новый git clone и выполните те же команды. CI запускает все тесты, пример и каждый benchmark-сценарий с `--job dry` на Linux и Windows. Dry проверяет работоспособность; для таблиц используются реальные длительные замеры.
+Для чистой проверки кода создайте новый git clone и выполните те же команды. При изменении кода, зависимостей, сборки или CI запускается полная матрица Linux/Windows: тесты, пример, все benchmark-сценарии с `--job dry`, streaming и Windows-пакет. Dry проверяет работоспособность; для таблиц используются реальные длительные замеры.
 
 Windows CI также собирает self-contained генератор и запускает распакованный exe без установленного отдельно .NET runtime. Локальная сборка пакета:
 
@@ -22,3 +22,11 @@ python3 scripts/build-windows-generator.py
 [LAN generator instructions](lan-benchmark.md) · [TCP controls](lan-controls.md)
 
 Общий streaming-раннер по умолчанию запускает локальный сервер в отдельном процессе. Параметр `--url ws://HOST:5050` выбирает внешний сервер с тем же профилем. CI также выполняет `python -m unittest discover -s scripts -p test_streaming_benchmarks.py -v`: жизненный цикл процессов и валидация отчётов. См. [методику](benchmark-methodology.ru.md).
+
+Для документации, результатов измерений и скриптов генерации таблиц используется короткая проверка:
+
+```sh
+python3 scripts/verify-docs.py
+```
+
+Она проверяет локальные ссылки, формат Markdown, синтаксис Python, соответствие таблиц данным и целостность результатов. Матрица выполнения для таких правок пропускается. Выбор проверок учитывает весь push/PR, удаления и прежние пути переименованных файлов; неизвестные файлы и недоступная история включают полный CI. См. [AGENTS.md](../AGENTS.md).

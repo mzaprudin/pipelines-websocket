@@ -6,7 +6,26 @@ on:
 permissions:
   contents: read
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      full: ${{ steps.scope.outputs.full }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - id: scope
+        run: python scripts/ci_changes.py
+      - name: Verify change classification
+        run: python -m unittest discover -s scripts -p test_ci_changes.py -v
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: python scripts/verify-docs.py
   verify:
+    needs: [changes, documentation]
+    if: ${{ needs.changes.outputs.full == 'true' }}
     strategy:
       fail-fast: false
       matrix:
