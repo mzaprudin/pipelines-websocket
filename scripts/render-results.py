@@ -80,25 +80,65 @@ def duration(ns):
     scale,unit=(1_000_000,'ms') if ns>=1_000_000 else (1_000,'µs') if ns>=1_000 else (1,'ns')
     return f'{ns/scale:.2f} {unit}'
 
-def render(cases,russian):
-    """Show all cases, workload-specific standard baselines and actual allocated bytes."""
-    blocks=[]
-    order=list(METHOD_SETS) if KIND=='json' else ['WebSocketRoundtripBenchmarks']
-    for typename in order:
-        group=[c for c in cases if c['Type']==typename]; means={c['Method']:c['Statistics']['Mean'] for c in group}
-        title={'PopulatorBenchmarks':('JSON population','Разбор JSON'),'PushulatorBenchmarks':('JSON writing','Запись JSON'),'RouterBenchmarks':('UTF-8 routing','Маршрутизация UTF-8'),'JsonParsingBenchmarks':('Equal-model parsing','Разбор одинаковой модели'),'JsonWritingBenchmarks':('Equal-model writing','Запись одинаковой модели'),'WebSocketRoundtripBenchmarks':('Local echo roundtrips','Локальный echo')}[typename][russian]
-        heading='| Метод | Среднее | Погрешность (99,9% ДИ) | Память B/op | Ускорение |' if russian else '| Method | Mean | Error (99.9% CI) | Allocated B/op | Speedup |'
-        blocks+=['### '+title,'',heading,'|---|---:|---:|---:|---:|']
-        for c in group:
-            method=c['Method'];stats=c['Statistics'];baseline=None
-            if typename=='PopulatorBenchmarks':baseline='Gate_Standard_Deserialize_List' if method.startswith('Gate_') else 'Standard_Deserialize_Class'
-            elif typename=='PushulatorBenchmarks':baseline='Standard_Serialize_Class' if method=='Standard_Serialize_Class' else 'Standard_Serialize_Writer'
-            elif typename=='RouterBenchmarks':baseline='Route10kMessages_JsonReader'
-            elif typename in ('JsonParsingBenchmarks','JsonWritingBenchmarks'):baseline='SystemTextJson'
-            ratio=f'{means[baseline]/stats["Mean"]:.2f}×' if baseline else '—'
-            label=method+(f' ({c["Parameters"]})' if c['Parameters'] else '')
-            blocks.append(f'| `{label}` | {duration(stats["Mean"])} | {duration(stats["ConfidenceInterval"]["Margin"])} | {c["Memory"]["BytesAllocatedPerOperation"]:g} B | {ratio} |')
-        blocks.append('')
+BYTES_PER_KILOBYTE = 1_000
+ETHERNET_BUNDLE = 'results/lan-controls/20261108T202415Z'
+
+def render(cases, russian):
+    """Describe all echo cases by client and payload rather than benchmark parameters."""
+    title = '### Полный обмен с локальным echo-сервером' if russian else '### Complete local echo roundtrips'
+    explanation = ('Каждое сообщение отправляется, возвращается сервером и проверяется побайтно. Время и аллокации включают оба сетевых узла и асинхронное ожидание.' if russian else
+                   'Each message is sent, echoed and checked byte-for-byte. Time and allocation include both peers and asynchronous scheduling.')
+    heading = '| Клиент | Сообщение | Время | Погрешность | Аллокации |' if russian else '| Client | Payload | Mean | Error | Allocated |'
+    blocks = [title, '', explanation, '', heading, '|---|---:|---:|---:|---:|']
+    for case in cases:
+        parameters = dict(field.split('=', 1) for field in case['Parameters'].split('&'))
+        client = 'ClientWebSocket adapter' if parameters['StandardClient'] == 'True' else 'Pipelines'
+        if russian and parameters['StandardClient'] == 'True':
+            client = 'Адаптер ClientWebSocket'
+        payload = '128 B' if parameters['PayloadBytes'] == '128' else '4 KiB'
+        stats = case['Statistics']
+        allocated = case['Memory']['BytesAllocatedPerOperation']
+        blocks.append(f'| {client} | {payload} | {duration(stats["Mean"])} | {duration(stats["ConfidenceInterval"]["Margin"])} | {allocated:g} B |')
+    blocks.extend(['', 'Echo измеряет полный обмен и имеет свой профиль аллокаций. Непрерывный приём из памяти пула измерен отдельно.' if russian else
+                   'Echo measures a complete roundtrip with its own allocation profile. Continuous reception from pooled memory is measured separately.', ''])
+    return '\n'.join(blocks)
+
+def render_streaming(groups, russian):
+    """Render continuous-reception results with explicit workload and process scope."""
+    title = '### Непрерывный приём через loopback' if russian else '### Continuous reception on loopback'
+    explanation = ('JSON по 87 байт, 20 фреймов на запись, 10 соединений. Медианы трёх запусков: 5 с прогрева и 30 с измерения. CPU и аллокации включают генератор, клиентов и сбор метрик.' if russian else
+                   '87-byte JSON, 20 frames/write, 10 connections. Medians of three runs: 5 s warmup and 30 s measurement. CPU and allocations include the generator, clients and sampling.')
+    heading = '| Клиент | Сообщений/с | CPU мс / млн сообщений | Аллокации, кБ / млн сообщений |' if russian else '| Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |'
+    blocks = [title, '', explanation, '', heading, '|---|---:|---:|---:|']
+    for key, label in [('standard', 'ClientWebSocket'), ('pipeline', 'Pipelines')]:
+        stats = groups[key]
+        blocks.append(f'| {label} | {stats["messagesPerSecond"]:,.0f} | {stats["cpuMsPerMillionMessages"]:,.0f} | {stats["allocatedBytesPerMillionMessages"] / BYTES_PER_KILOBYTE:.3f} |')
+    blocks.extend(['', 'Это локальный потоковый тест. Его скорость и стоимость CPU относятся к указанной нагрузке и отличаются от измерений физической сети.' if russian else
+                   'This is a local streaming workload. Its rates and CPU costs apply to this setup and differ from the physical-network measurements.', ''])
+    return '\n'.join(blocks)
+
+def render_local(cases, streams, russian):
+    """Keep streaming and echo clearly separated in the reproducible README region."""
+    return render_streaming(streams, russian) + '\n' + render(cases, russian)
+
+def render_ethernet(russian):
+    """Render the recorded network comparison and its current-versus-control labels."""
+    medians = json.loads((ROOT / ETHERNET_BUNDLE / 'summary.json').read_text(encoding='utf-8'))['medians']
+    standard = medians['batch-20-standard']
+    fixed = medians['batch-20-fixed']
+    ratio = standard['AllocatedBytesPerMillionMessages'] / fixed['AllocatedBytesPerMillionMessages']
+    highlight = (f'**Основной вариант: {fixed["MessagesPerSecond"]:,.0f} сообщений/с и в {ratio:.2f} раза меньше выделенной памяти на сообщение, чем ClientWebSocket.**' if russian else
+                 f'**Main implementation: {fixed["MessagesPerSecond"]:,.0f} messages/s and {ratio:.2f}× less managed memory allocated per message than ClientWebSocket.**')
+    heading = '| Клиент | Сообщений/с | CPU мс / млн сообщений | Аллокации, кБ / млн сообщений |' if russian else '| Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |'
+    blocks = [highlight, '', heading, '|---|---:|---:|---:|']
+    labels = [('standard', 'ClientWebSocket', 'ClientWebSocket'),
+              ('fixed', 'Pipelines · fixed 64 KiB buffer', 'Pipelines · фиксированный буфер 64 KiB'),
+              ('auto', 'Pipelines · automatic buffer (control)', 'Pipelines · автоматический буфер (контроль)')]
+    for variant, english, russian_label in labels:
+        stats = medians['batch-20-' + variant]
+        blocks.append(f'| {russian_label if russian else english} | {stats["MessagesPerSecond"]:,.0f} | {stats["CpuMillisecondsPerMillionMessages"]:,.0f} | {stats["AllocatedBytesPerMillionMessages"] / BYTES_PER_KILOBYTE:.3f} |')
+    blocks.extend(['', 'CPU и аллокации относятся ко всему процессу приёмника, включая сбор метрик; 1 кБ = 1000 байт. Основной клиент использует фиксированный приёмный TCP-буфер 64 KiB. Автоматический размер — отдельный контрольный вариант.' if russian else
+                   'CPU and allocations cover the receiver process including sampling; 1 kB = 1000 bytes. The main client uses a fixed 64 KiB TCP receive buffer. Automatic sizing is a separate control variant.', ''])
     return '\n'.join(blocks)
 
 def main():
@@ -115,10 +155,12 @@ def main():
     (directory/'summary.json').write_text(json.dumps(summary,indent=2)+'\n', encoding='utf-8')
     for filename,russian in [('README.md',False),('README.ru.md',True)]:
         p=ROOT/filename;s=p.read_text(encoding='utf-8');start='<!-- LOCAL_RESULTS_START -->';end='<!-- LOCAL_RESULTS_END -->';head,rest=s.split(start);_,tail=rest.split(end)
-        table=render(cases,russian)
+        table=render_local(cases,summary.get('streaming'),russian)
+        rendered=head+start+'\n'+table+'\n'+end+tail
         if KIND=='websocket':
-            table+=('\n| Клиент | Сообщений/с | CPU мс / 1 млн | Память kB / 1 млн |\n' if russian else '\n| Client | Messages/s | CPU ms / 1M | Allocated kB / 1M |\n')+'|---|---:|---:|---:|\n'
-            for client,stats in summary['streaming'].items():table+=f'| {client} | {stats["messagesPerSecond"]:,.0f} | {stats["cpuMsPerMillionMessages"]:,.0f} | {stats["allocatedBytesPerMillionMessages"]/1_000:.3f} |\n'
-        p.write_text(head+start+'\n'+table+'\n'+end+tail, encoding='utf-8')
+            eth_start='<!-- ETHERNET_RESULTS_START -->';eth_end='<!-- ETHERNET_RESULTS_END -->'
+            before_eth,eth_rest=rendered.split(eth_start);_,after_eth=eth_rest.split(eth_end)
+            rendered=before_eth+eth_start+'\n'+render_ethernet(russian)+'\n'+eth_end+after_eth
+        p.write_text(rendered, encoding='utf-8')
     print(f'Validated {len(cases)} measured cases'+(' and before/after comparison' if before else '')+(' plus streaming' if KIND=='websocket' else '')+'; generated both READMEs.')
 if __name__=='__main__':main()

@@ -31,10 +31,15 @@ def main():
         if relative.endswith(('.cs','.csproj','.props','packages.lock.json')) and digest(ROOT/relative)!=expected:
             raise ValueError(f'Runtime build input differs from measured sources: {relative}')
     after=module.reports(run);before=module.reports(run/'baseline')
+    streams=module.streaming(run) if module.KIND=='websocket' else None
     for filename,russian in [('README.md',False),('README.ru.md',True)]:
         section=(ROOT/filename).read_text(encoding='utf-8').split('<!-- LOCAL_RESULTS_START -->')[1].split('<!-- LOCAL_RESULTS_END -->')[0].strip()
-        if not section.startswith(module.render(after,russian).strip()):
+        if section!=module.render_local(after,streams,russian).strip():
             raise ValueError(f'Generated benchmark table differs from measured reports: {filename}')
-    if module.KIND=='websocket':module.streaming(run);module.streaming(run/'baseline')
+        if module.KIND=='websocket':
+            ethernet=(ROOT/filename).read_text(encoding='utf-8').split('<!-- ETHERNET_RESULTS_START -->')[1].split('<!-- ETHERNET_RESULTS_END -->')[0].strip()
+            if ethernet!=module.render_ethernet(russian).strip():
+                raise ValueError(f'Generated Ethernet table differs from measured reports: {filename}')
+    if module.KIND=='websocket':module.streaming(run/'baseline')
     print(f'PASS: {len(provenance["files"])} mapped files, unchanged tests and historical reports, {len(before)} + {len(after)} measured cases; independent library, internal pool helper.')
 if __name__=='__main__':main()
