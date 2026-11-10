@@ -1,0 +1,46 @@
+{
+  "StartedAtUtc": "2026-11-08T19:15:41.7263771+00:00",
+  "CommandLine": "--mode client --url ws://192.168.1.75:5050 --payload-bytes 1024 --batch 1 --count 2 --warmup 1 --duration 3 --json results/lan-1kib/check-pipeline.json",
+  "ClientType": "pipeline",
+  "ClientCount": 2,
+  "WarmupSeconds": 1,
+  "DurationSeconds": 3.000656,
+  "PayloadBytes": 1024,
+  "FramesPerBatch": 1,
+  "BatchBytes": 1028,
+  "Messages": 207577,
+  "Bytes": 212558848,
+  "MessagesPerSecond": 69177.20658416026,
+  "MegabitsPerSecond": 566.6996763374409,
+  "CpuMilliseconds": 6414.009,
+  "AllocatedBytes": 3616,
+  "Gen0Collections": 0,
+  "Gen1Collections": 0,
+  "Gen2Collections": 0,
+  "Samples": [
+    {
+      "ElapsedSeconds": 1.0006823,
+      "Messages": 77546,
+      "Bytes": 79407104,
+      "MessagesPerSecond": 77493.1264398301
+    },
+    {
+      "ElapsedSeconds": 2.0015149,
+      "Messages": 60575,
+      "Bytes": 62028800,
+      "MessagesPerSecond": 60524.607212035255
+    },
+    {
+      "ElapsedSeconds": 3.000656,
+      "Messages": 69456,
+      "Bytes": 71122944,
+      "MessagesPerSecond": 69515.70704077731
+    }
+  ],
+  "Topology": "remote-client",
+  "Endpoint": "ws://192.168.1.75:5050/stream/1024/1",
+  "CpuMillisecondsPerMillionMessages": 30899.42045602355,
+  "AllocatedBytesPerMessage": 0.01742004171945832,
+  "CpuCorePercent": 213.75355922171684,
+  "CpuScope": "receiver-only"
+}

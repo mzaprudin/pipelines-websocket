@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
+    <ProjectReference Include="../../src/Pipelines.WebSockets/Pipelines.WebSockets.csproj" />
+    <Compile Include="../../support/LoopbackServer.cs" Link="Support/LoopbackServer.cs" />
+    <Compile Include="../../support/RoundtripSession.cs" Link="Support/RoundtripSession.cs" />
+  </ItemGroup>
+</Project>

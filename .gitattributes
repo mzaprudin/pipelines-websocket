@@ -1,0 +1,4 @@
+# Unified patches preserve the space prefix on empty context lines.
+results/lan-controls/*/*.patch -whitespace
+# Raw ss output keeps its original column padding.
+results/lan-controls/*/*.tcp.txt -whitespace

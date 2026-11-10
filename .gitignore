@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+BenchmarkDotNet.Artifacts/
+TestResults/
+.vs/
+.idea/
+*.user
+.env
+.env.*
+artifacts/
+
+__pycache__/
+*.pyc

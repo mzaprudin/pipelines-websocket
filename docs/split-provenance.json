@@ -1,0 +1,1693 @@
+{
+  "upstream": "https://github.com/mzaprudin/zero-alloc-json-ws",
+  "revision": "02f7aefda0933e9a719616ec72bf6f11fc5dd9a8",
+  "license": "No open-source license granted; original NOTICE preserved.",
+  "changes": [
+    "Build/package boundaries, global imports and friend assemblies",
+    "PoolRental<T> is internal in each assembly",
+    "JSON routing implementations moved verbatim from benchmark file to library; namespaces preserved",
+    "Harness paths and standalone samples/scripts"
+  ],
+  "files": [
+    {
+      "source": ".editorconfig",
+      "destination": ".editorconfig",
+      "sourceSha256": "c4d97053b2457957918f51620da68f6d7f7fd5137e944b00c82588230320b774",
+      "destinationSha256": "c4d97053b2457957918f51620da68f6d7f7fd5137e944b00c82588230320b774"
+    },
+    {
+      "source": ".gitattributes",
+      "destination": ".gitattributes",
+      "sourceSha256": "a177afd6d9fae872964ab8bf53e4f455b9add510f91ad8a7b609022f8b368e8f",
+      "destinationSha256": "a177afd6d9fae872964ab8bf53e4f455b9add510f91ad8a7b609022f8b368e8f"
+    },
+    {
+      "source": ".gitignore",
+      "destination": ".gitignore",
+      "sourceSha256": "efb625010fd28f0119d5cf4d5e384cb15d802f36ebb9d314c992651a4a89c315",
+      "destinationSha256": "da889541671b0fc366484bcc25a86e1f772fc6c72ba97519e4c9a32a9db02a47"
+    },
+    {
+      "source": "Directory.Build.props",
+      "destination": "Directory.Build.props",
+      "sourceSha256": "d89fd08ec70ebb27deb05f7aa253a77bd48c8639f46d9bba09ffac9bcfcbcc62",
+      "destinationSha256": "d89fd08ec70ebb27deb05f7aa253a77bd48c8639f46d9bba09ffac9bcfcbcc62"
+    },
+    {
+      "source": "global.json",
+      "destination": "global.json",
+      "sourceSha256": "b48d6da8fa62c0da7cc8a2da4ea036ac55836660a448ba533135abb5b8451b73",
+      "destinationSha256": "b48d6da8fa62c0da7cc8a2da4ea036ac55836660a448ba533135abb5b8451b73"
+    },
+    {
+      "source": "NOTICE",
+      "destination": "NOTICE",
+      "sourceSha256": "3456e85ed7e22ab53408ab9259e874a5922770f0023d2ea23465027fbf9473ea",
+      "destinationSha256": "3456e85ed7e22ab53408ab9259e874a5922770f0023d2ea23465027fbf9473ea"
+    },
+    {
+      "source": "benchmarks/GapSonar.TransportLab.Benchmarks/Program.cs",
+      "destination": "benchmarks/Pipelines.WebSockets.Benchmarks/Program.cs",
+      "sourceSha256": "01335ef932249d28708859cddc5afb4263062e29f269834ac1afa12fa13289f7",
+      "destinationSha256": "01335ef932249d28708859cddc5afb4263062e29f269834ac1afa12fa13289f7"
+    },
+    {
+      "source": "benchmarks/GapSonar.TransportLab.Benchmarks/WebSocketBenchmarks.cs",
+      "destination": "benchmarks/Pipelines.WebSockets.Benchmarks/WebSocketBenchmarks.cs",
+      "sourceSha256": "aabe0ed86e1e821aa493d2306335edfca1d190cf2df0bcc624ffe13d75ad04ac",
+      "destinationSha256": "aabe0ed86e1e821aa493d2306335edfca1d190cf2df0bcc624ffe13d75ad04ac"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/AssemblyInfo.cs",
+      "destination": "benchmarks/WebSocketLoadTest/AssemblyInfo.cs",
+      "sourceSha256": "b39e33bc96f0b8572be1a80808c16dfa05d526b5d354851137d73e239b7a2668",
+      "destinationSha256": "b39e33bc96f0b8572be1a80808c16dfa05d526b5d354851137d73e239b7a2668"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/Clients/ILoadTestClient.cs",
+      "destination": "benchmarks/WebSocketLoadTest/Clients/ILoadTestClient.cs",
+      "sourceSha256": "6f001bb47ff99ae5f27d93e53600b58d82285025e34733169898af00aa0df209",
+      "destinationSha256": "6f001bb47ff99ae5f27d93e53600b58d82285025e34733169898af00aa0df209"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/Clients/PipelineClient.cs",
+      "destination": "benchmarks/WebSocketLoadTest/Clients/PipelineClient.cs",
+      "sourceSha256": "3ee871b708c955b1c4e12334b3c1a6dce24a533e48594e6b15cb75038b5af374",
+      "destinationSha256": "3ee871b708c955b1c4e12334b3c1a6dce24a533e48594e6b15cb75038b5af374"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/Clients/StandardClient.cs",
+      "destination": "benchmarks/WebSocketLoadTest/Clients/StandardClient.cs",
+      "sourceSha256": "dfdfc51fc17593d2b3995d1db43f7027b2ffe884280a2e2c80fa6436b92cb46c",
+      "destinationSha256": "dfdfc51fc17593d2b3995d1db43f7027b2ffe884280a2e2c80fa6436b92cb46c"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/CounterSnapshot.cs",
+      "destination": "benchmarks/WebSocketLoadTest/CounterSnapshot.cs",
+      "sourceSha256": "0adf9b799a502a0a2ec5000570606ed8a11a856019414de2fbeaf7dffaee8e92",
+      "destinationSha256": "0adf9b799a502a0a2ec5000570606ed8a11a856019414de2fbeaf7dffaee8e92"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/MeasurementWindow.cs",
+      "destination": "benchmarks/WebSocketLoadTest/MeasurementWindow.cs",
+      "sourceSha256": "6b7ecc0cf4a7f004952c8566ebbec6a06504e501b04b4caf4e8b935ca35d85fc",
+      "destinationSha256": "6b7ecc0cf4a7f004952c8566ebbec6a06504e501b04b4caf4e8b935ca35d85fc"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/Options.cs",
+      "destination": "benchmarks/WebSocketLoadTest/Options.cs",
+      "sourceSha256": "9b99101bdd13078f0078f63c6b367e87b30311990176c66357c647a825f0a277",
+      "destinationSha256": "9b99101bdd13078f0078f63c6b367e87b30311990176c66357c647a825f0a277"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/Program.cs",
+      "destination": "benchmarks/WebSocketLoadTest/Program.cs",
+      "sourceSha256": "15da07cab9c28f12e9e93fbf22362143b06d18ea230625429e2c70dea15ff27a",
+      "destinationSha256": "15da07cab9c28f12e9e93fbf22362143b06d18ea230625429e2c70dea15ff27a"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/Server/LoadServer.cs",
+      "destination": "benchmarks/WebSocketLoadTest/Server/LoadServer.cs",
+      "sourceSha256": "bc9f17e2280ad6ca3ae4367b7572f80b6065e34b7f0e83dbaa0300f360c5475a",
+      "destinationSha256": "bc9f17e2280ad6ca3ae4367b7572f80b6065e34b7f0e83dbaa0300f360c5475a"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/Server/StreamingPayload.cs",
+      "destination": "benchmarks/WebSocketLoadTest/Server/StreamingPayload.cs",
+      "sourceSha256": "1cdc7f85b47efbd0b1f5686c4cb8ca9c1cd7221fb24e54bd91d579ffb2445c76",
+      "destinationSha256": "1cdc7f85b47efbd0b1f5686c4cb8ca9c1cd7221fb24e54bd91d579ffb2445c76"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/WebSocketLoadTest.csproj",
+      "destination": "benchmarks/WebSocketLoadTest/WebSocketLoadTest.csproj",
+      "sourceSha256": "d33453aa242084dcfceeb9c6a1d1ccb4f9d13ec3dd75351816ac01fee6d90fb8",
+      "destinationSha256": "8cb63309fe765b9e50cc50e3d3a3f6db0a4004135fab2a43df93017090089ff2"
+    },
+    {
+      "source": "benchmarks/WebSocketLoadTest/packages.lock.json",
+      "destination": "benchmarks/WebSocketLoadTest/packages.lock.json",
+      "sourceSha256": "44be6460b65baca2b3c59b0ff7e46a44678d5e02f1a61a34c93cac083ade71ff",
+      "destinationSha256": "9a070afa401be6e0bad4b6fb4510c17a98cdebc95cf8c31e4a18fa8188e75501"
+    },
+    {
+      "source": "docs/extraction.md",
+      "destination": "docs/upstream/extraction.md",
+      "sourceSha256": "2e10b2fdc931216b66f8a034c534872781477a8d173d23d4a8135db615e0e6d2",
+      "destinationSha256": "2e10b2fdc931216b66f8a034c534872781477a8d173d23d4a8135db615e0e6d2"
+    },
+    {
+      "source": "docs/lan-acceptance-audit.md",
+      "destination": "docs/lan-acceptance-audit.md",
+      "sourceSha256": "97bc715124c3b25e0f53c2b3d10ae5b9b9360832ca574dae7b1f521f8b6a7cf0",
+      "destinationSha256": "97bc715124c3b25e0f53c2b3d10ae5b9b9360832ca574dae7b1f521f8b6a7cf0"
+    },
+    {
+      "source": "docs/lan-benchmark.md",
+      "destination": "docs/lan-benchmark.md",
+      "sourceSha256": "a18fcda297e17d1179c5a7304e47c8a2b2fb054944a89521999a096d1fd99281",
+      "destinationSha256": "a18fcda297e17d1179c5a7304e47c8a2b2fb054944a89521999a096d1fd99281"
+    },
+    {
+      "source": "docs/lan-controls-128-findings.md",
+      "destination": "docs/lan-controls-128-findings.md",
+      "sourceSha256": "42d63a6aaeac0dbef63ffc45a18723c6e2ba9344e572810c1977944cdb5cfffb",
+      "destinationSha256": "42d63a6aaeac0dbef63ffc45a18723c6e2ba9344e572810c1977944cdb5cfffb"
+    },
+    {
+      "source": "docs/lan-controls-audit.md",
+      "destination": "docs/lan-controls-audit.md",
+      "sourceSha256": "d66a58e9c1f62f02a31d1037f130f0d34b5f243dab24cb0e7ee2e34860acbe84",
+      "destinationSha256": "d66a58e9c1f62f02a31d1037f130f0d34b5f243dab24cb0e7ee2e34860acbe84"
+    },
+    {
+      "source": "docs/lan-controls-findings.md",
+      "destination": "docs/lan-controls-findings.md",
+      "sourceSha256": "d8f44a22c6b7588c544a579ba4f2fdc2527bdc82db806eb704d1974035b052b2",
+      "destinationSha256": "d8f44a22c6b7588c544a579ba4f2fdc2527bdc82db806eb704d1974035b052b2"
+    },
+    {
+      "source": "docs/lan-controls.md",
+      "destination": "docs/lan-controls.md",
+      "sourceSha256": "de3148e797fe79599d58ed067a3e55a449330a6a069f496f3a2222e8a75ea7a8",
+      "destinationSha256": "de3148e797fe79599d58ed067a3e55a449330a6a069f496f3a2222e8a75ea7a8"
+    },
+    {
+      "source": "docs/lan-tooling-audit.md",
+      "destination": "docs/lan-tooling-audit.md",
+      "sourceSha256": "1d8ba25626116cde1724acc3ffec55354015309f3ecd69d695cfbc235d7488eb",
+      "destinationSha256": "1d8ba25626116cde1724acc3ffec55354015309f3ecd69d695cfbc235d7488eb"
+    },
+    {
+      "source": "docs/original-benchmarks-provenance.json",
+      "destination": "docs/upstream/original-benchmarks-provenance.json",
+      "sourceSha256": "18a05944b0437f5e011a13195f1dd1484ac2daf99fe3a5bf692db296d6ba2178",
+      "destinationSha256": "18a05944b0437f5e011a13195f1dd1484ac2daf99fe3a5bf692db296d6ba2178"
+    },
+    {
+      "source": "docs/source-manifest.txt",
+      "destination": "docs/upstream/source-manifest.txt",
+      "sourceSha256": "c837055d841c4015ef20ca0a8edae5d28f17112735a1856d6e927bfb36a3dbc8",
+      "destinationSha256": "c837055d841c4015ef20ca0a8edae5d28f17112735a1856d6e927bfb36a3dbc8"
+    },
+    {
+      "source": "docs/source-provenance.json",
+      "destination": "docs/upstream/source-provenance.json",
+      "sourceSha256": "478cce6d865fdf661e2284ef0f72a5877e023d81f427219a92b13d4b184650a2",
+      "destinationSha256": "478cce6d865fdf661e2284ef0f72a5877e023d81f427219a92b13d4b184650a2"
+    },
+    {
+      "source": "results/historical/websocket.md",
+      "destination": "results/historical/websocket.md",
+      "sourceSha256": "286c4df69d52a280e1ed761defeeba957d9255e834eecb68c0550cbbe735acea",
+      "destinationSha256": "286c4df69d52a280e1ed761defeeba957d9255e834eecb68c0550cbbe735acea"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/README.md",
+      "destination": "results/lan-1kib/20261108T191616Z/README.md",
+      "sourceSha256": "1ce2d481d866e15be1c4133ea7528049a5714a9745a77788e3a54f9ea07b3fff",
+      "destinationSha256": "1ce2d481d866e15be1c4133ea7528049a5714a9745a77788e3a54f9ea07b3fff"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/environment.json",
+      "destination": "results/lan-1kib/20261108T191616Z/environment.json",
+      "sourceSha256": "2f6e50e99d85d26cdcd3b9db8e8f5aba95b0c2baa7a24d0339c50d9c8b435665",
+      "destinationSha256": "2f6e50e99d85d26cdcd3b9db8e8f5aba95b0c2baa7a24d0339c50d9c8b435665"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/generator-manifest.json",
+      "destination": "results/lan-1kib/20261108T191616Z/generator-manifest.json",
+      "sourceSha256": "b74b3316f3e584011f3fe9a229a5a2103179ae8634f46768c4002fd9efe71d53",
+      "destinationSha256": "b74b3316f3e584011f3fe9a229a5a2103179ae8634f46768c4002fd9efe71d53"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/pipeline-1.json",
+      "destination": "results/lan-1kib/20261108T191616Z/pipeline-1.json",
+      "sourceSha256": "262d943750914a2db6803471fead34f864aeb84cd4b5ebc04d9f3e731a22ecd7",
+      "destinationSha256": "262d943750914a2db6803471fead34f864aeb84cd4b5ebc04d9f3e731a22ecd7"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/pipeline-1.log",
+      "destination": "results/lan-1kib/20261108T191616Z/pipeline-1.log",
+      "sourceSha256": "d9d64dfe89030e33e0a17e7a5a1563df044e9f5634698dcc8f34d415cac81f9c",
+      "destinationSha256": "d9d64dfe89030e33e0a17e7a5a1563df044e9f5634698dcc8f34d415cac81f9c"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/pipeline-2.json",
+      "destination": "results/lan-1kib/20261108T191616Z/pipeline-2.json",
+      "sourceSha256": "a2ce188fb6a2d757e4c047306bad41b3be4da30637c5a17ee6c22f72e1710fe5",
+      "destinationSha256": "a2ce188fb6a2d757e4c047306bad41b3be4da30637c5a17ee6c22f72e1710fe5"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/pipeline-2.log",
+      "destination": "results/lan-1kib/20261108T191616Z/pipeline-2.log",
+      "sourceSha256": "e803af6ad1b39f9eb71ca1c959771b5868989edbe5c86f7cefe70cfbe1079582",
+      "destinationSha256": "e803af6ad1b39f9eb71ca1c959771b5868989edbe5c86f7cefe70cfbe1079582"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/pipeline-3.json",
+      "destination": "results/lan-1kib/20261108T191616Z/pipeline-3.json",
+      "sourceSha256": "3c4b212af756053c5508a93f5fc3e25e073ff0ffeeaf7d05300327aa5789c9f4",
+      "destinationSha256": "3c4b212af756053c5508a93f5fc3e25e073ff0ffeeaf7d05300327aa5789c9f4"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/pipeline-3.log",
+      "destination": "results/lan-1kib/20261108T191616Z/pipeline-3.log",
+      "sourceSha256": "4c8c3a034676d9bd5fc5215b688882f1ada0bdf7468b0f022a455b7ecf6db40a",
+      "destinationSha256": "4c8c3a034676d9bd5fc5215b688882f1ada0bdf7468b0f022a455b7ecf6db40a"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/source-snapshot.json",
+      "destination": "results/lan-1kib/20261108T191616Z/source-snapshot.json",
+      "sourceSha256": "759f6e2ddcdbd909b15378f5b2cb7df6318f272ffc642e901e0a544090673a93",
+      "destinationSha256": "759f6e2ddcdbd909b15378f5b2cb7df6318f272ffc642e901e0a544090673a93"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/standard-1.json",
+      "destination": "results/lan-1kib/20261108T191616Z/standard-1.json",
+      "sourceSha256": "b05a17952a7b4c4dfbadfe720c20952e00edf541f2ed40a7ffd957c96f7f7025",
+      "destinationSha256": "b05a17952a7b4c4dfbadfe720c20952e00edf541f2ed40a7ffd957c96f7f7025"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/standard-1.log",
+      "destination": "results/lan-1kib/20261108T191616Z/standard-1.log",
+      "sourceSha256": "e9a31e20542559de064837786ea76c3740849bda26c0541461394fa61b03b06e",
+      "destinationSha256": "e9a31e20542559de064837786ea76c3740849bda26c0541461394fa61b03b06e"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/standard-2.json",
+      "destination": "results/lan-1kib/20261108T191616Z/standard-2.json",
+      "sourceSha256": "e85a89574abb050ef934548eb3b5e72f4c01082272ec0170355567e7567a350a",
+      "destinationSha256": "e85a89574abb050ef934548eb3b5e72f4c01082272ec0170355567e7567a350a"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/standard-2.log",
+      "destination": "results/lan-1kib/20261108T191616Z/standard-2.log",
+      "sourceSha256": "779224168ec737e53abf38c06468e6d74754aad4a3dfcd068250e0b8194a9db9",
+      "destinationSha256": "779224168ec737e53abf38c06468e6d74754aad4a3dfcd068250e0b8194a9db9"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/standard-3.json",
+      "destination": "results/lan-1kib/20261108T191616Z/standard-3.json",
+      "sourceSha256": "e27955784ebafaea1d209d1b8e4afa6b6c51276490ccf3decca5a9a97b270a3a",
+      "destinationSha256": "e27955784ebafaea1d209d1b8e4afa6b6c51276490ccf3decca5a9a97b270a3a"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/standard-3.log",
+      "destination": "results/lan-1kib/20261108T191616Z/standard-3.log",
+      "sourceSha256": "ae739a7f94dfdcee8a88aeb3efc8e81a7b680989258453e3c0a4c54530010b05",
+      "destinationSha256": "ae739a7f94dfdcee8a88aeb3efc8e81a7b680989258453e3c0a4c54530010b05"
+    },
+    {
+      "source": "results/lan-1kib/20261108T191616Z/summary.json",
+      "destination": "results/lan-1kib/20261108T191616Z/summary.json",
+      "sourceSha256": "89a04a38f127e183d689fb5964a5322920c1380b3da24d558526eb54bc1126af",
+      "destinationSha256": "89a04a38f127e183d689fb5964a5322920c1380b3da24d558526eb54bc1126af"
+    },
+    {
+      "source": "results/lan-1kib/README.md",
+      "destination": "results/lan-1kib/README.md",
+      "sourceSha256": "611c7975327ad805af7ec1b98ae55d803961d0569e367443d5e61eb78c3607e2",
+      "destinationSha256": "611c7975327ad805af7ec1b98ae55d803961d0569e367443d5e61eb78c3607e2"
+    },
+    {
+      "source": "results/lan-1kib/check-pipeline.json",
+      "destination": "results/lan-1kib/check-pipeline.json",
+      "sourceSha256": "83c975e664822242a76130e13eb4679f58e823b3109cbc395ce6350f659d3c2b",
+      "destinationSha256": "83c975e664822242a76130e13eb4679f58e823b3109cbc395ce6350f659d3c2b"
+    },
+    {
+      "source": "results/lan-1kib/check-standard.json",
+      "destination": "results/lan-1kib/check-standard.json",
+      "sourceSha256": "c16372648cc48d19dedc07c6d40f7dc957d058c6a8850e79d1b722fa49be568f",
+      "destinationSha256": "c16372648cc48d19dedc07c6d40f7dc957d058c6a8850e79d1b722fa49be568f"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/README.md",
+      "destination": "results/lan-controls/20261108T194624Z/README.md",
+      "sourceSha256": "575296fc7a2647e8c669c0bbfc2b88517124f60ebc3e881aa220db15ed4a5821",
+      "destinationSha256": "575296fc7a2647e8c669c0bbfc2b88517124f60ebc3e881aa220db15ed4a5821"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/auto-receive.patch",
+      "destination": "results/lan-controls/20261108T194624Z/auto-receive.patch",
+      "sourceSha256": "e6d85fe8203c1b2921ad7f9992e2a8ebe428752cc1ffa0e71c1c858bf44a45ce",
+      "destinationSha256": "e6d85fe8203c1b2921ad7f9992e2a8ebe428752cc1ffa0e71c1c858bf44a45ce"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/auto-setup.log",
+      "destination": "results/lan-controls/20261108T194624Z/auto-setup.log",
+      "sourceSha256": "35518950457849cdd1fa28ba5cb8bf653a750d5246ed64624bdd69b905e2c9d2",
+      "destinationSha256": "35518950457849cdd1fa28ba5cb8bf653a750d5246ed64624bdd69b905e2c9d2"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-auto-1.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-auto-1.json",
+      "sourceSha256": "d1d4edf0f61b22c07cc49b641fd052055af166e7121ebd545fd88aaf9be9c31f",
+      "destinationSha256": "d1d4edf0f61b22c07cc49b641fd052055af166e7121ebd545fd88aaf9be9c31f"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-auto-1.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-auto-1.log",
+      "sourceSha256": "925f85165f7713be05f70235b9150249763069d28fa8d9183754c23ac51b9151",
+      "destinationSha256": "925f85165f7713be05f70235b9150249763069d28fa8d9183754c23ac51b9151"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-auto-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-auto-1.tcp.txt",
+      "sourceSha256": "a555052ec729b817f3acda4207e808384c71013fbffaaff6661cc6c156389825",
+      "destinationSha256": "a555052ec729b817f3acda4207e808384c71013fbffaaff6661cc6c156389825"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-auto-2.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-auto-2.json",
+      "sourceSha256": "6ebca191dc43e045fe9019bf4bd0a4fbad3bbd0399ee1a2d14a86ef1bad7ec8a",
+      "destinationSha256": "6ebca191dc43e045fe9019bf4bd0a4fbad3bbd0399ee1a2d14a86ef1bad7ec8a"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-auto-2.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-auto-2.log",
+      "sourceSha256": "26eb32819af9cbe042265797b82618a36c1bd174b0fc73fa767e55bad996c2cc",
+      "destinationSha256": "26eb32819af9cbe042265797b82618a36c1bd174b0fc73fa767e55bad996c2cc"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-auto-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-auto-2.tcp.txt",
+      "sourceSha256": "fb2c96a0dc368fd11c538e3c19a8d33e847ad71e28cc2084a7c770398137b866",
+      "destinationSha256": "fb2c96a0dc368fd11c538e3c19a8d33e847ad71e28cc2084a7c770398137b866"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-auto-3.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-auto-3.json",
+      "sourceSha256": "2bda04177a89eaa57279422261d2b35a69b4fe0de46246440ceea080d61abcd4",
+      "destinationSha256": "2bda04177a89eaa57279422261d2b35a69b4fe0de46246440ceea080d61abcd4"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-auto-3.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-auto-3.log",
+      "sourceSha256": "cc4607a327278b013dfa76092ca80cd223cd9220c98a17fc74fd744f82efb2b4",
+      "destinationSha256": "cc4607a327278b013dfa76092ca80cd223cd9220c98a17fc74fd744f82efb2b4"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-auto-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-auto-3.tcp.txt",
+      "sourceSha256": "d8a4db2edbc0e59de7cd901c904e9058392374c993d50d2d10037b7dc2ae67ee",
+      "destinationSha256": "d8a4db2edbc0e59de7cd901c904e9058392374c993d50d2d10037b7dc2ae67ee"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-fixed-1.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-fixed-1.json",
+      "sourceSha256": "ca880b51621118c2d74af1c53abee2c37165b2287652818d578ef7629426269a",
+      "destinationSha256": "ca880b51621118c2d74af1c53abee2c37165b2287652818d578ef7629426269a"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-fixed-1.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-fixed-1.log",
+      "sourceSha256": "e3a8143f593b9e93c250d6a7df3ea9a3b2a1d51a7f2e3fb8c918d3230ceac652",
+      "destinationSha256": "e3a8143f593b9e93c250d6a7df3ea9a3b2a1d51a7f2e3fb8c918d3230ceac652"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-fixed-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-fixed-1.tcp.txt",
+      "sourceSha256": "b061cb44e091923eb96ac7d53ed412e4da246c2d43259d1c7463725af965c277",
+      "destinationSha256": "b061cb44e091923eb96ac7d53ed412e4da246c2d43259d1c7463725af965c277"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-fixed-2.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-fixed-2.json",
+      "sourceSha256": "42b7d9e8b6ff0faa205c398530b56ff76d6512961105421c7972f41ae207d29c",
+      "destinationSha256": "42b7d9e8b6ff0faa205c398530b56ff76d6512961105421c7972f41ae207d29c"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-fixed-2.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-fixed-2.log",
+      "sourceSha256": "1276a838753168942d93c138bbb1841dc280b2fc51c89073c85e0f7f53aad9fb",
+      "destinationSha256": "1276a838753168942d93c138bbb1841dc280b2fc51c89073c85e0f7f53aad9fb"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-fixed-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-fixed-2.tcp.txt",
+      "sourceSha256": "5ce3b5aee2cb53c74c38bf1a97c99b10033fee4c547547854ed93353679a4173",
+      "destinationSha256": "5ce3b5aee2cb53c74c38bf1a97c99b10033fee4c547547854ed93353679a4173"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-fixed-3.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-fixed-3.json",
+      "sourceSha256": "b12b92fbd8cfa5bfeed0d5688d313b7f18a5adcedd37cab2c7494bcec114d415",
+      "destinationSha256": "b12b92fbd8cfa5bfeed0d5688d313b7f18a5adcedd37cab2c7494bcec114d415"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-fixed-3.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-fixed-3.log",
+      "sourceSha256": "f135a3e8e551a3156c1e1139309a0e72cf6cb07335968b825cae4d9b684cf0e8",
+      "destinationSha256": "f135a3e8e551a3156c1e1139309a0e72cf6cb07335968b825cae4d9b684cf0e8"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-fixed-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-fixed-3.tcp.txt",
+      "sourceSha256": "35906a982d3229185f20980eb06e39738657445b6127586184f7be5f33059b44",
+      "destinationSha256": "35906a982d3229185f20980eb06e39738657445b6127586184f7be5f33059b44"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-standard-1.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-standard-1.json",
+      "sourceSha256": "212cb8ee02a57222bf6c0a17cf98effc3cb7fa11f0bb79307e126c9af6b7956c",
+      "destinationSha256": "212cb8ee02a57222bf6c0a17cf98effc3cb7fa11f0bb79307e126c9af6b7956c"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-standard-1.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-standard-1.log",
+      "sourceSha256": "0ebb1a48e6f6e324e8ab817501d31990c33e4642a0e3e4e542732c017e3ac3ae",
+      "destinationSha256": "0ebb1a48e6f6e324e8ab817501d31990c33e4642a0e3e4e542732c017e3ac3ae"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-standard-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-standard-1.tcp.txt",
+      "sourceSha256": "d47e171315b63b26beb6724c5c0f7179729d96451f2d7f76f50f896559440f56",
+      "destinationSha256": "d47e171315b63b26beb6724c5c0f7179729d96451f2d7f76f50f896559440f56"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-standard-2.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-standard-2.json",
+      "sourceSha256": "aba2c1e2d1fd68684091e317facd2656e35df3b3ef727230cdd49ca03c849d5d",
+      "destinationSha256": "aba2c1e2d1fd68684091e317facd2656e35df3b3ef727230cdd49ca03c849d5d"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-standard-2.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-standard-2.log",
+      "sourceSha256": "8d55cddb5441e86c6954d53f8d40836feb29deb52062110e4e939192032918ff",
+      "destinationSha256": "8d55cddb5441e86c6954d53f8d40836feb29deb52062110e4e939192032918ff"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-standard-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-standard-2.tcp.txt",
+      "sourceSha256": "b4105cef4cdb26f9952f1f4c821cdaf29497627f3e542dc7c1d6f76e0de30457",
+      "destinationSha256": "b4105cef4cdb26f9952f1f4c821cdaf29497627f3e542dc7c1d6f76e0de30457"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-standard-3.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-standard-3.json",
+      "sourceSha256": "a4ea20e0421c3aba57a6f274336b518e78f88fa3f776a66bb861763bcdbf0740",
+      "destinationSha256": "a4ea20e0421c3aba57a6f274336b518e78f88fa3f776a66bb861763bcdbf0740"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-standard-3.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-standard-3.log",
+      "sourceSha256": "539867652f5a711e0ef26e2cba61c030673b7dca5395ff2b5e727b7782acc4b1",
+      "destinationSha256": "539867652f5a711e0ef26e2cba61c030673b7dca5395ff2b5e727b7782acc4b1"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-1-standard-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-1-standard-3.tcp.txt",
+      "sourceSha256": "6e04c9e5421f7fcf3023eaf19cb04f8286d6f2729882deae662b1dc6e8bf8796",
+      "destinationSha256": "6e04c9e5421f7fcf3023eaf19cb04f8286d6f2729882deae662b1dc6e8bf8796"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-auto-1.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-auto-1.json",
+      "sourceSha256": "cebd7b176d58606f196b41b8aac775d5e16e842401ffacb88f7c14398d62e9b1",
+      "destinationSha256": "cebd7b176d58606f196b41b8aac775d5e16e842401ffacb88f7c14398d62e9b1"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-auto-1.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-auto-1.log",
+      "sourceSha256": "638dad01ff5563dd9d9e71b80fc6705d69bbef55b956f1ee3ca5e4606dfa5763",
+      "destinationSha256": "638dad01ff5563dd9d9e71b80fc6705d69bbef55b956f1ee3ca5e4606dfa5763"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-auto-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-auto-1.tcp.txt",
+      "sourceSha256": "3fea66be1b802dbf5f876a7a3a353faf8f4eac7eaa8dcb7433141690483cba43",
+      "destinationSha256": "3fea66be1b802dbf5f876a7a3a353faf8f4eac7eaa8dcb7433141690483cba43"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-auto-2.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-auto-2.json",
+      "sourceSha256": "ee71f3b36b604826afb263034ff7f2ed6260b7502b868223c4d0e29ac8aee64a",
+      "destinationSha256": "ee71f3b36b604826afb263034ff7f2ed6260b7502b868223c4d0e29ac8aee64a"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-auto-2.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-auto-2.log",
+      "sourceSha256": "45420bf727d86b51cd062902b59961b1fb349d5af8129b4be182d5b09ec658a4",
+      "destinationSha256": "45420bf727d86b51cd062902b59961b1fb349d5af8129b4be182d5b09ec658a4"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-auto-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-auto-2.tcp.txt",
+      "sourceSha256": "2eec107963573bf509f153fd61481c650b2fad9642ee3b7a3cd8334794b2a4ba",
+      "destinationSha256": "2eec107963573bf509f153fd61481c650b2fad9642ee3b7a3cd8334794b2a4ba"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-auto-3.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-auto-3.json",
+      "sourceSha256": "e72993a896bdf092ff4ba12790a029856f87655f62cd5b44b290b60c7578cbe7",
+      "destinationSha256": "e72993a896bdf092ff4ba12790a029856f87655f62cd5b44b290b60c7578cbe7"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-auto-3.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-auto-3.log",
+      "sourceSha256": "761d594acc3fb274f49b33c1299e3301c70321541e57992733ea2048ef8f86f9",
+      "destinationSha256": "761d594acc3fb274f49b33c1299e3301c70321541e57992733ea2048ef8f86f9"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-auto-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-auto-3.tcp.txt",
+      "sourceSha256": "b983f2a840ecb98b36b0dcd82ee6a98d65be4fe0f38cc076b6d1a722029e52ce",
+      "destinationSha256": "b983f2a840ecb98b36b0dcd82ee6a98d65be4fe0f38cc076b6d1a722029e52ce"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-fixed-1.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-fixed-1.json",
+      "sourceSha256": "a232293c8a7602a828addf60d3c2401293cc128377a8774108475e28aa6bbf26",
+      "destinationSha256": "a232293c8a7602a828addf60d3c2401293cc128377a8774108475e28aa6bbf26"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-fixed-1.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-fixed-1.log",
+      "sourceSha256": "73753baf769e6668415783ef447aeefbf1643dee04f18dd9a2dc5180b37d6b04",
+      "destinationSha256": "73753baf769e6668415783ef447aeefbf1643dee04f18dd9a2dc5180b37d6b04"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-fixed-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-fixed-1.tcp.txt",
+      "sourceSha256": "236a81b15192f5fb80689f46a53a63b146e718cf98bce11c5f5372feabeee453",
+      "destinationSha256": "236a81b15192f5fb80689f46a53a63b146e718cf98bce11c5f5372feabeee453"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-fixed-2.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-fixed-2.json",
+      "sourceSha256": "23d03404c7c823aeef76f5aaf4ae5dfe9692d8435ff38a1e42c7ed4a8e3936ea",
+      "destinationSha256": "23d03404c7c823aeef76f5aaf4ae5dfe9692d8435ff38a1e42c7ed4a8e3936ea"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-fixed-2.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-fixed-2.log",
+      "sourceSha256": "34285ad8243563e5ebc09c550e7f46d004d15d79c9e8151a41f22eeb449eb34c",
+      "destinationSha256": "34285ad8243563e5ebc09c550e7f46d004d15d79c9e8151a41f22eeb449eb34c"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-fixed-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-fixed-2.tcp.txt",
+      "sourceSha256": "13c5b8b12b9cf730adbd850dc60b271870ef6d2b9b221db350d79089c414e0a5",
+      "destinationSha256": "13c5b8b12b9cf730adbd850dc60b271870ef6d2b9b221db350d79089c414e0a5"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-fixed-3.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-fixed-3.json",
+      "sourceSha256": "33fa45c51c8459d8ee943afffcca700d04baeb2ff2b67ea3fbd11411171f60b3",
+      "destinationSha256": "33fa45c51c8459d8ee943afffcca700d04baeb2ff2b67ea3fbd11411171f60b3"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-fixed-3.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-fixed-3.log",
+      "sourceSha256": "b556633b509dcb0138b0c46e431faa3af2b9030b9ef639a30270aff722b1f782",
+      "destinationSha256": "b556633b509dcb0138b0c46e431faa3af2b9030b9ef639a30270aff722b1f782"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-fixed-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-fixed-3.tcp.txt",
+      "sourceSha256": "71ef2af984f794af7d3bff5a227942b787f54166e8379d169bdf99f9525d6cad",
+      "destinationSha256": "71ef2af984f794af7d3bff5a227942b787f54166e8379d169bdf99f9525d6cad"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-standard-1.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-standard-1.json",
+      "sourceSha256": "e759347e291e26a404ae1ccbb21406bfa82e6cc3f74028bcff2b726fa3a2bb8b",
+      "destinationSha256": "e759347e291e26a404ae1ccbb21406bfa82e6cc3f74028bcff2b726fa3a2bb8b"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-standard-1.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-standard-1.log",
+      "sourceSha256": "9d4384e6487d40468770aeff0062e45e221d0408d7e7489c8c26a6cdf4280d41",
+      "destinationSha256": "9d4384e6487d40468770aeff0062e45e221d0408d7e7489c8c26a6cdf4280d41"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-standard-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-standard-1.tcp.txt",
+      "sourceSha256": "d9e960f1efe6aaf8adb4de9cfcac9edf8c31a0fec4512e683adf941fa6bef361",
+      "destinationSha256": "d9e960f1efe6aaf8adb4de9cfcac9edf8c31a0fec4512e683adf941fa6bef361"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-standard-2.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-standard-2.json",
+      "sourceSha256": "04f43132d5176178ca82455c8ee65622029366bfdb3ea970d2bdc89cd63bf172",
+      "destinationSha256": "04f43132d5176178ca82455c8ee65622029366bfdb3ea970d2bdc89cd63bf172"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-standard-2.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-standard-2.log",
+      "sourceSha256": "b8cb8862d85c8b516d21f2fdeda1d0677e7ca3ddf00670870d6155e123bd17f7",
+      "destinationSha256": "b8cb8862d85c8b516d21f2fdeda1d0677e7ca3ddf00670870d6155e123bd17f7"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-standard-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-standard-2.tcp.txt",
+      "sourceSha256": "3b741fd526aa16be7b25c939af6418dd23a239c2fd7455b4f37008f30c3dc207",
+      "destinationSha256": "3b741fd526aa16be7b25c939af6418dd23a239c2fd7455b4f37008f30c3dc207"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-standard-3.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-standard-3.json",
+      "sourceSha256": "0f9e672a7e19ee418603fd11257346053c6676d37a019ebcf9b6bb35cbc13cd1",
+      "destinationSha256": "0f9e672a7e19ee418603fd11257346053c6676d37a019ebcf9b6bb35cbc13cd1"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-standard-3.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-standard-3.log",
+      "sourceSha256": "0a6ed809d984c0cd91aee651e94e1b51420b3650ec1a374e99f045a53970350e",
+      "destinationSha256": "0a6ed809d984c0cd91aee651e94e1b51420b3650ec1a374e99f045a53970350e"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-20-standard-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-20-standard-3.tcp.txt",
+      "sourceSha256": "d2360c8bcfd29a69bb2833dbea13c5e37bd4ae456994952fc3ff3426ac66e27f",
+      "destinationSha256": "d2360c8bcfd29a69bb2833dbea13c5e37bd4ae456994952fc3ff3426ac66e27f"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-auto-1.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-auto-1.json",
+      "sourceSha256": "d539e015c1b6d16e87a73d183dd42d5d7e33ff3fde5222b921397ebae9f16967",
+      "destinationSha256": "d539e015c1b6d16e87a73d183dd42d5d7e33ff3fde5222b921397ebae9f16967"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-auto-1.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-auto-1.log",
+      "sourceSha256": "bac0be96686605aa2c62ee04bf457d39183132bff241ca9759eff553f7a37598",
+      "destinationSha256": "bac0be96686605aa2c62ee04bf457d39183132bff241ca9759eff553f7a37598"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-auto-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-auto-1.tcp.txt",
+      "sourceSha256": "4e6b9a7db6c07dbfd1ec125552c65a41af4dd655a7babb4d95e95d2706db12b9",
+      "destinationSha256": "4e6b9a7db6c07dbfd1ec125552c65a41af4dd655a7babb4d95e95d2706db12b9"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-auto-2.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-auto-2.json",
+      "sourceSha256": "bc634e48e3178c0db2b91d287b627f2a9a3e619064bf119592b03bc78f2665dc",
+      "destinationSha256": "bc634e48e3178c0db2b91d287b627f2a9a3e619064bf119592b03bc78f2665dc"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-auto-2.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-auto-2.log",
+      "sourceSha256": "4234c2855e297329e592ef298b5cb16a42f3e9d0c4e447a2dc8ca806978c320c",
+      "destinationSha256": "4234c2855e297329e592ef298b5cb16a42f3e9d0c4e447a2dc8ca806978c320c"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-auto-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-auto-2.tcp.txt",
+      "sourceSha256": "49db07b942ebffc0d4bfcc131381d2bc7c77296e04539dbdbedc7eee3fad983d",
+      "destinationSha256": "49db07b942ebffc0d4bfcc131381d2bc7c77296e04539dbdbedc7eee3fad983d"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-auto-3.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-auto-3.json",
+      "sourceSha256": "26310494cf5c83ba5e8401b7b9e598c5d97a6be30296af62e758286f20e1c929",
+      "destinationSha256": "26310494cf5c83ba5e8401b7b9e598c5d97a6be30296af62e758286f20e1c929"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-auto-3.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-auto-3.log",
+      "sourceSha256": "04ae88773b4d637989332d0f57ae812f057b8641463efbbc5a8762631b210186",
+      "destinationSha256": "04ae88773b4d637989332d0f57ae812f057b8641463efbbc5a8762631b210186"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-auto-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-auto-3.tcp.txt",
+      "sourceSha256": "2d6a2440bc956011ea25436ea6ad607ec14a33fb990ec0d7ec4365baaea3d002",
+      "destinationSha256": "2d6a2440bc956011ea25436ea6ad607ec14a33fb990ec0d7ec4365baaea3d002"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-fixed-1.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-fixed-1.json",
+      "sourceSha256": "dff6b3368392fd95cd01c8c955c975fd8b75aed56057018c026413e52979ab0c",
+      "destinationSha256": "dff6b3368392fd95cd01c8c955c975fd8b75aed56057018c026413e52979ab0c"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-fixed-1.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-fixed-1.log",
+      "sourceSha256": "1e339b2965df4ba286e4ab952a91d278553d97e854c1361079db9ab42585744d",
+      "destinationSha256": "1e339b2965df4ba286e4ab952a91d278553d97e854c1361079db9ab42585744d"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-fixed-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-fixed-1.tcp.txt",
+      "sourceSha256": "195119c1ea3bb00342393a34e20d85b7623ed12f8cb998bb9d47efd9913fedea",
+      "destinationSha256": "195119c1ea3bb00342393a34e20d85b7623ed12f8cb998bb9d47efd9913fedea"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-fixed-2.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-fixed-2.json",
+      "sourceSha256": "efa1bcc07e58960de2cf5e7bab91ba71d27b1a40c80ebbefc6aed37279865c3e",
+      "destinationSha256": "efa1bcc07e58960de2cf5e7bab91ba71d27b1a40c80ebbefc6aed37279865c3e"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-fixed-2.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-fixed-2.log",
+      "sourceSha256": "95b0ef0b479c5300cb3cc20d73e58e6ba40fea8173997a9f115abbfffff4d95c",
+      "destinationSha256": "95b0ef0b479c5300cb3cc20d73e58e6ba40fea8173997a9f115abbfffff4d95c"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-fixed-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-fixed-2.tcp.txt",
+      "sourceSha256": "26afa5c4698c9eb2c3e6d95942c8a24c04f4b4a9abaa8b66a2140e2896c26be4",
+      "destinationSha256": "26afa5c4698c9eb2c3e6d95942c8a24c04f4b4a9abaa8b66a2140e2896c26be4"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-fixed-3.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-fixed-3.json",
+      "sourceSha256": "fc8ca995a16d24f8a841f406d33613601e2b5da39f61fe5290d2ebd1d8e196fa",
+      "destinationSha256": "fc8ca995a16d24f8a841f406d33613601e2b5da39f61fe5290d2ebd1d8e196fa"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-fixed-3.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-fixed-3.log",
+      "sourceSha256": "6a406cf399b92113e692b26c6ff9c01ab24af179d1f770d6d85464e606e3a776",
+      "destinationSha256": "6a406cf399b92113e692b26c6ff9c01ab24af179d1f770d6d85464e606e3a776"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-fixed-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-fixed-3.tcp.txt",
+      "sourceSha256": "cd5a837eea235fccea5b2a9b79dc7a75603004df08e7585f94c2a98137149d5e",
+      "destinationSha256": "cd5a837eea235fccea5b2a9b79dc7a75603004df08e7585f94c2a98137149d5e"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-standard-1.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-standard-1.json",
+      "sourceSha256": "85c271973aee99e8a41f632aa6f9b2303096dd58d1db37592dee52b9ad44b93f",
+      "destinationSha256": "85c271973aee99e8a41f632aa6f9b2303096dd58d1db37592dee52b9ad44b93f"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-standard-1.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-standard-1.log",
+      "sourceSha256": "78f86b116d768ff7c1d3472dc072a15382a9f5dd98e6439bc5fe8f34068296d9",
+      "destinationSha256": "78f86b116d768ff7c1d3472dc072a15382a9f5dd98e6439bc5fe8f34068296d9"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-standard-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-standard-1.tcp.txt",
+      "sourceSha256": "fbee37d00a74411ceb53c1f060f2efb8e4c9b9bf66b3a843963124e5e83cfc63",
+      "destinationSha256": "fbee37d00a74411ceb53c1f060f2efb8e4c9b9bf66b3a843963124e5e83cfc63"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-standard-2.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-standard-2.json",
+      "sourceSha256": "7a1045ef610131f135ac3f8aa4e9adac68437ed42e60e6e086b63f06ee40c390",
+      "destinationSha256": "7a1045ef610131f135ac3f8aa4e9adac68437ed42e60e6e086b63f06ee40c390"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-standard-2.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-standard-2.log",
+      "sourceSha256": "1059287a335a52c8559b42a59798085e97acf3f25ee9c77464721c9cdec984aa",
+      "destinationSha256": "1059287a335a52c8559b42a59798085e97acf3f25ee9c77464721c9cdec984aa"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-standard-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-standard-2.tcp.txt",
+      "sourceSha256": "573d2d6890fd73973f8e84b342fb29ce32c725690f2a8b52c125407ac4c6cf96",
+      "destinationSha256": "573d2d6890fd73973f8e84b342fb29ce32c725690f2a8b52c125407ac4c6cf96"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-standard-3.json",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-standard-3.json",
+      "sourceSha256": "17fe4a71b3bb37b05b3a2983b8c4a8d2cb53e2b55f3ac8c3e3875d4a64f5155c",
+      "destinationSha256": "17fe4a71b3bb37b05b3a2983b8c4a8d2cb53e2b55f3ac8c3e3875d4a64f5155c"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-standard-3.log",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-standard-3.log",
+      "sourceSha256": "a1b602e420ffbb7f9ee66d640113bebdbfa79b504bafab1e60de0f668e41b675",
+      "destinationSha256": "a1b602e420ffbb7f9ee66d640113bebdbfa79b504bafab1e60de0f668e41b675"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/batch-4-standard-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T194624Z/batch-4-standard-3.tcp.txt",
+      "sourceSha256": "8a5d234d03e05339a1f8ea5b51e3a51088a5993dfccb253f6addce9e8f26308c",
+      "destinationSha256": "8a5d234d03e05339a1f8ea5b51e3a51088a5993dfccb253f6addce9e8f26308c"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/builds.json",
+      "destination": "results/lan-controls/20261108T194624Z/builds.json",
+      "sourceSha256": "bddc547135dd5d1d94469784d5df8365880a88ae49d3cf739494b54a6e0ef3a4",
+      "destinationSha256": "bddc547135dd5d1d94469784d5df8365880a88ae49d3cf739494b54a6e0ef3a4"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/environment.json",
+      "destination": "results/lan-controls/20261108T194624Z/environment.json",
+      "sourceSha256": "c0be1086ac7aa23e3047065e28dfbd728d66d9c04e0db509a5c7931a5408a584",
+      "destinationSha256": "c0be1086ac7aa23e3047065e28dfbd728d66d9c04e0db509a5c7931a5408a584"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/fixed-setup.log",
+      "destination": "results/lan-controls/20261108T194624Z/fixed-setup.log",
+      "sourceSha256": "9eaad7cf881dd2ba1df947a2badbf93a0a896e4a1e45bf3ff7d0899dc07ebf41",
+      "destinationSha256": "9eaad7cf881dd2ba1df947a2badbf93a0a896e4a1e45bf3ff7d0899dc07ebf41"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/interface-observation.json",
+      "destination": "results/lan-controls/20261108T194624Z/interface-observation.json",
+      "sourceSha256": "8ec4e4153c6224ba8578d0a33964b497f836bd09e49f4fea23f9b40a9bf473ee",
+      "destinationSha256": "8ec4e4153c6224ba8578d0a33964b497f836bd09e49f4fea23f9b40a9bf473ee"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/runner-source.py",
+      "destination": "results/lan-controls/20261108T194624Z/runner-source.py",
+      "sourceSha256": "1fa4475e36bec5cdfe408ff9595d815f758024d3807c8736cee0e7b475f887ab",
+      "destinationSha256": "1fa4475e36bec5cdfe408ff9595d815f758024d3807c8736cee0e7b475f887ab"
+    },
+    {
+      "source": "results/lan-controls/20261108T194624Z/summary.json",
+      "destination": "results/lan-controls/20261108T194624Z/summary.json",
+      "sourceSha256": "aac1ced909f756e09c0ca5d47c84b9c8322b0880049c0286829cb5c5b6c1a688",
+      "destinationSha256": "aac1ced909f756e09c0ca5d47c84b9c8322b0880049c0286829cb5c5b6c1a688"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/README.md",
+      "destination": "results/lan-controls/20261108T202415Z/README.md",
+      "sourceSha256": "f0e62a7014ad7b102e7c360e5396a789d6667fd927282479fb79b73aadd8d2b0",
+      "destinationSha256": "f0e62a7014ad7b102e7c360e5396a789d6667fd927282479fb79b73aadd8d2b0"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/auto-receive.patch",
+      "destination": "results/lan-controls/20261108T202415Z/auto-receive.patch",
+      "sourceSha256": "e6d85fe8203c1b2921ad7f9992e2a8ebe428752cc1ffa0e71c1c858bf44a45ce",
+      "destinationSha256": "e6d85fe8203c1b2921ad7f9992e2a8ebe428752cc1ffa0e71c1c858bf44a45ce"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/auto-resume-setup.log",
+      "destination": "results/lan-controls/20261108T202415Z/auto-resume-setup.log",
+      "sourceSha256": "8bbc3f26ad21bab5f588b3433dc6a6d5033d02dc607b5c8fe695d08295580d49",
+      "destinationSha256": "8bbc3f26ad21bab5f588b3433dc6a6d5033d02dc607b5c8fe695d08295580d49"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/auto-setup.log",
+      "destination": "results/lan-controls/20261108T202415Z/auto-setup.log",
+      "sourceSha256": "cef7f37f6dbef8ee34ce6f43a1a90f6952ab9c73164e513b3e4f453229b66ea0",
+      "destinationSha256": "cef7f37f6dbef8ee34ce6f43a1a90f6952ab9c73164e513b3e4f453229b66ea0"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-auto-1.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-auto-1.json",
+      "sourceSha256": "e9c3afe01ee6dbccd8b6044efa5c3c721790bb460ae94717bcd01d66ca33f3be",
+      "destinationSha256": "e9c3afe01ee6dbccd8b6044efa5c3c721790bb460ae94717bcd01d66ca33f3be"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-auto-1.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-auto-1.log",
+      "sourceSha256": "7791b3a5c50809ee94ddbdabd22b0e67017ea819fcdbf8f5299e85623d90d0ae",
+      "destinationSha256": "7791b3a5c50809ee94ddbdabd22b0e67017ea819fcdbf8f5299e85623d90d0ae"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-auto-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-auto-1.tcp.txt",
+      "sourceSha256": "9f28bb2b7e3bf2b5a545a9daf0c2693da7f217977d28085bba025590888e1ab8",
+      "destinationSha256": "9f28bb2b7e3bf2b5a545a9daf0c2693da7f217977d28085bba025590888e1ab8"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-auto-2.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-auto-2.json",
+      "sourceSha256": "85396737a8d684963cd9511d29f042b0996d810c81c899eb4984edd7087b57f0",
+      "destinationSha256": "85396737a8d684963cd9511d29f042b0996d810c81c899eb4984edd7087b57f0"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-auto-2.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-auto-2.log",
+      "sourceSha256": "c765b3ce3d771eb91d95bfb7da4af8552b3aa325a1242b38a1c447849c55f644",
+      "destinationSha256": "c765b3ce3d771eb91d95bfb7da4af8552b3aa325a1242b38a1c447849c55f644"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-auto-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-auto-2.tcp.txt",
+      "sourceSha256": "9a91f78c05f3afedc89697da5bd82da17fcd25cca94ecabdcde27d19d876437d",
+      "destinationSha256": "9a91f78c05f3afedc89697da5bd82da17fcd25cca94ecabdcde27d19d876437d"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-auto-3.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-auto-3.json",
+      "sourceSha256": "fd7ca1e556bd6c30298d381b8d786c01c4d1eaa741a31e472fd98dabc1556d13",
+      "destinationSha256": "fd7ca1e556bd6c30298d381b8d786c01c4d1eaa741a31e472fd98dabc1556d13"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-auto-3.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-auto-3.log",
+      "sourceSha256": "db9497d371101d3f637fc43f77b5c2065d24b93d7911292d93f7377b6ea903be",
+      "destinationSha256": "db9497d371101d3f637fc43f77b5c2065d24b93d7911292d93f7377b6ea903be"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-auto-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-auto-3.tcp.txt",
+      "sourceSha256": "2b39bb45eae2ba262ad2bad4b784d5643c3616b9d8ec4ce1a7040b53b941bad1",
+      "destinationSha256": "2b39bb45eae2ba262ad2bad4b784d5643c3616b9d8ec4ce1a7040b53b941bad1"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-fixed-1.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-fixed-1.json",
+      "sourceSha256": "6c5ade5b66a0e53b6391d706ad48918c8960f4eca7292610a6196cdf85c2a7b0",
+      "destinationSha256": "6c5ade5b66a0e53b6391d706ad48918c8960f4eca7292610a6196cdf85c2a7b0"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-fixed-1.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-fixed-1.log",
+      "sourceSha256": "01ac82510e0ac30205de3ac6b68ddff68e6b9af94c35b302ebf90220a0c44baa",
+      "destinationSha256": "01ac82510e0ac30205de3ac6b68ddff68e6b9af94c35b302ebf90220a0c44baa"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-fixed-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-fixed-1.tcp.txt",
+      "sourceSha256": "f7a027f436871b9e8f34724305ca45c1be367afce8974290052f7b3eaac92e94",
+      "destinationSha256": "f7a027f436871b9e8f34724305ca45c1be367afce8974290052f7b3eaac92e94"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-fixed-2.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-fixed-2.json",
+      "sourceSha256": "4733af0a2b94876db0f0f37a5aa66655205e0c2f7a3270706aaf0567997082d1",
+      "destinationSha256": "4733af0a2b94876db0f0f37a5aa66655205e0c2f7a3270706aaf0567997082d1"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-fixed-2.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-fixed-2.log",
+      "sourceSha256": "b33c6d976cdc31b59edf5f3b814188ae3053733bf9563e10257b9e57bcc532e5",
+      "destinationSha256": "b33c6d976cdc31b59edf5f3b814188ae3053733bf9563e10257b9e57bcc532e5"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-fixed-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-fixed-2.tcp.txt",
+      "sourceSha256": "3b7f63cd9fa6deef4f49f510f80411662f4b025c4bc72fb797a1062cc2314c6a",
+      "destinationSha256": "3b7f63cd9fa6deef4f49f510f80411662f4b025c4bc72fb797a1062cc2314c6a"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-fixed-3.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-fixed-3.json",
+      "sourceSha256": "8051f457b0ea29869a8905812889c47f8146edf2c57d1ab335d966f5505e1309",
+      "destinationSha256": "8051f457b0ea29869a8905812889c47f8146edf2c57d1ab335d966f5505e1309"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-fixed-3.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-fixed-3.log",
+      "sourceSha256": "de063094ae884a0f9961542cfa62552e15f33f0bb314549e7c7dfa941a8827aa",
+      "destinationSha256": "de063094ae884a0f9961542cfa62552e15f33f0bb314549e7c7dfa941a8827aa"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-fixed-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-fixed-3.tcp.txt",
+      "sourceSha256": "6d1b0e49b42b177ff6e9292063af762af22a4b5ce751b62d74a0a694592525d8",
+      "destinationSha256": "6d1b0e49b42b177ff6e9292063af762af22a4b5ce751b62d74a0a694592525d8"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-standard-1.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-standard-1.json",
+      "sourceSha256": "8bc140cfcd1d00704f938756915570ea28f440cd92bc4436b29868b9dc0087a0",
+      "destinationSha256": "8bc140cfcd1d00704f938756915570ea28f440cd92bc4436b29868b9dc0087a0"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-standard-1.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-standard-1.log",
+      "sourceSha256": "ba6f2c4fc3f53c511db99fc759db642cae9db2e0c300bb7c1bc5f468227c1303",
+      "destinationSha256": "ba6f2c4fc3f53c511db99fc759db642cae9db2e0c300bb7c1bc5f468227c1303"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-standard-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-standard-1.tcp.txt",
+      "sourceSha256": "a75ffe008f6f6af011ad52627de30ea9ce2bbf8b10cda4fd4ffc5dd1a3650095",
+      "destinationSha256": "a75ffe008f6f6af011ad52627de30ea9ce2bbf8b10cda4fd4ffc5dd1a3650095"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-standard-2.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-standard-2.json",
+      "sourceSha256": "7df65e8b4993a2fae25278f20080851e1dbe943c2a5e6a51bc8a33e2560c10c1",
+      "destinationSha256": "7df65e8b4993a2fae25278f20080851e1dbe943c2a5e6a51bc8a33e2560c10c1"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-standard-2.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-standard-2.log",
+      "sourceSha256": "8ddaf776c87e5d7b45d13802835a87c7957fe709335387cc0c419380453e3226",
+      "destinationSha256": "8ddaf776c87e5d7b45d13802835a87c7957fe709335387cc0c419380453e3226"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-standard-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-standard-2.tcp.txt",
+      "sourceSha256": "569663c497923b86af9d2cd90f6e8a3031819cfd9702a332b56705ca4d087e05",
+      "destinationSha256": "569663c497923b86af9d2cd90f6e8a3031819cfd9702a332b56705ca4d087e05"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-standard-3.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-standard-3.json",
+      "sourceSha256": "7a2a1c2ed8a319d11f6a42e5112f88ce58cb912d9b220bed0e463f3f01746b86",
+      "destinationSha256": "7a2a1c2ed8a319d11f6a42e5112f88ce58cb912d9b220bed0e463f3f01746b86"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-standard-3.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-standard-3.log",
+      "sourceSha256": "7d755f7ee36fa9b759eff35636df5b85299ff6b3a8507fa9d92fb131631ea3e0",
+      "destinationSha256": "7d755f7ee36fa9b759eff35636df5b85299ff6b3a8507fa9d92fb131631ea3e0"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-1-standard-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-1-standard-3.tcp.txt",
+      "sourceSha256": "570ede7388ff6f17dabb97a67e80b876fabe380e9b81b449dc6a94bb853a290b",
+      "destinationSha256": "570ede7388ff6f17dabb97a67e80b876fabe380e9b81b449dc6a94bb853a290b"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-auto-1.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-auto-1.json",
+      "sourceSha256": "5c9173f4f724aaf6e590b8f4363149aa846315c7f2dd59d18e4945c8d9766840",
+      "destinationSha256": "5c9173f4f724aaf6e590b8f4363149aa846315c7f2dd59d18e4945c8d9766840"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-auto-1.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-auto-1.log",
+      "sourceSha256": "be3750aaf986765d924f0801dedb2513f71517d55f3ef63e24c74e4d6aeb9ba7",
+      "destinationSha256": "be3750aaf986765d924f0801dedb2513f71517d55f3ef63e24c74e4d6aeb9ba7"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-auto-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-auto-1.tcp.txt",
+      "sourceSha256": "592d0f653cb501bd2f832e4edaca2714f4db125bea0897c3e527b1e04dd44e4a",
+      "destinationSha256": "592d0f653cb501bd2f832e4edaca2714f4db125bea0897c3e527b1e04dd44e4a"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-auto-2.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-auto-2.json",
+      "sourceSha256": "bac9fe6f5fbab774dcc9f736ab8e853ee9ed3b1a497a927dcf06ce5102c2f641",
+      "destinationSha256": "bac9fe6f5fbab774dcc9f736ab8e853ee9ed3b1a497a927dcf06ce5102c2f641"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-auto-2.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-auto-2.log",
+      "sourceSha256": "f5e18379673b56066cec1d297c617032045c8e505d7ce0867be9a7ebfbf30de2",
+      "destinationSha256": "f5e18379673b56066cec1d297c617032045c8e505d7ce0867be9a7ebfbf30de2"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-auto-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-auto-2.tcp.txt",
+      "sourceSha256": "7b9c408ed737100a77dc8bb3578a38952e8ca6eb94714d959196a789e07036c5",
+      "destinationSha256": "7b9c408ed737100a77dc8bb3578a38952e8ca6eb94714d959196a789e07036c5"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-auto-3.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-auto-3.json",
+      "sourceSha256": "8dc2404fd96ed0b40156aabed16f3a7c1c3926d53b1421ca49f53cc02d9fcad9",
+      "destinationSha256": "8dc2404fd96ed0b40156aabed16f3a7c1c3926d53b1421ca49f53cc02d9fcad9"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-auto-3.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-auto-3.log",
+      "sourceSha256": "bf5e10822bfd51bd4a66ae9dfdd98036aeba72c0d24d26240f716813f8a72f68",
+      "destinationSha256": "bf5e10822bfd51bd4a66ae9dfdd98036aeba72c0d24d26240f716813f8a72f68"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-auto-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-auto-3.tcp.txt",
+      "sourceSha256": "c9869886c7ce0dbd0488ef4a128bc9b12bd3fc7d65f27163674fafec8eef4ebb",
+      "destinationSha256": "c9869886c7ce0dbd0488ef4a128bc9b12bd3fc7d65f27163674fafec8eef4ebb"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-fixed-1.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-fixed-1.json",
+      "sourceSha256": "97fb90414313a2c6338e1b81a74e88f1d62ded358c1fb5cf6d1fb6e3645fbc8d",
+      "destinationSha256": "97fb90414313a2c6338e1b81a74e88f1d62ded358c1fb5cf6d1fb6e3645fbc8d"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-fixed-1.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-fixed-1.log",
+      "sourceSha256": "c6609de02dd063b52213ff7eef0fcfcea634ef7043d54a33c8cd15737d9509b7",
+      "destinationSha256": "c6609de02dd063b52213ff7eef0fcfcea634ef7043d54a33c8cd15737d9509b7"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-fixed-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-fixed-1.tcp.txt",
+      "sourceSha256": "ac6687c2007c6566fc162ec4f137fe1f1f1e5a34fba222b6dedd66e7c0589af5",
+      "destinationSha256": "ac6687c2007c6566fc162ec4f137fe1f1f1e5a34fba222b6dedd66e7c0589af5"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-fixed-2.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-fixed-2.json",
+      "sourceSha256": "602cb17e8f9ae6ec6a5794c456d410caa5f3cda471488262a25b5bd5c5d03430",
+      "destinationSha256": "602cb17e8f9ae6ec6a5794c456d410caa5f3cda471488262a25b5bd5c5d03430"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-fixed-2.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-fixed-2.log",
+      "sourceSha256": "2a4a4aa274099875d5b104a38580cdb30b8b192e2c92f1dc8bad8759c2375d2f",
+      "destinationSha256": "2a4a4aa274099875d5b104a38580cdb30b8b192e2c92f1dc8bad8759c2375d2f"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-fixed-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-fixed-2.tcp.txt",
+      "sourceSha256": "5397e6c3def72ad78073e695b7aa6a7dbc614aaee9b8479f70d6fc0adf6fa3c5",
+      "destinationSha256": "5397e6c3def72ad78073e695b7aa6a7dbc614aaee9b8479f70d6fc0adf6fa3c5"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-fixed-3.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-fixed-3.json",
+      "sourceSha256": "ed0b63942adce5f11e01686463040af217e6c4902c0076b6ecd9d3094cbe6c76",
+      "destinationSha256": "ed0b63942adce5f11e01686463040af217e6c4902c0076b6ecd9d3094cbe6c76"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-fixed-3.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-fixed-3.log",
+      "sourceSha256": "7293fc572b998c0b304951bc10d117a521a21cf8a7e54b187ddb9d0d0793369c",
+      "destinationSha256": "7293fc572b998c0b304951bc10d117a521a21cf8a7e54b187ddb9d0d0793369c"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-fixed-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-fixed-3.tcp.txt",
+      "sourceSha256": "a8836267b7d851df1bb29df4433aea4f6cf299c319efc85a491761c6eb902491",
+      "destinationSha256": "a8836267b7d851df1bb29df4433aea4f6cf299c319efc85a491761c6eb902491"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-standard-1.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-standard-1.json",
+      "sourceSha256": "687680577afc284e6cc43c40eda03045f1781d2a49c58c6f1f67ff2aaf5f0d0a",
+      "destinationSha256": "687680577afc284e6cc43c40eda03045f1781d2a49c58c6f1f67ff2aaf5f0d0a"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-standard-1.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-standard-1.log",
+      "sourceSha256": "fb31c6bca50e57011a7e09b064d71aa93fbbdcf67b2b4d73153fda359b1ddfc8",
+      "destinationSha256": "fb31c6bca50e57011a7e09b064d71aa93fbbdcf67b2b4d73153fda359b1ddfc8"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-standard-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-standard-1.tcp.txt",
+      "sourceSha256": "9b8640cc507ccf418e993c2d1392db8142ec8a8b8a70da6c4fa5128ca1999d37",
+      "destinationSha256": "9b8640cc507ccf418e993c2d1392db8142ec8a8b8a70da6c4fa5128ca1999d37"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-standard-2.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-standard-2.json",
+      "sourceSha256": "524cf2ce2f2e5d037837d9b8e301b86000a6c3fef4b5ccb6fdcc89c4d6bb34ac",
+      "destinationSha256": "524cf2ce2f2e5d037837d9b8e301b86000a6c3fef4b5ccb6fdcc89c4d6bb34ac"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-standard-2.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-standard-2.log",
+      "sourceSha256": "4ad48d96000701e65fac822343aab2ecee0345ce4f9ed2dc220a54b44da449c2",
+      "destinationSha256": "4ad48d96000701e65fac822343aab2ecee0345ce4f9ed2dc220a54b44da449c2"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-standard-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-standard-2.tcp.txt",
+      "sourceSha256": "d6154859acdf113d9db75ef73a514b6a0c7f1916ac4d2594ca935e4c80b38e36",
+      "destinationSha256": "d6154859acdf113d9db75ef73a514b6a0c7f1916ac4d2594ca935e4c80b38e36"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-standard-3.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-standard-3.json",
+      "sourceSha256": "f087e37f9c89f875dbd5b37717011018eed33c37dc776fd665f15a43d6d5d435",
+      "destinationSha256": "f087e37f9c89f875dbd5b37717011018eed33c37dc776fd665f15a43d6d5d435"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-standard-3.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-standard-3.log",
+      "sourceSha256": "a5ed0c9d971c09cff73fa1158eb486c97a4abbb3e6bf18be1f387d96bcab806c",
+      "destinationSha256": "a5ed0c9d971c09cff73fa1158eb486c97a4abbb3e6bf18be1f387d96bcab806c"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-20-standard-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-20-standard-3.tcp.txt",
+      "sourceSha256": "3567ba5b4ff1a1987e4ec4ce13cd9b2f0266938eff15cf0e075ab8e21f659085",
+      "destinationSha256": "3567ba5b4ff1a1987e4ec4ce13cd9b2f0266938eff15cf0e075ab8e21f659085"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-auto-1.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-auto-1.json",
+      "sourceSha256": "c9b1247cefb8695cab4685861bf8a0658d9646621154a4fae075bc9b2d5bf5e0",
+      "destinationSha256": "c9b1247cefb8695cab4685861bf8a0658d9646621154a4fae075bc9b2d5bf5e0"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-auto-1.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-auto-1.log",
+      "sourceSha256": "ce8e5524b1fc1e1f347c237435670afd2f2bca2dd39fae74707cf3b1be285811",
+      "destinationSha256": "ce8e5524b1fc1e1f347c237435670afd2f2bca2dd39fae74707cf3b1be285811"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-auto-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-auto-1.tcp.txt",
+      "sourceSha256": "5c66ef6d5a6ed2d7dd0b45321272def16690bdcaaf95574b93237ffb38e979ee",
+      "destinationSha256": "5c66ef6d5a6ed2d7dd0b45321272def16690bdcaaf95574b93237ffb38e979ee"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-auto-2.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-auto-2.json",
+      "sourceSha256": "f0accd955d374645148caa561e60def4948918343dd50c77fad9168b76582f59",
+      "destinationSha256": "f0accd955d374645148caa561e60def4948918343dd50c77fad9168b76582f59"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-auto-2.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-auto-2.log",
+      "sourceSha256": "85b4e602af0dd8d0a43a133d9ff80df5fe9479eff9beddc4ad56c2b6b33b0d84",
+      "destinationSha256": "85b4e602af0dd8d0a43a133d9ff80df5fe9479eff9beddc4ad56c2b6b33b0d84"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-auto-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-auto-2.tcp.txt",
+      "sourceSha256": "bf8f5eb9bc06f8e6ba00b1c0e48ace9158c29e820ae4a2a90c358c6972a0636e",
+      "destinationSha256": "bf8f5eb9bc06f8e6ba00b1c0e48ace9158c29e820ae4a2a90c358c6972a0636e"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-auto-3.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-auto-3.json",
+      "sourceSha256": "7c2e936d93337d443b19fb47b5552a013e45e41b68bc5cb32200d8cad012226b",
+      "destinationSha256": "7c2e936d93337d443b19fb47b5552a013e45e41b68bc5cb32200d8cad012226b"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-auto-3.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-auto-3.log",
+      "sourceSha256": "727aa18445c70c14bbcf5454f2f02e8011798059587ab09ea344684e550f86b9",
+      "destinationSha256": "727aa18445c70c14bbcf5454f2f02e8011798059587ab09ea344684e550f86b9"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-auto-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-auto-3.tcp.txt",
+      "sourceSha256": "cecdcfba5c3c9132fd62e152d6fbc5cd482ad477728f1811ffe219f5e3a81659",
+      "destinationSha256": "cecdcfba5c3c9132fd62e152d6fbc5cd482ad477728f1811ffe219f5e3a81659"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-fixed-1.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-fixed-1.json",
+      "sourceSha256": "af3d7ded8dc6c732decb46c3b2d86a2e10705631ff0f41a812993d3514383d94",
+      "destinationSha256": "af3d7ded8dc6c732decb46c3b2d86a2e10705631ff0f41a812993d3514383d94"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-fixed-1.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-fixed-1.log",
+      "sourceSha256": "ace4394331608b1e08baf35bd95ec798f3c7f125518775119ebd5a83c643e905",
+      "destinationSha256": "ace4394331608b1e08baf35bd95ec798f3c7f125518775119ebd5a83c643e905"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-fixed-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-fixed-1.tcp.txt",
+      "sourceSha256": "1d2f3addbc87b900f1874b8f14974e414eaadef231e17e7e513561d79d031b0e",
+      "destinationSha256": "1d2f3addbc87b900f1874b8f14974e414eaadef231e17e7e513561d79d031b0e"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-fixed-2.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-fixed-2.json",
+      "sourceSha256": "9309d3045e7614ff5af35931ce0bb759915c16a5e689cf2fe0d16d0f1ec42411",
+      "destinationSha256": "9309d3045e7614ff5af35931ce0bb759915c16a5e689cf2fe0d16d0f1ec42411"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-fixed-2.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-fixed-2.log",
+      "sourceSha256": "97659deb11e351e044e2b307e49f595525a7c25cf9b2a83f0a69b2222f87b83f",
+      "destinationSha256": "97659deb11e351e044e2b307e49f595525a7c25cf9b2a83f0a69b2222f87b83f"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-fixed-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-fixed-2.tcp.txt",
+      "sourceSha256": "e73d7d4d7acaece5490e710d7166220bff592374a06c4a4784de162758e7abdd",
+      "destinationSha256": "e73d7d4d7acaece5490e710d7166220bff592374a06c4a4784de162758e7abdd"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-fixed-3.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-fixed-3.json",
+      "sourceSha256": "0be54d50b1439b144e6b6ccb9e6ed6672a63240f8d786ae7c17bcabf68b4987d",
+      "destinationSha256": "0be54d50b1439b144e6b6ccb9e6ed6672a63240f8d786ae7c17bcabf68b4987d"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-fixed-3.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-fixed-3.log",
+      "sourceSha256": "5d13d43c9e57107d6f926ef926208583fc95577cefc4ec8e5fac5522cfad6bdb",
+      "destinationSha256": "5d13d43c9e57107d6f926ef926208583fc95577cefc4ec8e5fac5522cfad6bdb"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-fixed-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-fixed-3.tcp.txt",
+      "sourceSha256": "307a9641cc1eb760d6386070b072eca9becee17ec7b8ba0d586d5bf30bd0991e",
+      "destinationSha256": "307a9641cc1eb760d6386070b072eca9becee17ec7b8ba0d586d5bf30bd0991e"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-standard-1.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-standard-1.json",
+      "sourceSha256": "d5be151e6110eacf07bed8c6a09ce86f639a5a72bccb9f8fdfd50566ac7e6082",
+      "destinationSha256": "d5be151e6110eacf07bed8c6a09ce86f639a5a72bccb9f8fdfd50566ac7e6082"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-standard-1.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-standard-1.log",
+      "sourceSha256": "65783ed238ee29aeb16972a57a2ab8bf43e9a3bb24fe60a5d8c381237cfdeb18",
+      "destinationSha256": "65783ed238ee29aeb16972a57a2ab8bf43e9a3bb24fe60a5d8c381237cfdeb18"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-standard-1.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-standard-1.tcp.txt",
+      "sourceSha256": "fa8e8b313d1bb0ba4b661a174312df5df2e0eb2ed66fd05b318ccf0561e383c6",
+      "destinationSha256": "fa8e8b313d1bb0ba4b661a174312df5df2e0eb2ed66fd05b318ccf0561e383c6"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-standard-2.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-standard-2.json",
+      "sourceSha256": "e4acb239047a1a5efcb609b14d437a849143e86d38ff407660df7cb8176a6953",
+      "destinationSha256": "e4acb239047a1a5efcb609b14d437a849143e86d38ff407660df7cb8176a6953"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-standard-2.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-standard-2.log",
+      "sourceSha256": "e2da03dbac2557a25140b4ac5af13d76c60e772b3d24f41b3b516c2c52243b10",
+      "destinationSha256": "e2da03dbac2557a25140b4ac5af13d76c60e772b3d24f41b3b516c2c52243b10"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-standard-2.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-standard-2.tcp.txt",
+      "sourceSha256": "2deda6dba6f40aa06e00135c215b2bdab2b155353558630944838157fc5c0e80",
+      "destinationSha256": "2deda6dba6f40aa06e00135c215b2bdab2b155353558630944838157fc5c0e80"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-standard-3.json",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-standard-3.json",
+      "sourceSha256": "fbc53843c835cfb1f06b7a86b298a7a0032c8f6eaa2a966f7c515ed1bd73936b",
+      "destinationSha256": "fbc53843c835cfb1f06b7a86b298a7a0032c8f6eaa2a966f7c515ed1bd73936b"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-standard-3.log",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-standard-3.log",
+      "sourceSha256": "56dab39e890b355f077482fb9c1fd8e85ad8dc82c76bd08c620d930b7919908c",
+      "destinationSha256": "56dab39e890b355f077482fb9c1fd8e85ad8dc82c76bd08c620d930b7919908c"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/batch-4-standard-3.tcp.txt",
+      "destination": "results/lan-controls/20261108T202415Z/batch-4-standard-3.tcp.txt",
+      "sourceSha256": "1a0a31255f16741371c33698b8a0e156dc0836e06516293d46a75f7d745a0074",
+      "destinationSha256": "1a0a31255f16741371c33698b8a0e156dc0836e06516293d46a75f7d745a0074"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/builds.json",
+      "destination": "results/lan-controls/20261108T202415Z/builds.json",
+      "sourceSha256": "9778c4eb2b8cad9717a49196e45a9e2b573f949713aefa284199863735c02ccb",
+      "destinationSha256": "9778c4eb2b8cad9717a49196e45a9e2b573f949713aefa284199863735c02ccb"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/environment.json",
+      "destination": "results/lan-controls/20261108T202415Z/environment.json",
+      "sourceSha256": "3186d667d9641dd3b3946b39ec883d4b3a4bc4207918b7740905b9ca9d7dca3f",
+      "destinationSha256": "3186d667d9641dd3b3946b39ec883d4b3a4bc4207918b7740905b9ca9d7dca3f"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/fixed-resume-setup.log",
+      "destination": "results/lan-controls/20261108T202415Z/fixed-resume-setup.log",
+      "sourceSha256": "1172e72dc711bdf721a953078525ea3d0387ec0309811fc9fa253d6ba80f03cb",
+      "destinationSha256": "1172e72dc711bdf721a953078525ea3d0387ec0309811fc9fa253d6ba80f03cb"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/fixed-setup.log",
+      "destination": "results/lan-controls/20261108T202415Z/fixed-setup.log",
+      "sourceSha256": "8f290949eed669c48a8a6834d7178810b2e9b66a6d23afe45314976832e9717d",
+      "destinationSha256": "8f290949eed669c48a8a6834d7178810b2e9b66a6d23afe45314976832e9717d"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/resume-runner-source.py",
+      "destination": "results/lan-controls/20261108T202415Z/resume-runner-source.py",
+      "sourceSha256": "3b0ecfd5ea6f23f6fc88a4f3512cd2e4cf2a5004da3b274af7433f610a0a331b",
+      "destinationSha256": "3b0ecfd5ea6f23f6fc88a4f3512cd2e4cf2a5004da3b274af7433f610a0a331b"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/runner-source.py",
+      "destination": "results/lan-controls/20261108T202415Z/runner-source.py",
+      "sourceSha256": "1cd926f0f0d8b841bdd41ded4e3de500d186002164e38c48872e77056743b9d8",
+      "destinationSha256": "1cd926f0f0d8b841bdd41ded4e3de500d186002164e38c48872e77056743b9d8"
+    },
+    {
+      "source": "results/lan-controls/20261108T202415Z/summary.json",
+      "destination": "results/lan-controls/20261108T202415Z/summary.json",
+      "sourceSha256": "d070de72fd400175771073bd59bb0da4855fd56c056cba0fd20885da2ba560b2",
+      "destinationSha256": "d070de72fd400175771073bd59bb0da4855fd56c056cba0fd20885da2ba560b2"
+    },
+    {
+      "source": "results/lan-controls/README.md",
+      "destination": "results/lan-controls/README.md",
+      "sourceSha256": "189ed00108ec5ccee4605c8a3bbcf0f93d723a7461783f460f2a62211b286b38",
+      "destinationSha256": "189ed00108ec5ccee4605c8a3bbcf0f93d723a7461783f460f2a62211b286b38"
+    },
+    {
+      "source": "results/lan-tooling/validation.json",
+      "destination": "results/lan-tooling/validation.json",
+      "sourceSha256": "7f03104bbb8564584b7a6401d1761bfec6cd2d093c8f84c7730bad91103d0b30",
+      "destinationSha256": "7f03104bbb8564584b7a6401d1761bfec6cd2d093c8f84c7730bad91103d0b30"
+    },
+    {
+      "source": "results/original/websocket-pipeline-1.json",
+      "destination": "results/original/websocket-pipeline-1.json",
+      "sourceSha256": "9e4c842eafec4e74b39e4d914359ab6ab9beedc51f8243d18dbeb3738151cf57",
+      "destinationSha256": "9e4c842eafec4e74b39e4d914359ab6ab9beedc51f8243d18dbeb3738151cf57"
+    },
+    {
+      "source": "results/original/websocket-pipeline-1.log",
+      "destination": "results/original/websocket-pipeline-1.log",
+      "sourceSha256": "1c3c8daa5002d7779d30a8625f12a995973b6708b262560187713e7981fc2a59",
+      "destinationSha256": "1c3c8daa5002d7779d30a8625f12a995973b6708b262560187713e7981fc2a59"
+    },
+    {
+      "source": "results/original/websocket-pipeline-2.json",
+      "destination": "results/original/websocket-pipeline-2.json",
+      "sourceSha256": "fc8c385099e382b7d285e158586666e98b7afcccad5e1ea82f1663fcaa1207be",
+      "destinationSha256": "fc8c385099e382b7d285e158586666e98b7afcccad5e1ea82f1663fcaa1207be"
+    },
+    {
+      "source": "results/original/websocket-pipeline-2.log",
+      "destination": "results/original/websocket-pipeline-2.log",
+      "sourceSha256": "6c81f0ed283501355f21506e0ed8269d23444039d89b2e6ad4ad6ddda6d9f552",
+      "destinationSha256": "6c81f0ed283501355f21506e0ed8269d23444039d89b2e6ad4ad6ddda6d9f552"
+    },
+    {
+      "source": "results/original/websocket-pipeline-3.json",
+      "destination": "results/original/websocket-pipeline-3.json",
+      "sourceSha256": "067ad4cbb17dca7adb39a72f78ab0a10b636b7f108290b4ee575ce4f47a64727",
+      "destinationSha256": "067ad4cbb17dca7adb39a72f78ab0a10b636b7f108290b4ee575ce4f47a64727"
+    },
+    {
+      "source": "results/original/websocket-pipeline-3.log",
+      "destination": "results/original/websocket-pipeline-3.log",
+      "sourceSha256": "c1d89593be07f5cf93182925518841cb1ed1c66f815056ff73f9b6613677b933",
+      "destinationSha256": "c1d89593be07f5cf93182925518841cb1ed1c66f815056ff73f9b6613677b933"
+    },
+    {
+      "source": "results/original/websocket-standard-1.json",
+      "destination": "results/original/websocket-standard-1.json",
+      "sourceSha256": "76c2a806637c83b120292febc8bb1bb3e4485b9b889f425f4f40c6337a14b26b",
+      "destinationSha256": "76c2a806637c83b120292febc8bb1bb3e4485b9b889f425f4f40c6337a14b26b"
+    },
+    {
+      "source": "results/original/websocket-standard-1.log",
+      "destination": "results/original/websocket-standard-1.log",
+      "sourceSha256": "d12acbdae5f461f5a34f5c2f3ba7cf7f128a816c5c69d319425e0ae2dd4fb10a",
+      "destinationSha256": "d12acbdae5f461f5a34f5c2f3ba7cf7f128a816c5c69d319425e0ae2dd4fb10a"
+    },
+    {
+      "source": "results/original/websocket-standard-2.json",
+      "destination": "results/original/websocket-standard-2.json",
+      "sourceSha256": "03ec11f4bef434e84105f8cce70542d4d34f2552f88efb5eff11aa20b19a0a63",
+      "destinationSha256": "03ec11f4bef434e84105f8cce70542d4d34f2552f88efb5eff11aa20b19a0a63"
+    },
+    {
+      "source": "results/original/websocket-standard-2.log",
+      "destination": "results/original/websocket-standard-2.log",
+      "sourceSha256": "cf53bc9c032bd2b49081df52280a702fc497ff203fe71ab2474cdc497c1c4205",
+      "destinationSha256": "cf53bc9c032bd2b49081df52280a702fc497ff203fe71ab2474cdc497c1c4205"
+    },
+    {
+      "source": "results/original/websocket-standard-3.json",
+      "destination": "results/original/websocket-standard-3.json",
+      "sourceSha256": "6dea0c36dfef9b0c6072ca67e38fe97d081623db255344844ce30c1013ba21d5",
+      "destinationSha256": "6dea0c36dfef9b0c6072ca67e38fe97d081623db255344844ce30c1013ba21d5"
+    },
+    {
+      "source": "results/original/websocket-standard-3.log",
+      "destination": "results/original/websocket-standard-3.log",
+      "sourceSha256": "a65f2ed90f80ded83458e78ea8d0360943088885a6b6691dee82190f8a0efcba",
+      "destinationSha256": "a65f2ed90f80ded83458e78ea8d0360943088885a6b6691dee82190f8a0efcba"
+    },
+    {
+      "source": "results/websocket-rerun.log",
+      "destination": "results/websocket-rerun.log",
+      "sourceSha256": "e1496b6a7769bd4401a7c34f42641d9844960443d60f4c5371f2bdf9d410352c",
+      "destinationSha256": "e1496b6a7769bd4401a7c34f42641d9844960443d60f4c5371f2bdf9d410352c"
+    },
+    {
+      "source": "results/websocket-roundtrip.csv",
+      "destination": "results/websocket-roundtrip.csv",
+      "sourceSha256": "d298e4f4a55e87803eb42e25bf5131ef3ec54fa1d9144bf973b1d51b53eb3aca",
+      "destinationSha256": "d298e4f4a55e87803eb42e25bf5131ef3ec54fa1d9144bf973b1d51b53eb3aca"
+    },
+    {
+      "source": "results/websocket-roundtrip.json",
+      "destination": "results/websocket-roundtrip.json",
+      "sourceSha256": "a6810e6c90e37fea8326595aa3f58290cb7ca516b56996d1dde1ffa3540ccdd4",
+      "destinationSha256": "a6810e6c90e37fea8326595aa3f58290cb7ca516b56996d1dde1ffa3540ccdd4"
+    },
+    {
+      "source": "results/websocket-roundtrip.md",
+      "destination": "results/websocket-roundtrip.md",
+      "sourceSha256": "c09ab7e8972b629ebcb8463484bd454bdc15a61e45b1e4d02757f84fee0fde48",
+      "destinationSha256": "c09ab7e8972b629ebcb8463484bd454bdc15a61e45b1e4d02757f84fee0fde48"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/Infrastructure/Collections/PoolRental.cs",
+      "destination": "src/Pipelines.WebSockets/Infrastructure/Collections/PoolRental.cs",
+      "sourceSha256": "de169b1a9488d6c78069daa7e9031a6f078f56e5fb4f724d7a1e97ca3f9aba94",
+      "destinationSha256": "195ef54b88061eb48f12c7f20eee5b3822ad7180f5220a879ae5280e3fa77fc2"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/Infrastructure/Diagnostics/WebSocketMetrics.cs",
+      "destination": "src/Pipelines.WebSockets/Infrastructure/Diagnostics/WebSocketMetrics.cs",
+      "sourceSha256": "865c0d8eab98123f6140252e35167f8282d7648b184eeaa556c15065d7dc753c",
+      "destinationSha256": "865c0d8eab98123f6140252e35167f8282d7648b184eeaa556c15065d7dc753c"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/Networking/Core/FastWebSocketClient.cs",
+      "destination": "src/Pipelines.WebSockets/Networking/Core/FastWebSocketClient.cs",
+      "sourceSha256": "eb25467af71c4aeced2e6736eaa2dbf38f721b0341a4094283512da1cefb75d4",
+      "destinationSha256": "eb25467af71c4aeced2e6736eaa2dbf38f721b0341a4094283512da1cefb75d4"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/Networking/Core/IFastWebSocket.cs",
+      "destination": "src/Pipelines.WebSockets/Networking/Core/IFastWebSocket.cs",
+      "sourceSha256": "55560df01b965f2d613bff6111fc10a5b919da8678e70516a9ec7d63203c1923",
+      "destinationSha256": "55560df01b965f2d613bff6111fc10a5b919da8678e70516a9ec7d63203c1923"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/Networking/Core/StdWebSocketClient.cs",
+      "destination": "src/Pipelines.WebSockets/Networking/Core/StdWebSocketClient.cs",
+      "sourceSha256": "c69b175f925fbf7ba27bf1a302a7d8fa14c6b35254510cf802be6cbdb9d5abc2",
+      "destinationSha256": "c69b175f925fbf7ba27bf1a302a7d8fa14c6b35254510cf802be6cbdb9d5abc2"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/Networking/Messaging/IWebSocketMessageHandler.cs",
+      "destination": "src/Pipelines.WebSockets/Networking/Messaging/IWebSocketMessageHandler.cs",
+      "sourceSha256": "94c00bb6075edc69bd1442db7bd0c07f83101393a4a63bf90b6903ef70d86996",
+      "destinationSha256": "94c00bb6075edc69bd1442db7bd0c07f83101393a4a63bf90b6903ef70d86996"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/Networking/Protocol/WebSocketFrameHeader.cs",
+      "destination": "src/Pipelines.WebSockets/Networking/Protocol/WebSocketFrameHeader.cs",
+      "sourceSha256": "328c63bc3566a359f465f202c7dcb977050a5540702288b18be5ba36c979aeaf",
+      "destinationSha256": "328c63bc3566a359f465f202c7dcb977050a5540702288b18be5ba36c979aeaf"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/Networking/Protocol/WebSocketProtocol.cs",
+      "destination": "src/Pipelines.WebSockets/Networking/Protocol/WebSocketProtocol.cs",
+      "sourceSha256": "4794a66149882d703b041e89b4c7ad0209d06cbf6cae2047aa4db33ac05c2762",
+      "destinationSha256": "4794a66149882d703b041e89b4c7ad0209d06cbf6cae2047aa4db33ac05c2762"
+    },
+    {
+      "source": "support/LoopbackServer.cs",
+      "destination": "support/LoopbackServer.cs",
+      "sourceSha256": "e66f2a26f395de679649e630e46237b7840a4c4c265e13d9215214018b0245a9",
+      "destinationSha256": "e66f2a26f395de679649e630e46237b7840a4c4c265e13d9215214018b0245a9"
+    },
+    {
+      "source": "support/RoundtripSession.cs",
+      "destination": "support/RoundtripSession.cs",
+      "sourceSha256": "7b626c5e2da7f8ca4541aacd5e2d6c1b6011f8901978b88bd49346209fd7b264",
+      "destinationSha256": "7b626c5e2da7f8ca4541aacd5e2d6c1b6011f8901978b88bd49346209fd7b264"
+    },
+    {
+      "source": "tests/GapSonar.TransportLab.Tests/CounterSnapshotTests.cs",
+      "destination": "tests/Pipelines.WebSockets.Tests/CounterSnapshotTests.cs",
+      "sourceSha256": "62874ae13c5131da62c0c74f091e1a23ea4d47b95bd9fa70ee95bd44b4e455a1",
+      "destinationSha256": "62874ae13c5131da62c0c74f091e1a23ea4d47b95bd9fa70ee95bd44b4e455a1"
+    },
+    {
+      "source": "tests/GapSonar.TransportLab.Tests/LanBenchmarkTests.cs",
+      "destination": "tests/Pipelines.WebSockets.Tests/LanBenchmarkTests.cs",
+      "sourceSha256": "aae10c4e26a8aca87d32646e7beb8ce693f4a036830ba714405f368dd7c3eeaf",
+      "destinationSha256": "aae10c4e26a8aca87d32646e7beb8ce693f4a036830ba714405f368dd7c3eeaf"
+    },
+    {
+      "source": "tests/GapSonar.TransportLab.Tests/StreamingBenchmarkTests.cs",
+      "destination": "tests/Pipelines.WebSockets.Tests/StreamingBenchmarkTests.cs",
+      "sourceSha256": "3166f4f93759c8905c8112f983d34bbf3e986682559cf4389955d0eb72b92640",
+      "destinationSha256": "3166f4f93759c8905c8112f983d34bbf3e986682559cf4389955d0eb72b92640"
+    },
+    {
+      "source": "tests/GapSonar.TransportLab.Tests/TransportTests.cs",
+      "destination": "tests/Pipelines.WebSockets.Tests/TransportTests.cs",
+      "sourceSha256": "f276ce800cef19c9d14ea887012d28a617ffae22d9d796576744a005ca89f39c",
+      "destinationSha256": "f276ce800cef19c9d14ea887012d28a617ffae22d9d796576744a005ca89f39c"
+    },
+    {
+      "source": "scripts/build-windows-generator.py",
+      "destination": "scripts/build-windows-generator.py",
+      "sourceSha256": "559189795d272a318f365b679d095206a439c011da660a72c6b7518bde382d05",
+      "destinationSha256": "cb6cc1f8e63576b222a84b240fbf69d08c10f06971258fa899bc35889f0dcff7"
+    },
+    {
+      "source": "scripts/lan-controls.py",
+      "destination": "scripts/lan-controls.py",
+      "sourceSha256": "2ea163271bffef1bb1afdce11dad60ad65f8fc939532924c605d36dda7129c42",
+      "destinationSha256": "d40eb2bcf6ef129f905e854c3e528d468459ff3a46422b35859ed94b7c23fe41"
+    },
+    {
+      "source": "scripts/run-lan-benchmarks.sh",
+      "destination": "scripts/run-lan-benchmarks.sh",
+      "sourceSha256": "d2f1b13f5b0f999a2d9dfe54776d97c16dace6e15d6a1029483c484f39c6fc8d",
+      "destinationSha256": "d2f1b13f5b0f999a2d9dfe54776d97c16dace6e15d6a1029483c484f39c6fc8d"
+    },
+    {
+      "source": "scripts/sync-lan-results.py",
+      "destination": "scripts/sync-lan-results.py",
+      "sourceSha256": "5181056277dab41178c1fccd9b41aecb5cefb3787228119082e0ed9c905ba296",
+      "destinationSha256": "5181056277dab41178c1fccd9b41aecb5cefb3787228119082e0ed9c905ba296"
+    },
+    {
+      "source": "results/environment.json",
+      "destination": "results/environment.json",
+      "sourceSha256": "e2f96952cc47ff8d31e2c2468e509db7c73eda22783d147ed62f317a0302df72",
+      "destinationSha256": "e2f96952cc47ff8d31e2c2468e509db7c73eda22783d147ed62f317a0302df72"
+    },
+    {
+      "source": "results/source-snapshot.json",
+      "destination": "results/source-snapshot.json",
+      "sourceSha256": "6e51747762bc1cfb960cf37ccc1816b8278871b0d0d013e82803ad7b38c7d0aa",
+      "destinationSha256": "6e51747762bc1cfb960cf37ccc1816b8278871b0d0d013e82803ad7b38c7d0aa"
+    },
+    {
+      "source": "results/benchmark.log",
+      "destination": "results/benchmark.log",
+      "sourceSha256": "f7a8a18dbf2dc8daa5fe7401832f4c6d4f903591ef3e2605d7cd2be47bdc531c",
+      "destinationSha256": "f7a8a18dbf2dc8daa5fe7401832f4c6d4f903591ef3e2605d7cd2be47bdc531c"
+    },
+    {
+      "source": "results/original/environment.json",
+      "destination": "results/original/environment.json",
+      "sourceSha256": "4ce3afe11ece96ecd3d8ce9e3a77a5a3e14a919e2bf79b2c42c82c8e7a6fefce",
+      "destinationSha256": "4ce3afe11ece96ecd3d8ce9e3a77a5a3e14a919e2bf79b2c42c82c8e7a6fefce"
+    },
+    {
+      "source": "results/original/source-snapshot.json",
+      "destination": "results/original/source-snapshot.json",
+      "sourceSha256": "82de52908a7406f551d304bf5bc1ce92a62cfe7a978a80ef89f98fc2d6ebc2b2",
+      "destinationSha256": "82de52908a7406f551d304bf5bc1ce92a62cfe7a978a80ef89f98fc2d6ebc2b2"
+    },
+    {
+      "source": "results/original/benchmark.log",
+      "destination": "results/original/benchmark.log",
+      "sourceSha256": "9480a36babcf7a53807df3da07124ac84e43db622703c509ed35c605dd955630",
+      "destinationSha256": "9480a36babcf7a53807df3da07124ac84e43db622703c509ed35c605dd955630"
+    },
+    {
+      "source": "results/original/streaming-summary.json",
+      "destination": "results/original/streaming-summary.json",
+      "sourceSha256": "eecd3f68a1fee4470e499d52f2ffbf48fa32dea1a3f99e8fe9a9aed03d5c38ad",
+      "destinationSha256": "eecd3f68a1fee4470e499d52f2ffbf48fa32dea1a3f99e8fe9a9aed03d5c38ad"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/AssemblyInfo.cs",
+      "destination": "src/Pipelines.WebSockets/AssemblyInfo.cs",
+      "sourceSha256": "f8081bb1a84f1f8f0a23bca79eb85396b12bc5a60163a6fe184ac779817c0f65",
+      "destinationSha256": "8019560cef5e43afced054f074e35d7fbed41aef80013fd1a79e82501cd860e3"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/GlobalUsings.cs",
+      "destination": "src/Pipelines.WebSockets/GlobalUsings.cs",
+      "sourceSha256": "c6afdfa642cc4956bd7aafb2797a122e7902a5a0c86dc808645eb101d67af3e0",
+      "destinationSha256": "77609d67d1f3e73ef67dc15ad6567ccbcc0c438bb8c582e0e543a310ce92e4be"
+    },
+    {
+      "source": "src/GapSonar.TransportLab/GapSonar.TransportLab.csproj",
+      "destination": "src/Pipelines.WebSockets/Pipelines.WebSockets.csproj",
+      "sourceSha256": "0acd9f34d4aa7066701d5fac3a03367ee50e05bee3d9517bdad243fd7c14c5c0",
+      "destinationSha256": "565adf3bdc0b9112a31bc4067a976013ce3f8bf68b325ba38ae1f451940daadc"
+    }
+  ]
+}

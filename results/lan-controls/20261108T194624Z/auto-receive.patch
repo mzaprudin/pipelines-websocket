@@ -1,0 +1,10 @@
+--- a/src/GapSonar.TransportLab/Networking/Core/FastWebSocketClient.cs
++++ b/src/GapSonar.TransportLab/Networking/Core/FastWebSocketClient.cs
+@@ -96,7 +96,6 @@
+             {
+                 // TCP NoDelay is critical for HFT to disable Nagle's algorithm
+                 NoDelay = true,
+-                ReceiveBufferSize = 65536,
+                 SendBufferSize = 65536,
+             };
+ 

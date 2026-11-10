@@ -1,0 +1,330 @@
+{
+  "cases": 27,
+  "runsPerCase": 3,
+  "medians": {
+    "batch-1-standard": {
+      "MessagesPerSecond": 103220.47287377145,
+      "MegabitsPerSecond": 845.5821137819356,
+      "CpuMillisecondsPerMillionMessages": 29748.99688458038,
+      "AllocatedBytesPerMessage": 0.0936704391659965,
+      "AllocatedBytesPerMillionMessages": 93670.4391659965
+    },
+    "batch-1-fixed": {
+      "MessagesPerSecond": 94345.42441091276,
+      "MegabitsPerSecond": 772.8777167741973,
+      "CpuMillisecondsPerMillionMessages": 29503.34191172643,
+      "AllocatedBytesPerMessage": 0.004999854613647435,
+      "AllocatedBytesPerMillionMessages": 4999.854613647435
+    },
+    "batch-1-auto": {
+      "MessagesPerSecond": 104571.11541808675,
+      "MegabitsPerSecond": 856.6465775049667,
+      "CpuMillisecondsPerMillionMessages": 28744.757130773156,
+      "AllocatedBytesPerMessage": 0.0044932887789726475,
+      "AllocatedBytesPerMillionMessages": 4493.288778972647
+    },
+    "batch-4-standard": {
+      "MessagesPerSecond": 103053.38916169251,
+      "MegabitsPerSecond": 844.2125448373132,
+      "CpuMillisecondsPerMillionMessages": 28192.962456876485,
+      "AllocatedBytesPerMessage": 0.7165872943464225,
+      "AllocatedBytesPerMillionMessages": 716587.2943464225
+    },
+    "batch-4-fixed": {
+      "MessagesPerSecond": 99984.30642801602,
+      "MegabitsPerSecond": 819.0714382583071,
+      "CpuMillisecondsPerMillionMessages": 28645.371155660177,
+      "AllocatedBytesPerMessage": 0.004685940943675697,
+      "AllocatedBytesPerMillionMessages": 4685.940943675697
+    },
+    "batch-4-auto": {
+      "MessagesPerSecond": 101160.713845845,
+      "MegabitsPerSecond": 828.7085678251624,
+      "CpuMillisecondsPerMillionMessages": 27214.70182562732,
+      "AllocatedBytesPerMessage": 0.004589275040841516,
+      "AllocatedBytesPerMillionMessages": 4589.275040841517
+    },
+    "batch-20-standard": {
+      "MessagesPerSecond": 100604.8563922897,
+      "MegabitsPerSecond": 824.1549835656372,
+      "CpuMillisecondsPerMillionMessages": 27767.035764208307,
+      "AllocatedBytesPerMessage": 0.3718774816314405,
+      "AllocatedBytesPerMillionMessages": 371877.4816314405
+    },
+    "batch-20-fixed": {
+      "MessagesPerSecond": 101210.59098944937,
+      "MegabitsPerSecond": 829.1171613855691,
+      "CpuMillisecondsPerMillionMessages": 28302.43134522961,
+      "AllocatedBytesPerMessage": 0.004719295439821529,
+      "AllocatedBytesPerMillionMessages": 4719.295439821529
+    },
+    "batch-20-auto": {
+      "MessagesPerSecond": 102296.77088937632,
+      "MegabitsPerSecond": 838.0151471257707,
+      "CpuMillisecondsPerMillionMessages": 27397.512054955532,
+      "AllocatedBytesPerMessage": 0.0046006442362031275,
+      "AllocatedBytesPerMillionMessages": 4600.644236203128
+    }
+  },
+  "automaticVsFixed": {
+    "1": {
+      "automaticVsFixedThroughputPercent": 10.83856590928769,
+      "automaticVsFixedCpuReductionPercent": 2.5711825569555757,
+      "automaticVsStandardThroughputPercent": 1.3085025738711842
+    },
+    "4": {
+      "automaticVsFixedThroughputPercent": 1.1765920671520158,
+      "automaticVsFixedCpuReductionPercent": 4.994417151233755,
+      "automaticVsStandardThroughputPercent": -1.8365968661912313
+    },
+    "20": {
+      "automaticVsFixedThroughputPercent": 1.073187982906032,
+      "automaticVsFixedCpuReductionPercent": 3.1973199731004764,
+      "automaticVsStandardThroughputPercent": 1.6817423708546553
+    }
+  },
+  "allocationComparisons": {
+    "1": {
+      "nativeOverAutomaticBytesPerMessageRatio": 20.846743615578045,
+      "medianAllocatedBytesPerMillionMessages": {
+        "standard": 93670.4391659965,
+        "fixed": 4999.854613647435,
+        "auto": 4493.288778972647
+      },
+      "medianAllocatedBytesPerSecond": {
+        "standard": 9551.024547679059,
+        "fixed": 521.3130142897463,
+        "auto": 464.2571277302156
+      },
+      "medianAllocatedBytesPerRun": {
+        "standard": 286536,
+        "fixed": 15640,
+        "auto": 13928
+      },
+      "maxGcCollections": {
+        "standard": [
+          0,
+          0,
+          0
+        ],
+        "fixed": [
+          0,
+          0,
+          0
+        ],
+        "auto": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "4": {
+      "nativeOverAutomaticBytesPerMessageRatio": 156.1438981035717,
+      "medianAllocatedBytesPerMillionMessages": {
+        "standard": 716587.2943464225,
+        "fixed": 4685.940943675697,
+        "auto": 4589.275040841517
+      },
+      "medianAllocatedBytesPerSecond": {
+        "standard": 72520.77975804785,
+        "fixed": 468.5205552160574,
+        "auto": 467.4597498205685
+      },
+      "medianAllocatedBytesPerRun": {
+        "standard": 2175640,
+        "fixed": 14056,
+        "auto": 14024
+      },
+      "maxGcCollections": {
+        "standard": [
+          0,
+          0,
+          0
+        ],
+        "fixed": [
+          0,
+          0,
+          0
+        ],
+        "auto": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "20": {
+      "nativeOverAutomaticBytesPerMessageRatio": 80.83161021343129,
+      "medianAllocatedBytesPerMillionMessages": {
+        "standard": 371877.4816314405,
+        "fixed": 4719.295439821529,
+        "auto": 4600.644236203128
+      },
+      "medianAllocatedBytesPerSecond": {
+        "standard": 36260.484081555755,
+        "fixed": 464.256098650341,
+        "auto": 466.39683627479394
+      },
+      "medianAllocatedBytesPerRun": {
+        "standard": 1087832,
+        "fixed": 13928,
+        "auto": 13992
+      },
+      "maxGcCollections": {
+        "standard": [
+          0,
+          0,
+          0
+        ],
+        "fixed": [
+          0,
+          0,
+          0
+        ],
+        "auto": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "buildValidation": {
+    "testsPassed": {
+      "fixed": 122,
+      "auto": 122
+    },
+    "sourceFilesPerVariant": 69,
+    "onlyChangedSource": "src/GapSonar.TransportLab/Networking/Core/FastWebSocketClient.cs",
+    "executedRunnerSha256": "1fa4475e36bec5cdfe408ff9595d815f758024d3807c8736cee0e7b475f887ab"
+  },
+  "socketReceiveCapacityBytes": {
+    "batch-1-standard": {
+      "min": 1048114,
+      "max": 4560054
+    },
+    "batch-1-fixed": {
+      "min": 131072,
+      "max": 131072
+    },
+    "batch-1-auto": {
+      "min": 1588992,
+      "max": 5884672
+    },
+    "batch-4-standard": {
+      "min": 995611,
+      "max": 4594074
+    },
+    "batch-4-fixed": {
+      "min": 131072,
+      "max": 131072
+    },
+    "batch-4-auto": {
+      "min": 1112517,
+      "max": 4902354
+    },
+    "batch-20-standard": {
+      "min": 1386758,
+      "max": 4561344
+    },
+    "batch-20-fixed": {
+      "min": 131072,
+      "max": 131072
+    },
+    "batch-20-auto": {
+      "min": 1468809,
+      "max": 6655445
+    }
+  },
+  "evidenceSha256": {
+    "auto-receive.patch": "e6d85fe8203c1b2921ad7f9992e2a8ebe428752cc1ffa0e71c1c858bf44a45ce",
+    "auto-setup.log": "35518950457849cdd1fa28ba5cb8bf653a750d5246ed64624bdd69b905e2c9d2",
+    "batch-1-auto-1.json": "d1d4edf0f61b22c07cc49b641fd052055af166e7121ebd545fd88aaf9be9c31f",
+    "batch-1-auto-1.log": "925f85165f7713be05f70235b9150249763069d28fa8d9183754c23ac51b9151",
+    "batch-1-auto-1.tcp.txt": "a555052ec729b817f3acda4207e808384c71013fbffaaff6661cc6c156389825",
+    "batch-1-auto-2.json": "6ebca191dc43e045fe9019bf4bd0a4fbad3bbd0399ee1a2d14a86ef1bad7ec8a",
+    "batch-1-auto-2.log": "26eb32819af9cbe042265797b82618a36c1bd174b0fc73fa767e55bad996c2cc",
+    "batch-1-auto-2.tcp.txt": "fb2c96a0dc368fd11c538e3c19a8d33e847ad71e28cc2084a7c770398137b866",
+    "batch-1-auto-3.json": "2bda04177a89eaa57279422261d2b35a69b4fe0de46246440ceea080d61abcd4",
+    "batch-1-auto-3.log": "cc4607a327278b013dfa76092ca80cd223cd9220c98a17fc74fd744f82efb2b4",
+    "batch-1-auto-3.tcp.txt": "d8a4db2edbc0e59de7cd901c904e9058392374c993d50d2d10037b7dc2ae67ee",
+    "batch-1-fixed-1.json": "ca880b51621118c2d74af1c53abee2c37165b2287652818d578ef7629426269a",
+    "batch-1-fixed-1.log": "e3a8143f593b9e93c250d6a7df3ea9a3b2a1d51a7f2e3fb8c918d3230ceac652",
+    "batch-1-fixed-1.tcp.txt": "b061cb44e091923eb96ac7d53ed412e4da246c2d43259d1c7463725af965c277",
+    "batch-1-fixed-2.json": "42b7d9e8b6ff0faa205c398530b56ff76d6512961105421c7972f41ae207d29c",
+    "batch-1-fixed-2.log": "1276a838753168942d93c138bbb1841dc280b2fc51c89073c85e0f7f53aad9fb",
+    "batch-1-fixed-2.tcp.txt": "5ce3b5aee2cb53c74c38bf1a97c99b10033fee4c547547854ed93353679a4173",
+    "batch-1-fixed-3.json": "b12b92fbd8cfa5bfeed0d5688d313b7f18a5adcedd37cab2c7494bcec114d415",
+    "batch-1-fixed-3.log": "f135a3e8e551a3156c1e1139309a0e72cf6cb07335968b825cae4d9b684cf0e8",
+    "batch-1-fixed-3.tcp.txt": "35906a982d3229185f20980eb06e39738657445b6127586184f7be5f33059b44",
+    "batch-1-standard-1.json": "212cb8ee02a57222bf6c0a17cf98effc3cb7fa11f0bb79307e126c9af6b7956c",
+    "batch-1-standard-1.log": "0ebb1a48e6f6e324e8ab817501d31990c33e4642a0e3e4e542732c017e3ac3ae",
+    "batch-1-standard-1.tcp.txt": "d47e171315b63b26beb6724c5c0f7179729d96451f2d7f76f50f896559440f56",
+    "batch-1-standard-2.json": "aba2c1e2d1fd68684091e317facd2656e35df3b3ef727230cdd49ca03c849d5d",
+    "batch-1-standard-2.log": "8d55cddb5441e86c6954d53f8d40836feb29deb52062110e4e939192032918ff",
+    "batch-1-standard-2.tcp.txt": "b4105cef4cdb26f9952f1f4c821cdaf29497627f3e542dc7c1d6f76e0de30457",
+    "batch-1-standard-3.json": "a4ea20e0421c3aba57a6f274336b518e78f88fa3f776a66bb861763bcdbf0740",
+    "batch-1-standard-3.log": "539867652f5a711e0ef26e2cba61c030673b7dca5395ff2b5e727b7782acc4b1",
+    "batch-1-standard-3.tcp.txt": "6e04c9e5421f7fcf3023eaf19cb04f8286d6f2729882deae662b1dc6e8bf8796",
+    "batch-20-auto-1.json": "cebd7b176d58606f196b41b8aac775d5e16e842401ffacb88f7c14398d62e9b1",
+    "batch-20-auto-1.log": "638dad01ff5563dd9d9e71b80fc6705d69bbef55b956f1ee3ca5e4606dfa5763",
+    "batch-20-auto-1.tcp.txt": "3fea66be1b802dbf5f876a7a3a353faf8f4eac7eaa8dcb7433141690483cba43",
+    "batch-20-auto-2.json": "ee71f3b36b604826afb263034ff7f2ed6260b7502b868223c4d0e29ac8aee64a",
+    "batch-20-auto-2.log": "45420bf727d86b51cd062902b59961b1fb349d5af8129b4be182d5b09ec658a4",
+    "batch-20-auto-2.tcp.txt": "2eec107963573bf509f153fd61481c650b2fad9642ee3b7a3cd8334794b2a4ba",
+    "batch-20-auto-3.json": "e72993a896bdf092ff4ba12790a029856f87655f62cd5b44b290b60c7578cbe7",
+    "batch-20-auto-3.log": "761d594acc3fb274f49b33c1299e3301c70321541e57992733ea2048ef8f86f9",
+    "batch-20-auto-3.tcp.txt": "b983f2a840ecb98b36b0dcd82ee6a98d65be4fe0f38cc076b6d1a722029e52ce",
+    "batch-20-fixed-1.json": "a232293c8a7602a828addf60d3c2401293cc128377a8774108475e28aa6bbf26",
+    "batch-20-fixed-1.log": "73753baf769e6668415783ef447aeefbf1643dee04f18dd9a2dc5180b37d6b04",
+    "batch-20-fixed-1.tcp.txt": "236a81b15192f5fb80689f46a53a63b146e718cf98bce11c5f5372feabeee453",
+    "batch-20-fixed-2.json": "23d03404c7c823aeef76f5aaf4ae5dfe9692d8435ff38a1e42c7ed4a8e3936ea",
+    "batch-20-fixed-2.log": "34285ad8243563e5ebc09c550e7f46d004d15d79c9e8151a41f22eeb449eb34c",
+    "batch-20-fixed-2.tcp.txt": "13c5b8b12b9cf730adbd850dc60b271870ef6d2b9b221db350d79089c414e0a5",
+    "batch-20-fixed-3.json": "33fa45c51c8459d8ee943afffcca700d04baeb2ff2b67ea3fbd11411171f60b3",
+    "batch-20-fixed-3.log": "b556633b509dcb0138b0c46e431faa3af2b9030b9ef639a30270aff722b1f782",
+    "batch-20-fixed-3.tcp.txt": "71ef2af984f794af7d3bff5a227942b787f54166e8379d169bdf99f9525d6cad",
+    "batch-20-standard-1.json": "e759347e291e26a404ae1ccbb21406bfa82e6cc3f74028bcff2b726fa3a2bb8b",
+    "batch-20-standard-1.log": "9d4384e6487d40468770aeff0062e45e221d0408d7e7489c8c26a6cdf4280d41",
+    "batch-20-standard-1.tcp.txt": "d9e960f1efe6aaf8adb4de9cfcac9edf8c31a0fec4512e683adf941fa6bef361",
+    "batch-20-standard-2.json": "04f43132d5176178ca82455c8ee65622029366bfdb3ea970d2bdc89cd63bf172",
+    "batch-20-standard-2.log": "b8cb8862d85c8b516d21f2fdeda1d0677e7ca3ddf00670870d6155e123bd17f7",
+    "batch-20-standard-2.tcp.txt": "3b741fd526aa16be7b25c939af6418dd23a239c2fd7455b4f37008f30c3dc207",
+    "batch-20-standard-3.json": "0f9e672a7e19ee418603fd11257346053c6676d37a019ebcf9b6bb35cbc13cd1",
+    "batch-20-standard-3.log": "0a6ed809d984c0cd91aee651e94e1b51420b3650ec1a374e99f045a53970350e",
+    "batch-20-standard-3.tcp.txt": "d2360c8bcfd29a69bb2833dbea13c5e37bd4ae456994952fc3ff3426ac66e27f",
+    "batch-4-auto-1.json": "d539e015c1b6d16e87a73d183dd42d5d7e33ff3fde5222b921397ebae9f16967",
+    "batch-4-auto-1.log": "bac0be96686605aa2c62ee04bf457d39183132bff241ca9759eff553f7a37598",
+    "batch-4-auto-1.tcp.txt": "4e6b9a7db6c07dbfd1ec125552c65a41af4dd655a7babb4d95e95d2706db12b9",
+    "batch-4-auto-2.json": "bc634e48e3178c0db2b91d287b627f2a9a3e619064bf119592b03bc78f2665dc",
+    "batch-4-auto-2.log": "4234c2855e297329e592ef298b5cb16a42f3e9d0c4e447a2dc8ca806978c320c",
+    "batch-4-auto-2.tcp.txt": "49db07b942ebffc0d4bfcc131381d2bc7c77296e04539dbdbedc7eee3fad983d",
+    "batch-4-auto-3.json": "26310494cf5c83ba5e8401b7b9e598c5d97a6be30296af62e758286f20e1c929",
+    "batch-4-auto-3.log": "04ae88773b4d637989332d0f57ae812f057b8641463efbbc5a8762631b210186",
+    "batch-4-auto-3.tcp.txt": "2d6a2440bc956011ea25436ea6ad607ec14a33fb990ec0d7ec4365baaea3d002",
+    "batch-4-fixed-1.json": "dff6b3368392fd95cd01c8c955c975fd8b75aed56057018c026413e52979ab0c",
+    "batch-4-fixed-1.log": "1e339b2965df4ba286e4ab952a91d278553d97e854c1361079db9ab42585744d",
+    "batch-4-fixed-1.tcp.txt": "195119c1ea3bb00342393a34e20d85b7623ed12f8cb998bb9d47efd9913fedea",
+    "batch-4-fixed-2.json": "efa1bcc07e58960de2cf5e7bab91ba71d27b1a40c80ebbefc6aed37279865c3e",
+    "batch-4-fixed-2.log": "95b0ef0b479c5300cb3cc20d73e58e6ba40fea8173997a9f115abbfffff4d95c",
+    "batch-4-fixed-2.tcp.txt": "26afa5c4698c9eb2c3e6d95942c8a24c04f4b4a9abaa8b66a2140e2896c26be4",
+    "batch-4-fixed-3.json": "fc8ca995a16d24f8a841f406d33613601e2b5da39f61fe5290d2ebd1d8e196fa",
+    "batch-4-fixed-3.log": "6a406cf399b92113e692b26c6ff9c01ab24af179d1f770d6d85464e606e3a776",
+    "batch-4-fixed-3.tcp.txt": "cd5a837eea235fccea5b2a9b79dc7a75603004df08e7585f94c2a98137149d5e",
+    "batch-4-standard-1.json": "85c271973aee99e8a41f632aa6f9b2303096dd58d1db37592dee52b9ad44b93f",
+    "batch-4-standard-1.log": "78f86b116d768ff7c1d3472dc072a15382a9f5dd98e6439bc5fe8f34068296d9",
+    "batch-4-standard-1.tcp.txt": "fbee37d00a74411ceb53c1f060f2efb8e4c9b9bf66b3a843963124e5e83cfc63",
+    "batch-4-standard-2.json": "7a1045ef610131f135ac3f8aa4e9adac68437ed42e60e6e086b63f06ee40c390",
+    "batch-4-standard-2.log": "1059287a335a52c8559b42a59798085e97acf3f25ee9c77464721c9cdec984aa",
+    "batch-4-standard-2.tcp.txt": "573d2d6890fd73973f8e84b342fb29ce32c725690f2a8b52c125407ac4c6cf96",
+    "batch-4-standard-3.json": "17fe4a71b3bb37b05b3a2983b8c4a8d2cb53e2b55f3ac8c3e3875d4a64f5155c",
+    "batch-4-standard-3.log": "a1b602e420ffbb7f9ee66d640113bebdbfa79b504bafab1e60de0f668e41b675",
+    "batch-4-standard-3.tcp.txt": "8a5d234d03e05339a1f8ea5b51e3a51088a5993dfccb253f6addce9e8f26308c",
+    "builds.json": "bddc547135dd5d1d94469784d5df8365880a88ae49d3cf739494b54a6e0ef3a4",
+    "environment.json": "c0be1086ac7aa23e3047065e28dfbd728d66d9c04e0db509a5c7931a5408a584",
+    "fixed-setup.log": "9eaad7cf881dd2ba1df947a2badbf93a0a896e4a1e45bf3ff7d0899dc07ebf41",
+    "interface-observation.json": "8ec4e4153c6224ba8578d0a33964b497f836bd09e49f4fea23f9b40a9bf473ee",
+    "runner-source.py": "1fa4475e36bec5cdfe408ff9595d815f758024d3807c8736cee0e7b475f887ab"
+  }
+}

@@ -1,0 +1,27 @@
+["dotnet", "restore", "GapSonar.TransportLab.sln", "--locked-mode"]
+  Determining projects to restore...
+  Restored /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/src/GapSonar.TransportLab/GapSonar.TransportLab.csproj (in 210 ms).
+  Restored /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/tests/GapSonar.TransportLab.Tests/GapSonar.TransportLab.Tests.csproj (in 210 ms).
+  Restored /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/samples/GapSonar.TransportLab.Demo/GapSonar.TransportLab.Demo.csproj (in 210 ms).
+  Restored /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/benchmarks/GapSonar.TransportLab.Benchmarks/GapSonar.TransportLab.Benchmarks.csproj (in 210 ms).
+  Restored /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/benchmarks/WebSocketLoadTest/WebSocketLoadTest.csproj (in 210 ms).
+["dotnet", "build", "GapSonar.TransportLab.sln", "-c", "Release", "--no-restore"]
+  GapSonar.TransportLab -> /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/src/GapSonar.TransportLab/bin/Release/net10.0/GapSonar.TransportLab.dll
+  WebSocketLoadTest -> /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/benchmarks/WebSocketLoadTest/bin/Release/net10.0/WebSocketLoadTest.dll
+  GapSonar.TransportLab.Demo -> /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/samples/GapSonar.TransportLab.Demo/bin/Release/net10.0/GapSonar.TransportLab.Demo.dll
+  GapSonar.TransportLab.Benchmarks -> /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/benchmarks/GapSonar.TransportLab.Benchmarks/bin/Release/net10.0/GapSonar.TransportLab.Benchmarks.dll
+  GapSonar.TransportLab.Tests -> /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/tests/GapSonar.TransportLab.Tests/bin/Release/net10.0/GapSonar.TransportLab.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.87
+["dotnet", "test", "tests/GapSonar.TransportLab.Tests/GapSonar.TransportLab.Tests.csproj", "-c", "Release", "--no-build", "--logger", "console;verbosity=minimal"]
+Test run for /tmp/zero-alloc-lan-controls-ie4ai96h/fixed/tests/GapSonar.TransportLab.Tests/bin/Release/net10.0/GapSonar.TransportLab.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.2 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   122, Skipped:     0, Total:   122, Duration: 8 s - GapSonar.TransportLab.Tests.dll (net10.0)

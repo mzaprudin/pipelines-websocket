@@ -1,0 +1,388 @@
+{
+  "StartedAtUtc": "2026-11-08T19:16:27.9549503+00:00",
+  "CommandLine": "--mode client --url ws://192.168.1.75:5050 --payload-bytes 1024 --batch 1 --count 10 --duration 60 --warmup 10 --std --json results/lan-1kib/20261108T191616Z/standard-1.json",
+  "ClientType": "standard",
+  "ClientCount": 10,
+  "WarmupSeconds": 10,
+  "DurationSeconds": 60.0009759,
+  "PayloadBytes": 1024,
+  "FramesPerBatch": 1,
+  "BatchBytes": 1028,
+  "Messages": 6075159,
+  "Bytes": 6220962816,
+  "MessagesPerSecond": 101251.00315243372,
+  "MegabitsPerSecond": 829.4482178247371,
+  "CpuMilliseconds": 169659.905,
+  "AllocatedBytes": 697384,
+  "Gen0Collections": 0,
+  "Gen1Collections": 0,
+  "Gen2Collections": 0,
+  "Samples": [
+    {
+      "ElapsedSeconds": 1.0005988,
+      "Messages": 107424,
+      "Bytes": 110002176,
+      "MessagesPerSecond": 107359.7130038533
+    },
+    {
+      "ElapsedSeconds": 2.0014264,
+      "Messages": 98273,
+      "Bytes": 100631552,
+      "MessagesPerSecond": 98191.73651885697
+    },
+    {
+      "ElapsedSeconds": 3.0015981,
+      "Messages": 107137,
+      "Bytes": 109708288,
+      "MessagesPerSecond": 107118.60773505193
+    },
+    {
+      "ElapsedSeconds": 4.0017472,
+      "Messages": 98864,
+      "Bytes": 101236736,
+      "MessagesPerSecond": 98849.26157509917
+    },
+    {
+      "ElapsedSeconds": 5.0019178,
+      "Messages": 110372,
+      "Bytes": 113020928,
+      "MessagesPerSecond": 110353.17374855843
+    },
+    {
+      "ElapsedSeconds": 6.0020844,
+      "Messages": 100044,
+      "Bytes": 102445056,
+      "MessagesPerSecond": 100027.33544591471
+    },
+    {
+      "ElapsedSeconds": 7.0022472,
+      "Messages": 105700,
+      "Bytes": 108236800,
+      "MessagesPerSecond": 105682.79484099988
+    },
+    {
+      "ElapsedSeconds": 8.0023899,
+      "Messages": 98200,
+      "Bytes": 100556800,
+      "MessagesPerSecond": 98185.98885938972
+    },
+    {
+      "ElapsedSeconds": 9.0025318,
+      "Messages": 107227,
+      "Bytes": 109800448,
+      "MessagesPerSecond": 107211.78664747482
+    },
+    {
+      "ElapsedSeconds": 10.0026839,
+      "Messages": 104125,
+      "Bytes": 106624000,
+      "MessagesPerSecond": 104109.16499600418
+    },
+    {
+      "ElapsedSeconds": 11.0028415,
+      "Messages": 103306,
+      "Bytes": 105785344,
+      "MessagesPerSecond": 103289.72153988517
+    },
+    {
+      "ElapsedSeconds": 12.0029881,
+      "Messages": 97919,
+      "Bytes": 100269056,
+      "MessagesPerSecond": 97904.6471787237
+    },
+    {
+      "ElapsedSeconds": 13.003126,
+      "Messages": 101984,
+      "Bytes": 104431616,
+      "MessagesPerSecond": 101969.93834550212
+    },
+    {
+      "ElapsedSeconds": 14.0032634,
+      "Messages": 101717,
+      "Bytes": 104158208,
+      "MessagesPerSecond": 101703.02600422704
+    },
+    {
+      "ElapsedSeconds": 15.003402,
+      "Messages": 101292,
+      "Bytes": 103723008,
+      "MessagesPerSecond": 101277.96287434566
+    },
+    {
+      "ElapsedSeconds": 16.0035626,
+      "Messages": 102178,
+      "Bytes": 104630272,
+      "MessagesPerSecond": 102161.59284818867
+    },
+    {
+      "ElapsedSeconds": 17.0037255,
+      "Messages": 96751,
+      "Bytes": 99073024,
+      "MessagesPerSecond": 96735.24182910575
+    },
+    {
+      "ElapsedSeconds": 18.003866,
+      "Messages": 103830,
+      "Bytes": 106321920,
+      "MessagesPerSecond": 103815.41393434253
+    },
+    {
+      "ElapsedSeconds": 19.0040016,
+      "Messages": 101252,
+      "Bytes": 103682048,
+      "MessagesPerSecond": 101238.27209030454
+    },
+    {
+      "ElapsedSeconds": 20.0044447,
+      "Messages": 101639,
+      "Bytes": 104078336,
+      "MessagesPerSecond": 101593.98370581977
+    },
+    {
+      "ElapsedSeconds": 21.0046676,
+      "Messages": 97396,
+      "Bytes": 99733504,
+      "MessagesPerSecond": 97374.29526958434
+    },
+    {
+      "ElapsedSeconds": 22.0048277,
+      "Messages": 99504,
+      "Bytes": 101892096,
+      "MessagesPerSecond": 99488.0719596794
+    },
+    {
+      "ElapsedSeconds": 23.0049666,
+      "Messages": 99945,
+      "Bytes": 102343680,
+      "MessagesPerSecond": 99931.11956749212
+    },
+    {
+      "ElapsedSeconds": 24.0051123,
+      "Messages": 98622,
+      "Bytes": 100988928,
+      "MessagesPerSecond": 98607.63286789106
+    },
+    {
+      "ElapsedSeconds": 25.0052388,
+      "Messages": 102631,
+      "Bytes": 105094144,
+      "MessagesPerSecond": 102618.01882061915
+    },
+    {
+      "ElapsedSeconds": 26.0053719,
+      "Messages": 99960,
+      "Bytes": 102359040,
+      "MessagesPerSecond": 99946.69709461677
+    },
+    {
+      "ElapsedSeconds": 27.0054959,
+      "Messages": 93021,
+      "Bytes": 95253504,
+      "MessagesPerSecond": 93009.4668261136
+    },
+    {
+      "ElapsedSeconds": 28.0056354,
+      "Messages": 93887,
+      "Bytes": 96140288,
+      "MessagesPerSecond": 93873.9045903097
+    },
+    {
+      "ElapsedSeconds": 29.0057991,
+      "Messages": 98454,
+      "Bytes": 100816896,
+      "MessagesPerSecond": 98437.88571810778
+    },
+    {
+      "ElapsedSeconds": 30.0059724,
+      "Messages": 100929,
+      "Bytes": 103351296,
+      "MessagesPerSecond": 100911.51203496433
+    },
+    {
+      "ElapsedSeconds": 31.0051452,
+      "Messages": 101992,
+      "Bytes": 104439808,
+      "MessagesPerSecond": 102076.43762920686
+    },
+    {
+      "ElapsedSeconds": 32.0053344,
+      "Messages": 100419,
+      "Bytes": 102829056,
+      "MessagesPerSecond": 100400.00431918268
+    },
+    {
+      "ElapsedSeconds": 33.0054614,
+      "Messages": 108089,
+      "Bytes": 110683136,
+      "MessagesPerSecond": 108075.2744401462
+    },
+    {
+      "ElapsedSeconds": 34.0055734,
+      "Messages": 94974,
+      "Bytes": 97253376,
+      "MessagesPerSecond": 94963.3641032203
+    },
+    {
+      "ElapsedSeconds": 35.0056937,
+      "Messages": 104899,
+      "Bytes": 107416576,
+      "MessagesPerSecond": 104886.38216822527
+    },
+    {
+      "ElapsedSeconds": 36.0058076,
+      "Messages": 98630,
+      "Bytes": 100997120,
+      "MessagesPerSecond": 98618.76732240245
+    },
+    {
+      "ElapsedSeconds": 37.0059228,
+      "Messages": 110070,
+      "Bytes": 112711680,
+      "MessagesPerSecond": 110057.32139657476
+    },
+    {
+      "ElapsedSeconds": 38.0060405,
+      "Messages": 88507,
+      "Bytes": 90631168,
+      "MessagesPerSecond": 88496.58395206911
+    },
+    {
+      "ElapsedSeconds": 39.0061614,
+      "Messages": 106970,
+      "Bytes": 109537280,
+      "MessagesPerSecond": 106957.06889037052
+    },
+    {
+      "ElapsedSeconds": 40.00627,
+      "Messages": 96794,
+      "Bytes": 99117056,
+      "MessagesPerSecond": 96783.48931306087
+    },
+    {
+      "ElapsedSeconds": 41.0063752,
+      "Messages": 110264,
+      "Bytes": 112910336,
+      "MessagesPerSecond": 110252.40144736772
+    },
+    {
+      "ElapsedSeconds": 42.0064887,
+      "Messages": 98372,
+      "Bytes": 100732928,
+      "MessagesPerSecond": 98360.83604510911
+    },
+    {
+      "ElapsedSeconds": 43.0065958,
+      "Messages": 105555,
+      "Bytes": 108088320,
+      "MessagesPerSecond": 105543.69627012937
+    },
+    {
+      "ElapsedSeconds": 44.0067029,
+      "Messages": 97621,
+      "Bytes": 99963904,
+      "MessagesPerSecond": 97610.54591053288
+    },
+    {
+      "ElapsedSeconds": 45.0068125,
+      "Messages": 108210,
+      "Bytes": 110807040,
+      "MessagesPerSecond": 108198.1414836932
+    },
+    {
+      "ElapsedSeconds": 46.0069244,
+      "Messages": 103447,
+      "Bytes": 105929728,
+      "MessagesPerSecond": 103435.42557587803
+    },
+    {
+      "ElapsedSeconds": 47.0070267,
+      "Messages": 104282,
+      "Bytes": 106784768,
+      "MessagesPerSecond": 104271.3330426303
+    },
+    {
+      "ElapsedSeconds": 48.0071424,
+      "Messages": 102189,
+      "Bytes": 104641536,
+      "MessagesPerSecond": 102177.17810049356
+    },
+    {
+      "ElapsedSeconds": 49.0072545,
+      "Messages": 102348,
+      "Bytes": 104804352,
+      "MessagesPerSecond": 102336.5280752025
+    },
+    {
+      "ElapsedSeconds": 50.0077898,
+      "Messages": 103961,
+      "Bytes": 106456064,
+      "MessagesPerSecond": 103905.37945038066
+    },
+    {
+      "ElapsedSeconds": 51.0079675,
+      "Messages": 99021,
+      "Bytes": 101397504,
+      "MessagesPerSecond": 99003.40709455911
+    },
+    {
+      "ElapsedSeconds": 52.0080686,
+      "Messages": 97774,
+      "Bytes": 100120576,
+      "MessagesPerSecond": 97764.11604786737
+    },
+    {
+      "ElapsedSeconds": 53.0081763,
+      "Messages": 101987,
+      "Bytes": 104434688,
+      "MessagesPerSecond": 101976.0171829493
+    },
+    {
+      "ElapsedSeconds": 54.0082943,
+      "Messages": 97740,
+      "Bytes": 100085760,
+      "MessagesPerSecond": 97728.46804077114
+    },
+    {
+      "ElapsedSeconds": 55.0084085,
+      "Messages": 99528,
+      "Bytes": 101916672,
+      "MessagesPerSecond": 99516.63520026025
+    },
+    {
+      "ElapsedSeconds": 56.0085116,
+      "Messages": 98840,
+      "Bytes": 101212160,
+      "MessagesPerSecond": 98829.81064652264
+    },
+    {
+      "ElapsedSeconds": 57.0086209,
+      "Messages": 100666,
+      "Bytes": 103081984,
+      "MessagesPerSecond": 100654.9984086741
+    },
+    {
+      "ElapsedSeconds": 58.0087385,
+      "Messages": 101000,
+      "Bytes": 103424000,
+      "MessagesPerSecond": 100988.12379664122
+    },
+    {
+      "ElapsedSeconds": 59.0088641,
+      "Messages": 97043,
+      "Bytes": 99372032,
+      "MessagesPerSecond": 97030.8129298963
+    },
+    {
+      "ElapsedSeconds": 60.0009759,
+      "Messages": 100384,
+      "Bytes": 102793216,
+      "MessagesPerSecond": 101182.14499615834
+    }
+  ],
+  "Topology": "remote-client",
+  "Endpoint": "ws://192.168.1.75:5050/stream/1024/1",
+  "CpuMillisecondsPerMillionMessages": 27926.82545428029,
+  "AllocatedBytesPerMessage": 0.11479271571328421,
+  "CpuCorePercent": 282.76190921088005,
+  "CpuScope": "receiver-only"
+}

@@ -1,0 +1,18 @@
+{
+  "startedAtUtc": "2026-11-08T19:53:02.341540+00:00",
+  "scope": "Whole Linux Ethernet interface; includes all traffic, separate from receiver process metrics.",
+  "activeReceiverBefore": [
+    "dotnet /tmp/zero-alloc-lan-controls-ie4ai96h/auto/benchmarks/WebSocketLoadTest/bin/Release/net10.0/WebSocketLoadTest.dll --mode client --url ws://192.168.1.75:5051 --payload-bytes 1024 --batch 4 --count 10 --duration 30 --warmup 5 --json /home/m/projects/zero-alloc-json-ws/results/lan-controls/20261108T194624Z/batch-4-auto-2.json"
+  ],
+  "elapsedSeconds": 10.000070004723966,
+  "counterDeltas": {
+    "rx_bytes": 961542601,
+    "tx_bytes": 13111978,
+    "rx_packets": 669731,
+    "tx_packets": 236494,
+    "rx_dropped": 0,
+    "rx_errors": 0
+  },
+  "rxMbps": 769.2286958357481,
+  "txMbps": 10.489508968482012
+}

@@ -1,0 +1,32 @@
+Connected 10 ClientWebSocket clients to ws://192.168.1.75:5050/stream/128/1; 128 payload bytes, 1 frames/batch; warmup 5s.
+1.00s: 230,447 msg/s
+2.00s: 316,329 msg/s
+3.00s: 275,079 msg/s
+4.00s: 274,359 msg/s
+5.00s: 268,744 msg/s
+6.00s: 258,310 msg/s
+7.00s: 262,577 msg/s
+8.00s: 270,444 msg/s
+9.00s: 262,309 msg/s
+10.00s: 280,913 msg/s
+11.00s: 300,597 msg/s
+12.00s: 275,322 msg/s
+13.00s: 279,119 msg/s
+14.00s: 275,817 msg/s
+15.00s: 275,287 msg/s
+16.00s: 278,650 msg/s
+17.00s: 273,150 msg/s
+18.00s: 269,723 msg/s
+19.00s: 273,526 msg/s
+20.00s: 242,925 msg/s
+21.00s: 234,022 msg/s
+22.00s: 222,615 msg/s
+23.00s: 203,885 msg/s
+24.00s: 223,376 msg/s
+25.00s: 255,693 msg/s
+26.00s: 252,626 msg/s
+27.00s: 251,137 msg/s
+28.00s: 233,776 msg/s
+29.00s: 259,635 msg/s
+30.00s: 166,176 msg/s
+Avg Msg/s: 258,233; payload Mbps: 264.43; GC 0/0/0

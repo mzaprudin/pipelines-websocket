@@ -1,0 +1,32 @@
+Connected 10 Pipelines clients to ws://192.168.1.75:5050/stream/128/1; 128 payload bytes, 1 frames/batch; warmup 5s.
+1.00s: 289,315 msg/s
+2.00s: 268,569 msg/s
+3.00s: 281,639 msg/s
+4.00s: 313,383 msg/s
+5.00s: 285,809 msg/s
+6.00s: 234,815 msg/s
+7.00s: 247,863 msg/s
+8.00s: 243,739 msg/s
+9.00s: 250,266 msg/s
+10.00s: 244,216 msg/s
+11.00s: 241,464 msg/s
+12.00s: 247,715 msg/s
+13.00s: 246,096 msg/s
+14.00s: 233,837 msg/s
+15.00s: 244,126 msg/s
+16.00s: 272,164 msg/s
+17.00s: 255,462 msg/s
+18.00s: 261,448 msg/s
+19.00s: 288,456 msg/s
+20.00s: 288,309 msg/s
+21.00s: 273,394 msg/s
+22.00s: 290,746 msg/s
+23.01s: 286,499 msg/s
+24.01s: 288,614 msg/s
+25.01s: 305,257 msg/s
+26.01s: 277,288 msg/s
+27.01s: 248,682 msg/s
+28.01s: 250,529 msg/s
+29.01s: 257,803 msg/s
+30.00s: 252,237 msg/s
+Avg Msg/s: 265,660; payload Mbps: 272.04; GC 0/0/0

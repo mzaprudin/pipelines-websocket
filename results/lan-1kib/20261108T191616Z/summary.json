@@ -1,0 +1,45 @@
+{
+  "runsPerClient": 3,
+  "aggregation": "Per-metric median across three fresh receiver processes",
+  "median": {
+    "standard": {
+      "MessagesPerSecond": 101373.30551198665,
+      "MegabitsPerSecond": 830.4501187541946,
+      "CpuMillisecondsPerMillionMessages": 30981.256816711873,
+      "AllocatedBytesPerMessage": 0.11479271571328421,
+      "CpuCorePercent": 314.06724124258517,
+      "Gen0Collections": 0,
+      "Gen1Collections": 0,
+      "Gen2Collections": 0,
+      "AllocatedBytesPerMillionMessages": 114792.71571328421
+    },
+    "pipeline": {
+      "MessagesPerSecond": 96200.93349022519,
+      "MegabitsPerSecond": 788.0780471519246,
+      "CpuMillisecondsPerMillionMessages": 30209.809758893934,
+      "AllocatedBytesPerMessage": 0.007714923459774474,
+      "CpuCorePercent": 291.46353911871387,
+      "Gen0Collections": 0,
+      "Gen1Collections": 0,
+      "Gen2Collections": 0,
+      "AllocatedBytesPerMillionMessages": 7714.923459774474
+    }
+  },
+  "evidenceSha256": {
+    "environment.json": "2f6e50e99d85d26cdcd3b9db8e8f5aba95b0c2baa7a24d0339c50d9c8b435665",
+    "generator-manifest.json": "b74b3316f3e584011f3fe9a229a5a2103179ae8634f46768c4002fd9efe71d53",
+    "pipeline-1.json": "262d943750914a2db6803471fead34f864aeb84cd4b5ebc04d9f3e731a22ecd7",
+    "pipeline-1.log": "d9d64dfe89030e33e0a17e7a5a1563df044e9f5634698dcc8f34d415cac81f9c",
+    "pipeline-2.json": "a2ce188fb6a2d757e4c047306bad41b3be4da30637c5a17ee6c22f72e1710fe5",
+    "pipeline-2.log": "e803af6ad1b39f9eb71ca1c959771b5868989edbe5c86f7cefe70cfbe1079582",
+    "pipeline-3.json": "3c4b212af756053c5508a93f5fc3e25e073ff0ffeeaf7d05300327aa5789c9f4",
+    "pipeline-3.log": "4c8c3a034676d9bd5fc5215b688882f1ada0bdf7468b0f022a455b7ecf6db40a",
+    "source-snapshot.json": "759f6e2ddcdbd909b15378f5b2cb7df6318f272ffc642e901e0a544090673a93",
+    "standard-1.json": "b05a17952a7b4c4dfbadfe720c20952e00edf541f2ed40a7ffd957c96f7f7025",
+    "standard-1.log": "e9a31e20542559de064837786ea76c3740849bda26c0541461394fa61b03b06e",
+    "standard-2.json": "e85a89574abb050ef934548eb3b5e72f4c01082272ec0170355567e7567a350a",
+    "standard-2.log": "779224168ec737e53abf38c06468e6d74754aad4a3dfcd068250e0b8194a9db9",
+    "standard-3.json": "e27955784ebafaea1d209d1b8e4afa6b6c51276490ccf3decca5a9a97b270a3a",
+    "standard-3.log": "ae739a7f94dfdcee8a88aeb3efc8e81a7b680989258453e3c0a4c54530010b05"
+  }
+}

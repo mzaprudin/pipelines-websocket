@@ -1,0 +1,6 @@
+This repository is published for portfolio review.
+No open-source license has been granted.
+
+The JSON and WebSocket implementations were extracted from the GapSonar codebase.
+Source provenance, the extraction boundary, and local fixes are documented in docs/.
+External packages retain their respective licenses; see the package metadata.

@@ -1,0 +1,90 @@
+{
+  "sourceCommit": "238dc8bd7a7835872d94f89e109dec692e19f1d2",
+  "files": [
+    {
+      "source": "GapSonar.Benchmarks/JsonPopulatorBenchmark/PopulatorBenchmarks.cs",
+      "exported": "benchmarks/GapSonar.TransportLab.Benchmarks/Original/PopulatorBenchmarks.cs",
+      "sourceSha256": "c3963effa43d94b7ab0b4e1329a39e88cfb7c16c8bf670683a1938c3190b8ea3",
+      "exportedSha256": "555b817d6463fff84b882102ce0b235581d4d0a413eb1a8414e0570585a1da89",
+      "identical": false
+    },
+    {
+      "source": "GapSonar.Benchmarks/JsonPopulatorBenchmark/PushulatorBenchmarks.cs",
+      "exported": "benchmarks/GapSonar.TransportLab.Benchmarks/Original/PushulatorBenchmarks.cs",
+      "sourceSha256": "45db157f6d9c65ee526654ad3bfd08303b7968d074e8df9fd822bb197c4e2a14",
+      "exportedSha256": "9ab1e727a62d7af9f2c82371c2df349b73db409069b70d3ea18d56e4d5d9f4e9",
+      "identical": false
+    },
+    {
+      "source": "GapSonar.Benchmarks/JsonPopulatorBenchmark/Models.cs",
+      "exported": "benchmarks/GapSonar.TransportLab.Benchmarks/Original/Models.cs",
+      "sourceSha256": "630910091d7549e02690649fa6114c4588673bb1942c73d6366c0371b3fdbbc4",
+      "exportedSha256": "686bef10f1d9349a67379e6f13c508a990005a3c90e9aa4aba86559a674df08d",
+      "identical": false
+    },
+    {
+      "source": "GapSonar.Benchmarks/JsonPopulatorBenchmark/gate.futures.contracts.json",
+      "exported": "fixtures/gate.futures.contracts.json",
+      "sourceSha256": "0a6479d48b87a3c7dbc4aea01d91cf40dd18653d08031443c57e174c487d4159",
+      "exportedSha256": "0a6479d48b87a3c7dbc4aea01d91cf40dd18653d08031443c57e174c487d4159",
+      "identical": true
+    },
+    {
+      "source": "GapSonar.Benchmarks/JsonPopulatorBenchmark/gate.futures.contracts.all.json",
+      "exported": "fixtures/gate.futures.contracts.all.json",
+      "sourceSha256": "39fc6f05b2b86539023feb568b6acbeb20cb292b9693614aad8a81606546a1b2",
+      "exportedSha256": "39fc6f05b2b86539023feb568b6acbeb20cb292b9693614aad8a81606546a1b2",
+      "identical": true
+    },
+    {
+      "source": "GapSonar.Benchmarks/RouterBenchmark/RouterBenchmarks.cs",
+      "exported": "benchmarks/GapSonar.TransportLab.Benchmarks/Original/RouterBenchmarks.cs",
+      "sourceSha256": "10e64eb6bffe4c410fadefa2c13e1ff8ee7105cef15a1420222f918a25d54223",
+      "exportedSha256": "bb0a559cfd0adb4d24eac9adf2e816dfed74f2ecf613915ee6000977d6cb6fb2",
+      "identical": false
+    },
+    {
+      "source": "GapSonar.Benchmarks/WebSocketLoadTest/Clients/ILoadTestClient.cs",
+      "sourceSha256": "ab5db3949ab947dccc15d5fb8f722dc02df330fc4b5d42a09491b53bea64c4ca",
+      "exported": "benchmarks/WebSocketLoadTest/Clients/ILoadTestClient.cs",
+      "exportedSha256": "6f001bb47ff99ae5f27d93e53600b58d82285025e34733169898af00aa0df209",
+      "identical": false
+    },
+    {
+      "source": "GapSonar.Benchmarks/WebSocketLoadTest/Clients/PipelineClient.cs",
+      "sourceSha256": "6e9a97898346d6ba23e4cbc329b45057806b6bfcac614a64e7e59edab77c1baf",
+      "exported": "benchmarks/WebSocketLoadTest/Clients/PipelineClient.cs",
+      "exportedSha256": "3ee871b708c955b1c4e12334b3c1a6dce24a533e48594e6b15cb75038b5af374",
+      "identical": false
+    },
+    {
+      "source": "GapSonar.Benchmarks/WebSocketLoadTest/Clients/StandardClient.cs",
+      "sourceSha256": "08713d8ba044c23942ce40ca75fbafd8b74083a4a503770b7c99fe24ba5da7ac",
+      "exported": "benchmarks/WebSocketLoadTest/Clients/StandardClient.cs",
+      "exportedSha256": "5f9fae6b2f852fc7bb3aa946e9b5f4cd5f7ce5ad442f6057fc682e20ce52dcde",
+      "identical": false
+    },
+    {
+      "source": "GapSonar.Benchmarks/WebSocketLoadTest/Server/LoadServer.cs",
+      "sourceSha256": "eb948ff322e1cd63585f42556593788157b067ff634cbf2c21c1860c97fadca0",
+      "exported": "benchmarks/WebSocketLoadTest/Server/LoadServer.cs",
+      "exportedSha256": "7f2c88a3eb649d7df9033288c60b680674a10635525836476ea2e66d7c638920",
+      "identical": false
+    },
+    {
+      "source": "GapSonar.Benchmarks/WebSocketLoadTest/Program.cs",
+      "sourceSha256": "88970c7c5879a467182d14e6d739b59cb451d1c65d3432481d609748ff693ece",
+      "exported": "benchmarks/WebSocketLoadTest/Program.cs",
+      "exportedSha256": "691483a9c22d756b6843ea6f5aeec7081e26e6a2ab28f4397febdb4a475fa919",
+      "identical": false
+    }
+  ],
+  "adaptations": [
+    "Standalone references and fixture locations.",
+    "Original timed JSON/routing methods and model shapes retained.",
+    "Validation is performed in GlobalSetup.",
+    "Streaming payload, batching, direct baseline and counter operations retained.",
+    "Loopback listener and owned cancellable server/client lifecycle.",
+    "Warmup excluded; message rate normalized by actual elapsed time."
+  ]
+}

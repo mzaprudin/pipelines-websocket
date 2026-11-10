@@ -1,0 +1,161 @@
+{
+  "sha256": "aa54bacc67a02bc955ace428a78d30587e5848e728f3c9acf85576b988e02895",
+  "files": [
+    {
+      "path": "Directory.Build.props",
+      "sha256": "d89fd08ec70ebb27deb05f7aa253a77bd48c8639f46d9bba09ffac9bcfcbcc62"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/AssemblyInfo.cs",
+      "sha256": "b39e33bc96f0b8572be1a80808c16dfa05d526b5d354851137d73e239b7a2668"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/Clients/ILoadTestClient.cs",
+      "sha256": "6f001bb47ff99ae5f27d93e53600b58d82285025e34733169898af00aa0df209"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/Clients/PipelineClient.cs",
+      "sha256": "3ee871b708c955b1c4e12334b3c1a6dce24a533e48594e6b15cb75038b5af374"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/Clients/StandardClient.cs",
+      "sha256": "dfdfc51fc17593d2b3995d1db43f7027b2ffe884280a2e2c80fa6436b92cb46c"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/MeasurementWindow.cs",
+      "sha256": "6b7ecc0cf4a7f004952c8566ebbec6a06504e501b04b4caf4e8b935ca35d85fc"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/Options.cs",
+      "sha256": "9b99101bdd13078f0078f63c6b367e87b30311990176c66357c647a825f0a277"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/Program.cs",
+      "sha256": "260642eb5eaf4b1c7f5805c7e027e9b4a542c9d1c78cfa7be58cd9b540a9bd2c"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/Server/LoadServer.cs",
+      "sha256": "bc9f17e2280ad6ca3ae4367b7572f80b6065e34b7f0e83dbaa0300f360c5475a"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/Server/StreamingPayload.cs",
+      "sha256": "1cdc7f85b47efbd0b1f5686c4cb8ca9c1cd7221fb24e54bd91d579ffb2445c76"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/WebSocketLoadTest.csproj",
+      "sha256": "d33453aa242084dcfceeb9c6a1d1ccb4f9d13ec3dd75351816ac01fee6d90fb8"
+    },
+    {
+      "path": "benchmarks/WebSocketLoadTest/packages.lock.json",
+      "sha256": "44be6460b65baca2b3c59b0ff7e46a44678d5e02f1a61a34c93cac083ade71ff"
+    },
+    {
+      "path": "global.json",
+      "sha256": "b48d6da8fa62c0da7cc8a2da4ea036ac55836660a448ba533135abb5b8451b73"
+    },
+    {
+      "path": "scripts/run-lan-benchmarks.sh",
+      "sha256": "d2f1b13f5b0f999a2d9dfe54776d97c16dace6e15d6a1029483c484f39c6fc8d"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/AssemblyInfo.cs",
+      "sha256": "f8081bb1a84f1f8f0a23bca79eb85396b12bc5a60163a6fe184ac779817c0f65"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/GapSonar.TransportLab.csproj",
+      "sha256": "0acd9f34d4aa7066701d5fac3a03367ee50e05bee3d9517bdad243fd7c14c5c0"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/GlobalUsings.cs",
+      "sha256": "c6afdfa642cc4956bd7aafb2797a122e7902a5a0c86dc808645eb101d67af3e0"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Collections/FastList.cs",
+      "sha256": "a9528e08e05b48f675f0155cfea228fb2e0b7ab7596db5d228eea7ab35fc1566"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Collections/PoolRental.cs",
+      "sha256": "de169b1a9488d6c78069daa7e9031a6f078f56e5fb4f724d7a1e97ca3f9aba94"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Diagnostics/WebSocketMetrics.cs",
+      "sha256": "865c0d8eab98123f6140252e35167f8282d7648b184eeaa556c15065d7dc753c"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Serialization/FastJsonParser.cs",
+      "sha256": "8e0fb419e92a91cc19e7f2bf142b755d8e3ff4b1b99addf763267123ef96317f"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Serialization/FixedStringHelpers.cs",
+      "sha256": "487c4409e752eca24cd7661d5aab7d7a2fb3d82c6a4e355411c37920cb9c15ce"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Serialization/IFixedString.cs",
+      "sha256": "8d602f1d12ecad181f04386f149ddab24fd7cc72fc345da15bbfcb0e74629049"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Serialization/JsonInternAttribute.cs",
+      "sha256": "d9baf8c2451dfc63752d12bf2fd83a15881ef1e7e6f56e512f04287bca0c42c1"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Serialization/JsonPopulator.cs",
+      "sha256": "cdfccc14623363069c6f5d752e735ea2d4317d478206f2756f0d0a207be4733f"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Serialization/JsonPositionAttribute.cs",
+      "sha256": "e29da0eb50ac91e56ab601a77a5b25db225c24021c9771a37a64d389c5dce18d"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Serialization/JsonPushulator.cs",
+      "sha256": "bbbb8f67838ad13eb50df39ed3b1eba818fa4024f8a5ef44b3f29f558db09065"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Infrastructure/Serialization/JsonPushulatorAttributes.cs",
+      "sha256": "c866e65924e34a81c761fca2d76316d4189842ed1f4320c59eb02e4d9194818a"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Networking/Core/FastWebSocketClient.cs",
+      "sha256": "eb25467af71c4aeced2e6736eaa2dbf38f721b0341a4094283512da1cefb75d4"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Networking/Core/IFastWebSocket.cs",
+      "sha256": "55560df01b965f2d613bff6111fc10a5b919da8678e70516a9ec7d63203c1923"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Networking/Core/StdWebSocketClient.cs",
+      "sha256": "c69b175f925fbf7ba27bf1a302a7d8fa14c6b35254510cf802be6cbdb9d5abc2"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Networking/Messaging/IWebSocketMessageHandler.cs",
+      "sha256": "94c00bb6075edc69bd1442db7bd0c07f83101393a4a63bf90b6903ef70d86996"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Networking/Protocol/WebSocketFrameHeader.cs",
+      "sha256": "328c63bc3566a359f465f202c7dcb977050a5540702288b18be5ba36c979aeaf"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/Networking/Protocol/WebSocketProtocol.cs",
+      "sha256": "4794a66149882d703b041e89b4c7ad0209d06cbf6cae2047aa4db33ac05c2762"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/SharedKernel/ExchangeId.cs",
+      "sha256": "8025e3601bf51e749a060b967965b2f0c79c0824eaffa8d39b5c7ee179bb90f4"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/SharedKernel/Shared.cs",
+      "sha256": "e72c55db8a16b1568ffd6d52bcfee75280a0a578936a9c45fb2b1a3c3dd5305b"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/SharedKernel/SymbolId.cs",
+      "sha256": "9cff8ec23ce6eac53f816a61311d7cc0947119df415fcf47650f1c1329cb968d"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/SharedKernel/SymbolType.cs",
+      "sha256": "d322cb1d096944c86d18415b67d98f15832187e2305e92ae8ecee50a5f0cf8b9"
+    },
+    {
+      "path": "src/GapSonar.TransportLab/packages.lock.json",
+      "sha256": "f2875bbb29028c99b2cb6cc891997f2c1ce66a95de8cb70bf67251a4020a4a61"
+    }
+  ]
+}

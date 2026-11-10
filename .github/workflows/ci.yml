@@ -1,0 +1,43 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          dotnet-version: 10.0.x
+      - run: dotnet restore Pipelines.WebSockets.sln --locked-mode
+      - run: dotnet build Pipelines.WebSockets.sln -c Release --no-restore
+      - run: dotnet test tests/Pipelines.WebSockets.Tests -c Release --no-build
+      - run: dotnet run -c Release --no-build --project samples/Pipelines.WebSockets.Demo
+      - name: Exercise every benchmark case
+        run: dotnet run -c Release --no-build --project benchmarks/Pipelines.WebSockets.Benchmarks -- --filter '*' --job dry
+      - name: Validate split and retained evidence
+        run: python scripts/verify-evidence.py
+      - name: Exercise compact streaming for both clients
+        run: |
+          dotnet run -c Release --no-build --project benchmarks/WebSocketLoadTest -- --count 2 --duration 2 --warmup 1 --payload-bytes 87 --batch 20
+          dotnet run -c Release --no-build --project benchmarks/WebSocketLoadTest -- --count 2 --duration 2 --warmup 1 --payload-bytes 87 --batch 20 --std
+      - name: Build portable Windows generator
+        if: runner.os == 'Windows'
+        run: python scripts/build-windows-generator.py
+      - name: Check portable generator
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $packageDir = Join-Path $env:RUNNER_TEMP 'lan-generator-package'
+          Expand-Archive -Path '.\artifacts\lan-generator-win-x64\pipelines-websocket-generator-win-x64.zip' -DestinationPath $packageDir
+          & (Join-Path $packageDir 'WebSocketLoadTest.exe') --mode server --listen 127.0.0.1 --port 0 --duration 1 --batch 1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

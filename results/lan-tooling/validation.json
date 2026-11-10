@@ -1,0 +1,28 @@
+{
+  "profile": {
+    "payloadBytes": 1024,
+    "framesPerBatch": 1
+  },
+  "validation": {
+    "releaseBuild": {
+      "exitCode": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    "tests": {
+      "passed": 122,
+      "failed": 0,
+      "skipped": 0
+    },
+    "separateProcessTests": true,
+    "cleanSourceDirectory": "/tmp/zero-alloc-lan-verify.OjOcmF"
+  },
+  "windowsPackage": {
+    "file": "zero-alloc-json-ws-generator-win-x64.zip",
+    "bytes": 32037876,
+    "sha256": "bfdbf103d6040904cccd61fa77698c89b5038f37ecd59125abdc227ac628285b",
+    "selfContained": true,
+    "nativeRuntimeBundled": true
+  },
+  "physicalLanMeasurements": "Completed six physical Ethernet runs; evidence in results/lan-1kib/20261108T191616Z/."
+}
