@@ -1,0 +1,56 @@
+{
+  "workingDirectory": "/home/m/projects/pipelines-websocket",
+  "build": [
+    "dotnet",
+    "build",
+    "/home/m/projects/zero-split-work/ethernet-repeat-20261110/analyzer/AllocationReport.csproj",
+    "-c",
+    "Release",
+    "-p:TraceToolDirectory=/home/m/.dotnet/tools/.store/dotnet-trace/9.0.652701/dotnet-trace/9.0.652701/tools/net8.0/any"
+  ],
+  "analysis": [
+    {
+      "command": [
+        "dotnet",
+        "/home/m/projects/zero-split-work/ethernet-repeat-20261110/analyzer/bin/Release/net10.0/AllocationReport.dll",
+        "results/streaming/20261110T205733Z/diagnostics/ethernet-standard/allocations.nettrace"
+      ],
+      "stdout": "/home/m/projects/zero-split-work/ethernet-repeat-20261110/ethernet-standard-allocations.json"
+    },
+    {
+      "command": [
+        "dotnet",
+        "/home/m/projects/zero-split-work/ethernet-repeat-20261110/analyzer/bin/Release/net10.0/AllocationReport.dll",
+        "results/streaming/20261110T205733Z/diagnostics/ethernet-pipeline/allocations.nettrace"
+      ],
+      "stdout": "/home/m/projects/zero-split-work/ethernet-repeat-20261110/ethernet-pipeline-allocations.json"
+    },
+    {
+      "command": [
+        "dotnet",
+        "/home/m/projects/zero-split-work/ethernet-repeat-20261110/analyzer/bin/Release/net10.0/AllocationReport.dll",
+        "results/streaming/20261110T205733Z/diagnostics/loopback-standard/allocations.nettrace"
+      ],
+      "stdout": "/home/m/projects/zero-split-work/ethernet-repeat-20261110/loopback-standard-allocations.json"
+    }
+  ],
+  "reproduction": {
+    "workingDirectory": "this measurement bundle",
+    "build": [
+      "dotnet",
+      "build",
+      "diagnostics/analyzer/AllocationReport.csproj",
+      "-c",
+      "Release",
+      "-p:TraceToolDirectory=PATH_TO_DOTNET_TRACE_TOOL_ASSEMBLIES"
+    ],
+    "analysis": [
+      "dotnet",
+      "diagnostics/analyzer/bin/Release/net10.0/AllocationReport.dll",
+      "diagnostics/CASE/allocations.nettrace"
+    ]
+  },
+  "collectorVersion": "dotnet-trace 9.0.652701",
+  "samplingProfile": "gc-verbose",
+  "runtimeVersion": "10.0.14"
+}

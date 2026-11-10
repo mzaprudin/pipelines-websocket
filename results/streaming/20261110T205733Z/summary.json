@@ -1,0 +1,201 @@
+{
+  "sourceRevision": "d35c490b8dd6121a471b6ee06d63d73c4c12bbef",
+  "profile": {
+    "payloadBytes": 128,
+    "framesPerBatch": 20,
+    "clientCount": 10,
+    "warmupSeconds": 5,
+    "durationSeconds": 30,
+    "runsPerClient": 3
+  },
+  "ethernet": {
+    "_profile": {
+      "payloadBytes": 128,
+      "framesPerBatch": 20,
+      "clientCount": 10,
+      "warmupSeconds": 5,
+      "durationSeconds": 30,
+      "runsPerClient": 3
+    },
+    "_topology": "remote-client",
+    "standard": {
+      "messagesPerSecond": 802665.4577312806,
+      "allocatedBytesPerMillionMessages": 95628.42959688384,
+      "cpuMsPerMillionMessages": 3731.592492106584,
+      "messagesPerSecondByRun": [
+        795950.4342234725,
+        802665.4577312806,
+        808077.6253113747
+      ],
+      "allocatedBytesByRun": [
+        2886976,
+        2302776,
+        2285672
+      ],
+      "allocatedBytesPerMillionMessagesByRun": [
+        120901.41021548772,
+        95628.42959688384,
+        94282.59807034483
+      ],
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "pipeline": {
+      "messagesPerSecond": 785591.5440316078,
+      "allocatedBytesPerMillionMessages": 591.6389251061239,
+      "cpuMsPerMillionMessages": 3705.505318152517,
+      "messagesPerSecondByRun": [
+        790143.2028735859,
+        781077.0661111055,
+        785591.5440316078
+      ],
+      "allocatedBytesByRun": [
+        13976,
+        13880,
+        13944
+      ],
+      "allocatedBytesPerMillionMessagesByRun": [
+        589.5778945412368,
+        592.3267315218918,
+        591.6389251061239
+      ],
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "loopback": {
+    "_profile": {
+      "payloadBytes": 128,
+      "framesPerBatch": 20,
+      "clientCount": 10,
+      "warmupSeconds": 5,
+      "durationSeconds": 30,
+      "runsPerClient": 3
+    },
+    "_topology": "separate-process-loopback",
+    "standard": {
+      "messagesPerSecond": 29421536.26183667,
+      "allocatedBytesPerMillionMessages": 523.596336820734,
+      "cpuMsPerMillionMessages": 426.73714516928055,
+      "messagesPerSecondByRun": [
+        29386142.741413876,
+        29498606.778094422,
+        29421536.26183667
+      ],
+      "allocatedBytesByRun": [
+        403960,
+        463368,
+        467304
+      ],
+      "allocatedBytesPerMillionMessagesByRun": [
+        458.208934776136,
+        523.596336820734,
+        529.4277121788443
+      ],
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "pipeline": {
+      "messagesPerSecond": 54595868.05006676,
+      "allocatedBytesPerMillionMessages": 8.674499247802228,
+      "cpuMsPerMillionMessages": 236.76834573435872,
+      "messagesPerSecondByRun": [
+        54193674.96088046,
+        54595868.05006676,
+        55371233.605356544
+      ],
+      "allocatedBytesByRun": [
+        23968,
+        14208,
+        14240
+      ],
+      "allocatedBytesPerMillionMessagesByRun": [
+        14.742014817576255,
+        8.674499247802228,
+        8.572231213654003
+      ],
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

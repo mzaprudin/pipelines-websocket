@@ -1,0 +1,8 @@
+{
+  "payloadBytes": 128,
+  "framesPerBatch": 20,
+  "clientCount": 10,
+  "warmupSeconds": 5,
+  "durationSeconds": 30,
+  "runsPerClient": 3
+}

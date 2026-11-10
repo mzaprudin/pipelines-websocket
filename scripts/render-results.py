@@ -97,6 +97,31 @@ def summarize_streams(runs):
             'payloadCounterSkewBytes': [r['Bytes'] - r['Messages'] * r['PayloadBytes'] for r in runs]}
 
 
+def paired_directory():
+    """Use the latest matched streaming run when one has been published."""
+    pointer = ROOT / 'results/streaming/published-run.json'
+    return ROOT / json.loads(pointer.read_text(encoding='utf-8'))['directory'] if pointer.exists() else None
+
+
+def paired_summary(directory):
+    """Derive matched streaming statistics directly from both validated sessions."""
+    ethernet, loopback = streaming(directory/'ethernet'), streaming(directory/'loopback')
+    if ethernet['_profile'] != loopback['_profile']:
+        raise ValueError('Paired streaming profiles differ')
+    if ethernet['_profile'] != json.loads((ROOT/'scripts/streaming-profile.json').read_text(encoding='utf-8')):
+        raise ValueError('Paired run differs from the published compact profile')
+    if ethernet['_topology'] != 'remote-client' or loopback['_topology'] != 'separate-process-loopback':
+        raise ValueError('Paired streaming topologies differ')
+    return {'sourceRevision': json.loads((directory/'source-snapshot.json').read_text(encoding='utf-8'))['revision'],
+            'profile': ethernet['_profile'], 'ethernet': ethernet, 'loopback': loopback}
+
+
+def displayed_streaming(fallback):
+    """Keep echo provenance independent of the newer matched streaming measurements."""
+    paired = paired_directory()
+    return streaming(paired/'loopback') if paired else fallback
+
+
 def duration(ns):
     """Display nanoseconds without changing the ratios computed from raw values."""
     scale,unit=(1_000_000,'ms') if ns>=1_000_000 else (1_000,'µs') if ns>=1_000 else (1,'ns')
@@ -149,6 +174,17 @@ def render_local(streams, russian):
 
 def render_ethernet(russian):
     """Render the recorded network comparison and its current-versus-control labels."""
+    paired = paired_directory()
+    if paired:
+        groups = streaming(paired/'ethernet')
+        heading = '| Клиент | Сообщений/с | CPU мс / млн сообщений | Аллокации, кБ / млн сообщений |' if russian else '| Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |'
+        blocks = [heading, '|---|---:|---:|---:|']
+        for client, label in [('standard', 'ClientWebSocket'), ('pipeline', 'Pipelines · фиксированный буфер 64 KiB' if russian else 'Pipelines · fixed 64 KiB buffer')]:
+            stats = groups[client]
+            blocks.append(f'| {label} | {stats["messagesPerSecond"]:,.0f} | {stats["cpuMsPerMillionMessages"]:,.0f} | {stats["allocatedBytesPerMillionMessages"] / BYTES_PER_KILOBYTE:.3f} |')
+        blocks.extend(['', 'CPU и аллокации — процесс приёмника, включая сбор метрик; 1 кБ = 1000 байт.' if russian else
+                       'CPU and allocations cover the receiver process including sampling; 1 kB = 1000 bytes.', ''])
+        return '\n'.join(blocks)
     medians = json.loads((ROOT / ETHERNET_BUNDLE / 'summary.json').read_text(encoding='utf-8'))['medians']
     heading = '| Клиент | Сообщений/с | CPU мс / млн сообщений | Аллокации, кБ / млн сообщений |' if russian else '| Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |'
     blocks = [heading, '|---|---:|---:|---:|']
@@ -176,7 +212,7 @@ def main():
     (directory/'summary.json').write_text(json.dumps(summary,indent=2)+'\n', encoding='utf-8')
     for filename,russian in [('README.md',False),('README.ru.md',True)]:
         p=ROOT/filename;s=p.read_text(encoding='utf-8');start='<!-- LOCAL_RESULTS_START -->';end='<!-- LOCAL_RESULTS_END -->';head,rest=s.split(start);_,tail=rest.split(end)
-        table=render_local(summary.get('streaming'),russian)
+        table=render_local(displayed_streaming(summary.get('streaming')),russian)
         rendered=head+start+'\n'+table+'\n'+end+tail
         if KIND=='websocket':
             eth_start='<!-- ETHERNET_RESULTS_START -->';eth_end='<!-- ETHERNET_RESULTS_END -->'

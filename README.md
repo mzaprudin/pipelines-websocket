@@ -20,15 +20,14 @@ The receive path follows a **zero-allocation approach**: a warmed, unfragmented 
 <!-- ETHERNET_RESULTS_START -->
 | Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |
 |---|---:|---:|---:|
-| ClientWebSocket | 718,218 | 3,707 | 85.103 |
-| Pipelines · fixed 64 KiB buffer | 743,095 | 3,652 | 0.653 |
-| Pipelines · automatic buffer (control) | 768,400 | 3,559 | 0.607 |
+| ClientWebSocket | 802,665 | 3,732 | 95.628 |
+| Pipelines · fixed 64 KiB buffer | 785,592 | 3,706 | 0.592 |
 
-CPU and allocations cover the receiver process including sampling; 1 kB = 1000 bytes. The main client uses a fixed 64 KiB TCP receive buffer. Automatic sizing is a separate control variant.
+CPU and allocations cover the receiver process including sampling; 1 kB = 1000 bytes.
 
 <!-- ETHERNET_RESULTS_END -->
 
-Measured November 8, 2026: [conditions and raw data](results/lan-controls/20261108T202415Z/README.md), [measured source revision](https://github.com/mzaprudin/zero-alloc-json-ws/tree/c2c3b1ad1d186073690c540b43b76cad18a54454). The [one-KiB control matrix](results/lan-controls/20261108T194624Z/README.md) covers the same receive-buffer and batch-size choices with larger messages.
+Measured November 10, 2026: [matched Ethernet/loopback run and allocation traces](results/streaming/20261110T205733Z/README.md), [source revision](https://github.com/mzaprudin/pipelines-websocket/tree/d35c490b8dd6121a471b6ee06d63d73c4c12bbef). Historical November 8 controls: [128-byte fixed/automatic buffer matrix](results/lan-controls/20261108T202415Z/README.md) and [one-KiB matrix](results/lan-controls/20261108T194624Z/README.md).
 
 <details>
 <summary>Ethernet: 1 KiB JSON, one frame per write</summary>
@@ -59,12 +58,12 @@ AMD Ryzen 9 5950X · Ubuntu 24.04 · .NET 10.0.14 · Release/x64.
 
 | Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |
 |---|---:|---:|---:|
-| ClientWebSocket | 30,651,369 | 404 | 0.411 |
-| Pipelines | 54,427,112 | 235 | 0.013 |
+| ClientWebSocket | 29,421,536 | 427 | 0.524 |
+| Pipelines | 54,595,868 | 237 | 0.009 |
 
 <!-- LOCAL_RESULTS_END -->
 
-[Raw local reports and samples](results/local/20261110T202155Z/) · [Measurement methodology and reproduction](docs/benchmark-methodology.md)
+[Raw streaming reports and allocation traces](results/streaming/20261110T205733Z/) · [Measurement methodology and reproduction](docs/benchmark-methodology.md)
 
 Run the same streaming comparison locally or against an external generator:
 

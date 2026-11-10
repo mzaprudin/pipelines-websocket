@@ -1,0 +1,32 @@
+[
+  [
+    "dotnet",
+    "restore",
+    "Pipelines.WebSockets.sln",
+    "--locked-mode"
+  ],
+  [
+    "dotnet",
+    "build",
+    "Pipelines.WebSockets.sln",
+    "-c",
+    "Release",
+    "--no-restore"
+  ],
+  [
+    "/usr/bin/python3",
+    "scripts/streaming_benchmarks.py",
+    "--no-build",
+    "--output",
+    "/home/m/projects/pipelines-websocket/results/streaming/20261110T205733Z/ethernet",
+    "--url",
+    "ws://192.168.1.75:5050"
+  ],
+  [
+    "/usr/bin/python3",
+    "scripts/streaming_benchmarks.py",
+    "--no-build",
+    "--output",
+    "/home/m/projects/pipelines-websocket/results/streaming/20261110T205733Z/loopback"
+  ]
+]

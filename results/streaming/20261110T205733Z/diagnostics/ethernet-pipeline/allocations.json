@@ -1,0 +1,154 @@
+{
+  "TraceEventVersion": "3.1.23.0",
+  "EventsLost": 0,
+  "Interpretation": "GCAllocationTick samples; sampled weights do not give exact allocation totals by type.",
+  "Types": [
+    {
+      "Type": "System.String",
+      "Samples": 4,
+      "SampledAllocationBytes": 430288
+    },
+    {
+      "Type": "System.Diagnostics.Tracing.EventParameterInfo[]",
+      "Samples": 1,
+      "SampledAllocationBytes": 108768
+    },
+    {
+      "Type": "System.Reflection.RuntimeMethodInfo[]",
+      "Samples": 1,
+      "SampledAllocationBytes": 107160
+    }
+  ],
+  "Events": [
+    {
+      "TimeStampRelativeMSec": 0.890799,
+      "ProcessID": 2624300,
+      "ThreadID": 2624305,
+      "Type": "System.Reflection.RuntimeMethodInfo[]",
+      "SampledAllocationBytes": 107160,
+      "Stack": [
+        "System.Array.Resize(!!0[]\u0026,int32)",
+        "System.RuntimeType\u002BListBuilder\u00601[System.__Canon].Add(!0)",
+        "System.RuntimeType\u002BRuntimeTypeCache\u002BMemberInfoCache\u00601[System.__Canon].PopulateMethods(value class Filter)",
+        "System.RuntimeType\u002BRuntimeTypeCache\u002BMemberInfoCache\u00601[System.__Canon].GetListByName(class System.String,value class System.Span\u00601\u003Cunsigned int8\u003E,value class MemberListType,value class CacheType)",
+        "System.RuntimeType\u002BRuntimeTypeCache\u002BMemberInfoCache\u00601[System.__Canon].Populate(class System.String,value class MemberListType,value class CacheType)",
+        "System.RuntimeType.GetMethodCandidates(class System.String,int32,value class System.Reflection.BindingFlags,value class System.Reflection.CallingConventions,class System.Type[],bool)",
+        "System.RuntimeType.GetMethods(value class System.Reflection.BindingFlags)",
+        "System.Diagnostics.Tracing.EventSource.CreateManifestAndDescriptors(class System.Type,class System.String,class System.Diagnostics.Tracing.EventSource,value class System.Diagnostics.Tracing.EventManifestOptions)",
+        "System.Diagnostics.Tracing.EventSource.EnsureDescriptorsInitialized()",
+        "System.Diagnostics.Tracing.EventSource.DoCommand(class System.Diagnostics.Tracing.EventCommandEventArgs)",
+        "System.Diagnostics.Tracing.EventSource.SendCommand(class System.Diagnostics.Tracing.EventListener,value class System.Diagnostics.Tracing.EventProviderType,int32,value class System.Diagnostics.Tracing.EventCommand,bool,value class System.Diagnostics.Tracing.EventLevel,value class System.Diagnostics.Tracing.EventKeywords,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E)",
+        "System.Diagnostics.Tracing.EventSource\u002BOverrideEventProvider.OnControllerCommand(value class System.Diagnostics.Tracing.ControllerCommand,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E,int32)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.HandleEnableNotification(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventProviderImpl.ProviderCallback(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.Callback(unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*,void*)"
+      ]
+    },
+    {
+      "TimeStampRelativeMSec": 5.878266,
+      "ProcessID": 2624300,
+      "ThreadID": 2624305,
+      "Type": "System.String",
+      "SampledAllocationBytes": 103544,
+      "Stack": [
+        "System.Reflection.CustomAttribute.GetPropertyOrFieldData(class System.Reflection.RuntimeModule,int\u0026,int,class System.String\u0026,bool\u0026,class System.RuntimeType\u0026,class System.Object\u0026)",
+        "System.Reflection.CustomAttribute.AddCustomAttributes(value class ListBuilder\u00601\u003Cclass System.Object\u003E\u0026,class System.Reflection.RuntimeModule,int32,class System.RuntimeType,bool,value class ListBuilder\u00601\u003Cclass System.Object\u003E)",
+        "System.Reflection.CustomAttribute.GetCustomAttributes(class System.Reflection.RuntimeModule,int32,int32,class System.RuntimeType)",
+        "System.Reflection.CustomAttribute.GetCustomAttributes(class System.Reflection.RuntimeMethodInfo,class System.RuntimeType,bool)",
+        "System.Attribute.GetCustomAttributes(class System.Reflection.MemberInfo,class System.Type,bool)",
+        "System.Attribute.GetCustomAttribute(class System.Reflection.MemberInfo,class System.Type,bool)",
+        "System.Diagnostics.Tracing.EventSource.GetCustomAttributeHelper(class System.Reflection.MemberInfo,class System.Type,value class System.Diagnostics.Tracing.EventManifestOptions)",
+        "System.Diagnostics.Tracing.EventSource.CreateManifestAndDescriptors(class System.Type,class System.String,class System.Diagnostics.Tracing.EventSource,value class System.Diagnostics.Tracing.EventManifestOptions)",
+        "System.Diagnostics.Tracing.EventSource.EnsureDescriptorsInitialized()",
+        "System.Diagnostics.Tracing.EventSource.DoCommand(class System.Diagnostics.Tracing.EventCommandEventArgs)",
+        "System.Diagnostics.Tracing.EventSource.SendCommand(class System.Diagnostics.Tracing.EventListener,value class System.Diagnostics.Tracing.EventProviderType,int32,value class System.Diagnostics.Tracing.EventCommand,bool,value class System.Diagnostics.Tracing.EventLevel,value class System.Diagnostics.Tracing.EventKeywords,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E)",
+        "System.Diagnostics.Tracing.EventSource\u002BOverrideEventProvider.OnControllerCommand(value class System.Diagnostics.Tracing.ControllerCommand,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E,int32)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.HandleEnableNotification(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventProviderImpl.ProviderCallback(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.Callback(unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*,void*)"
+      ]
+    },
+    {
+      "TimeStampRelativeMSec": 6.452258,
+      "ProcessID": 2624300,
+      "ThreadID": 2624305,
+      "Type": "System.String",
+      "SampledAllocationBytes": 108136,
+      "Stack": [
+        "System.String.CreateStringFromEncoding(unsigned int8*,int32,class System.Text.Encoding)",
+        "System.Text.Encoding.GetString(value class System.ReadOnlySpan\u00601\u003Cunsigned int8\u003E)",
+        "System.Reflection.RuntimeParameterInfo.get_Name()",
+        "System.Diagnostics.Tracing.EventSource.CreateManifestAndDescriptors(class System.Type,class System.String,class System.Diagnostics.Tracing.EventSource,value class System.Diagnostics.Tracing.EventManifestOptions)",
+        "System.Diagnostics.Tracing.EventSource.EnsureDescriptorsInitialized()",
+        "System.Diagnostics.Tracing.EventSource.DoCommand(class System.Diagnostics.Tracing.EventCommandEventArgs)",
+        "System.Diagnostics.Tracing.EventSource.SendCommand(class System.Diagnostics.Tracing.EventListener,value class System.Diagnostics.Tracing.EventProviderType,int32,value class System.Diagnostics.Tracing.EventCommand,bool,value class System.Diagnostics.Tracing.EventLevel,value class System.Diagnostics.Tracing.EventKeywords,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E)",
+        "System.Diagnostics.Tracing.EventSource\u002BOverrideEventProvider.OnControllerCommand(value class System.Diagnostics.Tracing.ControllerCommand,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E,int32)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.HandleEnableNotification(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventProviderImpl.ProviderCallback(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.Callback(unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*,void*)"
+      ]
+    },
+    {
+      "TimeStampRelativeMSec": 6.896545,
+      "ProcessID": 2624300,
+      "ThreadID": 2624305,
+      "Type": "System.String",
+      "SampledAllocationBytes": 110240,
+      "Stack": [
+        "System.String.CreateStringFromEncoding(unsigned int8*,int32,class System.Text.Encoding)",
+        "System.Text.Encoding.GetString(value class System.ReadOnlySpan\u00601\u003Cunsigned int8\u003E)",
+        "System.Reflection.RuntimeParameterInfo.get_Name()",
+        "System.Diagnostics.Tracing.EventSource.CreateManifestAndDescriptors(class System.Type,class System.String,class System.Diagnostics.Tracing.EventSource,value class System.Diagnostics.Tracing.EventManifestOptions)",
+        "System.Diagnostics.Tracing.EventSource.EnsureDescriptorsInitialized()",
+        "System.Diagnostics.Tracing.EventSource.DoCommand(class System.Diagnostics.Tracing.EventCommandEventArgs)",
+        "System.Diagnostics.Tracing.EventSource.SendCommand(class System.Diagnostics.Tracing.EventListener,value class System.Diagnostics.Tracing.EventProviderType,int32,value class System.Diagnostics.Tracing.EventCommand,bool,value class System.Diagnostics.Tracing.EventLevel,value class System.Diagnostics.Tracing.EventKeywords,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E)",
+        "System.Diagnostics.Tracing.EventSource\u002BOverrideEventProvider.OnControllerCommand(value class System.Diagnostics.Tracing.ControllerCommand,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E,int32)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.HandleEnableNotification(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventProviderImpl.ProviderCallback(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.Callback(unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*,void*)"
+      ]
+    },
+    {
+      "TimeStampRelativeMSec": 7.397669,
+      "ProcessID": 2624300,
+      "ThreadID": 2624305,
+      "Type": "System.String",
+      "SampledAllocationBytes": 108368,
+      "Stack": [
+        "System.Reflection.CustomAttribute.GetPropertyOrFieldData(class System.Reflection.RuntimeModule,int\u0026,int,class System.String\u0026,bool\u0026,class System.RuntimeType\u0026,class System.Object\u0026)",
+        "System.Reflection.CustomAttribute.AddCustomAttributes(value class ListBuilder\u00601\u003Cclass System.Object\u003E\u0026,class System.Reflection.RuntimeModule,int32,class System.RuntimeType,bool,value class ListBuilder\u00601\u003Cclass System.Object\u003E)",
+        "System.Reflection.CustomAttribute.GetCustomAttributes(class System.Reflection.RuntimeModule,int32,int32,class System.RuntimeType)",
+        "System.Reflection.CustomAttribute.GetCustomAttributes(class System.Reflection.RuntimeMethodInfo,class System.RuntimeType,bool)",
+        "System.Attribute.GetCustomAttributes(class System.Reflection.MemberInfo,class System.Type,bool)",
+        "System.Attribute.GetCustomAttribute(class System.Reflection.MemberInfo,class System.Type,bool)",
+        "System.Diagnostics.Tracing.EventSource.GetCustomAttributeHelper(class System.Reflection.MemberInfo,class System.Type,value class System.Diagnostics.Tracing.EventManifestOptions)",
+        "System.Diagnostics.Tracing.EventSource.CreateManifestAndDescriptors(class System.Type,class System.String,class System.Diagnostics.Tracing.EventSource,value class System.Diagnostics.Tracing.EventManifestOptions)",
+        "System.Diagnostics.Tracing.EventSource.EnsureDescriptorsInitialized()",
+        "System.Diagnostics.Tracing.EventSource.DoCommand(class System.Diagnostics.Tracing.EventCommandEventArgs)",
+        "System.Diagnostics.Tracing.EventSource.SendCommand(class System.Diagnostics.Tracing.EventListener,value class System.Diagnostics.Tracing.EventProviderType,int32,value class System.Diagnostics.Tracing.EventCommand,bool,value class System.Diagnostics.Tracing.EventLevel,value class System.Diagnostics.Tracing.EventKeywords,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E)",
+        "System.Diagnostics.Tracing.EventSource\u002BOverrideEventProvider.OnControllerCommand(value class System.Diagnostics.Tracing.ControllerCommand,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E,int32)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.HandleEnableNotification(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventProviderImpl.ProviderCallback(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.Callback(unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*,void*)"
+      ]
+    },
+    {
+      "TimeStampRelativeMSec": 11.843406,
+      "ProcessID": 2624300,
+      "ThreadID": 2624305,
+      "Type": "System.Diagnostics.Tracing.EventParameterInfo[]",
+      "SampledAllocationBytes": 108768,
+      "Stack": [
+        "System.Diagnostics.Tracing.EventPipeMetadataGenerator.GenerateEventMetadata(value class EventMetadata)",
+        "System.Diagnostics.Tracing.EventSource.DefineEventPipeEvents()",
+        "System.Diagnostics.Tracing.EventSource.EnsureDescriptorsInitialized()",
+        "System.Diagnostics.Tracing.EventSource.DoCommand(class System.Diagnostics.Tracing.EventCommandEventArgs)",
+        "System.Diagnostics.Tracing.EventSource.SendCommand(class System.Diagnostics.Tracing.EventListener,value class System.Diagnostics.Tracing.EventProviderType,int32,value class System.Diagnostics.Tracing.EventCommand,bool,value class System.Diagnostics.Tracing.EventLevel,value class System.Diagnostics.Tracing.EventKeywords,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E)",
+        "System.Diagnostics.Tracing.EventSource\u002BOverrideEventProvider.OnControllerCommand(value class System.Diagnostics.Tracing.ControllerCommand,class System.Collections.Generic.IDictionary\u00602\u003Cclass System.String,class System.String\u003E,int32)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.HandleEnableNotification(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventProviderImpl.ProviderCallback(class System.Diagnostics.Tracing.EventProvider,unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*)",
+        "System.Diagnostics.Tracing.EventPipeEventProvider.Callback(unsigned int8*,int32,unsigned int8,int64,int64,value class EVENT_FILTER_DESCRIPTOR*,void*)"
+      ]
+    }
+  ]
+}

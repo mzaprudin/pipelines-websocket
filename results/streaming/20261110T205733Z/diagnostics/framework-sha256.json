@@ -1,0 +1,6 @@
+{
+  "/usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.14/System.Private.CoreLib.dll": "de181cb3a17dca624572679d1759e7cce0c17409e21a39a2215902ccaf9874b9",
+  "/usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.14/System.Net.WebSockets.dll": "69fbe8c433cfa404c9bec7ee297a306904bf79c072ce1b6df4ec3d091520a357",
+  "/usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.14/System.Net.Sockets.dll": "6104e449f710b91db1dc893451b7ae89286cf48e4e1fa576d1132934c801d9c7",
+  "/usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.14/System.Net.Http.dll": "d74d508eaa19cdfff8f657465522bdc81d54c186d91cefe865f90c13a231f0ed"
+}

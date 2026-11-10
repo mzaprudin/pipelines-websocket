@@ -1,0 +1,8 @@
+{
+  "sameReceiverBinaries": true,
+  "sameReceiverProfile": true,
+  "ethernet": "ethernet/streaming-session.json",
+  "loopback": "loopback/streaming-session.json",
+  "scope": "receiver-only",
+  "protocol": "receiver-process-periodic-v1"
+}
