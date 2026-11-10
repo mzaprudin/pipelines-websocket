@@ -1,0 +1,99 @@
+{
+  "caseCount": 4,
+  "comparison": [],
+  "streaming": {
+    "_profile": {
+      "payloadBytes": 128,
+      "framesPerBatch": 20,
+      "clientCount": 10,
+      "warmupSeconds": 5,
+      "durationSeconds": 30,
+      "runsPerClient": 3
+    },
+    "_topology": "separate-process-loopback",
+    "standard": {
+      "messagesPerSecond": 30651369.18164773,
+      "allocatedBytesPerMillionMessages": 411.29890204216144,
+      "cpuMsPerMillionMessages": 403.61803402530785,
+      "messagesPerSecondByRun": [
+        30019213.879395388,
+        30651369.18164773,
+        31545857.421420563
+      ],
+      "allocatedBytesByRun": [
+        453208,
+        378216,
+        288440
+      ],
+      "allocatedBytesPerMillionMessagesByRun": [
+        503.23723176821403,
+        411.29890204216144,
+        304.77296579601494
+      ],
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "pipeline": {
+      "messagesPerSecond": 54427112.30028573,
+      "allocatedBytesPerMillionMessages": 12.606208763346634,
+      "cpuMsPerMillionMessages": 235.04070048073646,
+      "messagesPerSecondByRun": [
+        54505735.13997917,
+        54379290.80978745,
+        54427112.30028573
+      ],
+      "allocatedBytesByRun": [
+        20680,
+        14184,
+        20584
+      ],
+      "allocatedBytesPerMillionMessagesByRun": [
+        12.646604911280887,
+        8.694273976168205,
+        12.606208763346634
+      ],
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        -128,
+        0
+      ]
+    }
+  }
+}

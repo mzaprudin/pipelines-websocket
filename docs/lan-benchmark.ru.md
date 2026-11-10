@@ -9,7 +9,7 @@ python3 scripts/streaming_benchmarks.py
 python3 scripts/streaming_benchmarks.py --url ws://GENERATOR-IP:5050
 ```
 
-CPU, GC и аллокации относятся только к приёмнику, включая периодический сбор метрик. У локального сервера другой PID; он делит ресурсы машины с приёмником. См. [методику и ограничения](benchmark-methodology.ru.md).
+CPU, GC и аллокации относятся только к приёмнику, включая периодический сбор метрик. См. [методику и ограничения](benchmark-methodology.ru.md).
 
 ## Внешний генератор
 

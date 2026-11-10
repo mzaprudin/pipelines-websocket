@@ -18,8 +18,6 @@ The receive path follows a **zero-allocation approach**: a warmed, unfragmented 
 **128-byte JSON · 20 frames/write · 10 connections · 1-Gbit Ethernet.** Windows generator → Linux receiver. Medians of three runs, with 5 s warmup and 30 s measurement.
 
 <!-- ETHERNET_RESULTS_START -->
-**Main implementation: 743,095 messages/s and 130.32× less managed memory allocated per message than ClientWebSocket.**
-
 | Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |
 |---|---:|---:|---:|
 | ClientWebSocket | 718,218 | 3,707 | 85.103 |
@@ -38,8 +36,8 @@ Measured November 8, 2026: [conditions and raw data](results/lan-controls/202611
 <!-- LAN_RESULTS_START -->
 | Client | Messages/s | Payload Mbit/s | CPU ms / 1M messages | Allocated kB / 1M messages | GC 0/1/2 |
 |---|---:|---:|---:|---:|---:|
-| `ClientWebSocket` | 101,373 | 830.5 | 30,981 | 114.793 | 0/0/0 |
-| `FastWebSocketClient` · Pipelines | 96,201 | 788.1 | 30,210 | 7.715 | 0/0/0 |
+| ClientWebSocket | 101,373 | 830.5 | 30,981 | 114.793 | 0/0/0 |
+| Pipelines | 96,201 | 788.1 | 30,210 | 7.715 | 0/0/0 |
 
 Allocations are normalized to 1,000,000 messages; 1 kB = 1000 bytes. GC shows observed collections.
 
@@ -52,38 +50,34 @@ Medians of three runs: 10 connections, 10 s warmup and 60 s measurement; one fra
 
 ## Local reception and echo benchmarks
 
-AMD Ryzen 9 5950X · Ubuntu 24.04 · .NET 10.0.14 · Release/x64. Streaming uses the same receiver and load profile locally and over the network; the local generator runs in a separate process. Echo measures a complete verified roundtrip as a separate workload.
+AMD Ryzen 9 5950X · Ubuntu 24.04 · .NET 10.0.14 · Release/x64.
 
 <!-- LOCAL_RESULTS_START -->
 ### Continuous reception on loopback
 
-87-byte JSON, 20 frames/write, 10 connections. Medians of three runs: 5 s warmup and 30 s measurement. CPU and allocations include the generator, clients and sampling.
+128-byte JSON · 20 frames/write · 10 connections · 5 s warmup / 30 s measurement. Medians of 3 fresh processes per client. The server runs in a separate local process. CPU, GC and allocations: receiver process, including sampling.
 
 | Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |
 |---|---:|---:|---:|
-| ClientWebSocket | 42,695,264 | 380 | 0.054 |
-| Pipelines | 69,954,803 | 277 | 0.012 |
-
-This is a local streaming workload. Its rates and CPU costs apply to this setup and differ from the physical-network measurements.
+| ClientWebSocket | 30,651,369 | 404 | 0.411 |
+| Pipelines | 54,427,112 | 235 | 0.013 |
 
 ### Complete local echo roundtrips
 
-Each message is sent, echoed and checked byte-for-byte. Time and allocation include both peers and asynchronous scheduling.
+Complete roundtrips with byte-for-byte validation; process counters include the echo peer and asynchronous harness.
 
 | Client | Payload | Mean | Error | Allocated |
 |---|---:|---:|---:|---:|
-| Pipelines | 128 B | 33.88 µs | 1.89 µs | 582 B |
-| ClientWebSocket adapter | 128 B | 32.65 µs | 857.37 ns | 580 B |
-| Pipelines | 4 KiB | 38.71 µs | 1.01 µs | 581 B |
-| ClientWebSocket adapter | 4 KiB | 38.48 µs | 1.34 µs | 580 B |
-
-Echo measures a complete roundtrip with its own allocation profile. Continuous reception from pooled memory is measured separately.
+| Pipelines | 128 B | 32.49 µs | 908.36 ns | 581 B |
+| ClientWebSocket adapter | 128 B | 33.29 µs | 1.22 µs | 581 B |
+| Pipelines | 4 KiB | 39.23 µs | 1.04 µs | 580 B |
+| ClientWebSocket adapter | 4 KiB | 37.76 µs | 909.96 ns | 581 B |
 
 <!-- LOCAL_RESULTS_END -->
 
 Echo uses BenchmarkDotNet 0.15.8: five warmup and fifteen measurement iterations at a 500 ms target, one launch per case. Allocations are managed bytes per roundtrip; error is the half-width of the 99.9% confidence interval.
 
-[Raw local reports and samples](results/local/20261110T184649Z/) · [Measurement methodology and reproduction](docs/benchmark-methodology.md)
+[Raw local reports and samples](results/local/20261110T202155Z/) · [Measurement methodology and reproduction](docs/benchmark-methodology.md)
 
 Run the same streaming comparison locally or against an external generator:
 

@@ -108,8 +108,8 @@ ETHERNET_BUNDLE = 'results/lan-controls/20261108T202415Z'
 def render(cases, russian):
     """Describe all echo cases by client and payload rather than benchmark parameters."""
     title = '### Полный обмен с локальным echo-сервером' if russian else '### Complete local echo roundtrips'
-    explanation = ('Каждое сообщение отправляется, возвращается сервером и проверяется побайтно. Время и аллокации включают оба сетевых узла и асинхронное ожидание.' if russian else
-                   'Each message is sent, echoed and checked byte-for-byte. Time and allocation include both peers and asynchronous scheduling.')
+    explanation = ('Полный обмен с побайтной проверкой; счётчики процесса включают echo-сервер и асинхронный измеритель.' if russian else
+                   'Complete roundtrips with byte-for-byte validation; process counters include the echo peer and asynchronous harness.')
     heading = '| Клиент | Сообщение | Время | Погрешность | Аллокации |' if russian else '| Client | Payload | Mean | Error | Allocated |'
     blocks = [title, '', explanation, '', heading, '|---|---:|---:|---:|---:|']
     for case in cases:
@@ -121,8 +121,7 @@ def render(cases, russian):
         stats = case['Statistics']
         allocated = case['Memory']['BytesAllocatedPerOperation']
         blocks.append(f'| {client} | {payload} | {duration(stats["Mean"])} | {duration(stats["ConfidenceInterval"]["Margin"])} | {allocated:g} B |')
-    blocks.extend(['', 'Echo измеряет полный обмен и имеет свой профиль аллокаций. Непрерывный приём из памяти пула измерен отдельно.' if russian else
-                   'Echo measures a complete roundtrip with its own allocation profile. Continuous reception from pooled memory is measured separately.', ''])
+    blocks.append('')
     return '\n'.join(blocks)
 
 def render_streaming(groups, russian):
@@ -134,8 +133,8 @@ def render_streaming(groups, russian):
     if profile:
         server = (('Сервер работает в отдельном локальном процессе.' if russian else 'The server runs in a separate local process.') if local else
                   ('Использован внешний адрес генератора.' if russian else 'The generator uses the supplied external endpoint.'))
-        explanation = (f"JSON по {profile['payloadBytes']} байт, {profile['framesPerBatch']} фреймов на запись, {profile['clientCount']} соединений. Медианы {profile['runsPerClient']} запусков: {profile['warmupSeconds']} с прогрева и {profile['durationSeconds']} с измерения. {server} CPU, GC и аллокации относятся только к приёмнику, включая сбор метрик." if russian else
-                       f"{profile['payloadBytes']}-byte JSON, {profile['framesPerBatch']} frames/write, {profile['clientCount']} connections. Medians of {profile['runsPerClient']} runs: {profile['warmupSeconds']} s warmup and {profile['durationSeconds']} s measurement. {server} CPU, GC and allocations cover only the receiver, including sampling.")
+        explanation = (f"JSON {profile['payloadBytes']} байт · {profile['framesPerBatch']} фреймов на запись · {profile['clientCount']} соединений · {profile['warmupSeconds']} с прогрева / {profile['durationSeconds']} с измерения. Медианы {profile['runsPerClient']} свежих процессов на клиент. {server} CPU, GC и аллокации — процесс приёмника, включая сбор метрик." if russian else
+                       f"{profile['payloadBytes']}-byte JSON · {profile['framesPerBatch']} frames/write · {profile['clientCount']} connections · {profile['warmupSeconds']} s warmup / {profile['durationSeconds']} s measurement. Medians of {profile['runsPerClient']} fresh processes per client. {server} CPU, GC and allocations: receiver process, including sampling.")
     else:
         explanation = ('Исторический профиль: 87 байт, 20 фреймов на запись, 10 соединений; 3 запуска, 5 с прогрева и 30 с измерения. CPU и аллокации включают генератор и клиентов в одном процессе.' if russian else
                        'Historical profile: 87 bytes, 20 frames/write, 10 connections; 3 runs, 5 s warmup and 30 s measurement. CPU and allocations include generator and clients in one process.')
@@ -144,10 +143,7 @@ def render_streaming(groups, russian):
     for key, label in [('standard', 'ClientWebSocket'), ('pipeline', 'Pipelines')]:
         stats = groups[key]
         blocks.append(f'| {label} | {stats["messagesPerSecond"]:,.0f} | {stats["cpuMsPerMillionMessages"]:,.0f} | {stats["allocatedBytesPerMillionMessages"] / BYTES_PER_KILOBYTE:.3f} |')
-    caveat = ('Результаты относятся к окружению и адресу этого запуска; топология и команды сохранены в отчётах.' if russian else
-              'Results apply to this endpoint and environment; reports retain topology and exact commands.')
-    blocks.extend(['', ('Приёмный код и профиль нагрузки совпадают с сетевым запуском. Loopback меняет условия доставки: нет физического канала, а сервер делит CPU и память машины с приёмником. Байт на сообщение может быть меньше при большей скорости из-за амортизации затрат метрик; разницу нельзя целиком приписать транспорту.' if russian else
-                   'Receiver code and workload profile match the network runner. Loopback changes delivery conditions: there is no physical link, and the server shares host CPU and memory with the receiver. Higher throughput amortizes sampling allocations over more messages; the difference cannot be attributed entirely to transport.') if local else caveat, ''])
+    blocks.append('')
     return '\n'.join(blocks)
 
 def render_local(cases, streams, russian):

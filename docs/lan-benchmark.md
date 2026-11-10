@@ -9,7 +9,7 @@ python3 scripts/streaming_benchmarks.py
 python3 scripts/streaming_benchmarks.py --url ws://GENERATOR-IP:5050
 ```
 
-CPU, GC and allocations cover only the receiver, including periodic metric sampling. The local generator has a distinct PID and shares the host's resources. See [methodology and limitations](benchmark-methodology.md).
+CPU, GC and allocations cover only the receiver, including periodic metric sampling. See [methodology and limitations](benchmark-methodology.md).
 
 ## External generator
 

@@ -1,0 +1,241 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 4 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/" /p:OutDir="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/bin/Release/net10.0/" /p:OutputPath="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/bin/Release/net10.0/" /p:PublishDir="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/publish/" in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1
+// command took 1.84 sec and exited with 0
+// start dotnet  build -c Release --no-restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/" /p:OutDir="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/bin/Release/net10.0/" /p:OutputPath="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/bin/Release/net10.0/" /p:PublishDir="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/publish/" --output "/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/bin/Release/net10.0/" in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1
+// command took 8.05 sec and exited with 0
+// ***** Done, took 00:00:09 (9.95 sec)   *****
+// Found 4 benchmarks:
+//   WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=128, StandardClient=False]
+//   WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=128, StandardClient=True]
+//   WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=4096, StandardClient=False]
+//   WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=4096, StandardClient=True]
+
+// **************************
+// Benchmark: WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=128, StandardClient=False]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Pipelines.WebSockets.Benchmarks-Dry-1.dll --anonymousPipes 133 134 --benchmarkName "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 128, StandardClient: False)" --job Dry --benchmarkId 0 in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 497437.00 ns, 497.4370 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 497437.00 ns, 497.4370 us/op
+// GC:  0 0 0 1352 1
+// Threading:  3 0 1
+
+// AfterAll
+// Benchmark Process 2490142 has exited with code 0.
+
+Mean = 497.437 us, StdErr = 0.000 us (0.00%), N = 1, StdDev = 0.000 us
+Min = 497.437 us, Q1 = 497.437 us, Median = 497.437 us, Q3 = 497.437 us, Max = 497.437 us
+IQR = 0.000 us, LowerFence = 497.437 us, UpperFence = 497.437 us
+ConfidenceInterval = [NaN us; NaN us] (CI 99.9%), Margin = NaN us (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+
+// ** Remained 3 (75.0 %) benchmark(s) to run. Estimated finish 2026-11-10 20:19 (0h 0m from now) **
+// **************************
+// Benchmark: WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=128, StandardClient=True]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Pipelines.WebSockets.Benchmarks-Dry-1.dll --anonymousPipes 133 134 --benchmarkName "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 128, StandardClient: True)" --job Dry --benchmarkId 1 in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 506905.00 ns, 506.9050 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 506905.00 ns, 506.9050 us/op
+// GC:  0 0 0 584 1
+// Threading:  3 0 1
+
+// AfterAll
+// Benchmark Process 2490159 has exited with code 0.
+
+Mean = 506.905 us, StdErr = 0.000 us (0.00%), N = 1, StdDev = 0.000 us
+Min = 506.905 us, Q1 = 506.905 us, Median = 506.905 us, Q3 = 506.905 us, Max = 506.905 us
+IQR = 0.000 us, LowerFence = 506.905 us, UpperFence = 506.905 us
+ConfidenceInterval = [NaN us; NaN us] (CI 99.9%), Margin = NaN us (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+
+// ** Remained 2 (50.0 %) benchmark(s) to run. Estimated finish 2026-11-10 20:19 (0h 0m from now) **
+// **************************
+// Benchmark: WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=4096, StandardClient=False]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Pipelines.WebSockets.Benchmarks-Dry-1.dll --anonymousPipes 133 134 --benchmarkName "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 4096, StandardClient: False)" --job Dry --benchmarkId 2 in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 517525.00 ns, 517.5250 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 517525.00 ns, 517.5250 us/op
+// GC:  0 0 0 8920 1
+// Threading:  3 0 1
+
+// AfterAll
+// Benchmark Process 2490196 has exited with code 0.
+
+Mean = 517.525 us, StdErr = 0.000 us (0.00%), N = 1, StdDev = 0.000 us
+Min = 517.525 us, Q1 = 517.525 us, Median = 517.525 us, Q3 = 517.525 us, Max = 517.525 us
+IQR = 0.000 us, LowerFence = 517.525 us, UpperFence = 517.525 us
+ConfidenceInterval = [NaN us; NaN us] (CI 99.9%), Margin = NaN us (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+
+// ** Remained 1 (25.0 %) benchmark(s) to run. Estimated finish 2026-11-10 20:19 (0h 0m from now) **
+// **************************
+// Benchmark: WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=4096, StandardClient=True]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Pipelines.WebSockets.Benchmarks-Dry-1.dll --anonymousPipes 133 134 --benchmarkName "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 4096, StandardClient: True)" --job Dry --benchmarkId 3 in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Dry-1/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+
+// BeforeActualRun
+WorkloadActual   1: 1 op, 467241.00 ns, 467.2410 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1 op, 467241.00 ns, 467.2410 us/op
+// GC:  0 0 0 584 1
+// Threading:  3 0 1
+
+// AfterAll
+// Benchmark Process 2490265 has exited with code 0.
+
+Mean = 467.241 us, StdErr = 0.000 us (0.00%), N = 1, StdDev = 0.000 us
+Min = 467.241 us, Q1 = 467.241 us, Median = 467.241 us, Q3 = 467.241 us, Max = 467.241 us
+IQR = 0.000 us, LowerFence = 467.241 us, UpperFence = 467.241 us
+ConfidenceInterval = [NaN us; NaN us] (CI 99.9%), Margin = NaN us (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+
+// ** Remained 0 (0.0 %) benchmark(s) to run. Estimated finish 2026-11-10 20:19 (0h 0m from now) **
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  home/m/projects/zero-split-work/receiver-loopback-20261110/dry/results/GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks-report.csv
+  home/m/projects/zero-split-work/receiver-loopback-20261110/dry/results/GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks-report-github.md
+  home/m/projects/zero-split-work/receiver-loopback-20261110/dry/results/GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks-report.html
+
+// * Detailed results *
+WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=128, StandardClient=False]
+Runtime = .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 497.437 us, StdErr = 0.000 us (0.00%), N = 1, StdDev = 0.000 us
+Min = 497.437 us, Q1 = 497.437 us, Median = 497.437 us, Q3 = 497.437 us, Max = 497.437 us
+IQR = 0.000 us, LowerFence = 497.437 us, UpperFence = 497.437 us
+ConfidenceInterval = [NaN us; NaN us] (CI 99.9%), Margin = NaN us (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+-------------------- Histogram --------------------
+[497.437 us ; 497.438 us) | @
+---------------------------------------------------
+
+WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=128, StandardClient=True]
+Runtime = .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 506.905 us, StdErr = 0.000 us (0.00%), N = 1, StdDev = 0.000 us
+Min = 506.905 us, Q1 = 506.905 us, Median = 506.905 us, Q3 = 506.905 us, Max = 506.905 us
+IQR = 0.000 us, LowerFence = 506.905 us, UpperFence = 506.905 us
+ConfidenceInterval = [NaN us; NaN us] (CI 99.9%), Margin = NaN us (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+-------------------- Histogram --------------------
+[506.904 us ; 506.906 us) | @
+---------------------------------------------------
+
+WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=4096, StandardClient=False]
+Runtime = .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 517.525 us, StdErr = 0.000 us (0.00%), N = 1, StdDev = 0.000 us
+Min = 517.525 us, Q1 = 517.525 us, Median = 517.525 us, Q3 = 517.525 us, Max = 517.525 us
+IQR = 0.000 us, LowerFence = 517.525 us, UpperFence = 517.525 us
+ConfidenceInterval = [NaN us; NaN us] (CI 99.9%), Margin = NaN us (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+-------------------- Histogram --------------------
+[517.524 us ; 517.525 us) | @
+---------------------------------------------------
+
+WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry(IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1) [PayloadBytes=4096, StandardClient=True]
+Runtime = .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 467.241 us, StdErr = 0.000 us (0.00%), N = 1, StdDev = 0.000 us
+Min = 467.241 us, Q1 = 467.241 us, Median = 467.241 us, Q3 = 467.241 us, Max = 467.241 us
+IQR = 0.000 us, LowerFence = 467.241 us, UpperFence = 467.241 us
+ConfidenceInterval = [NaN us; NaN us] (CI 99.9%), Margin = NaN us (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+-------------------- Histogram --------------------
+[467.240 us ; 467.241 us) | @
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet v0.15.8, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
+AMD Ryzen 9 5950X 0.55GHz, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 10.0.114
+  [Host] : .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+  Dry    : .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+
+Job=Dry  IterationCount=1  LaunchCount=1  
+RunStrategy=ColdStart  UnrollFactor=1  WarmupCount=1  
+
+| Method        | PayloadBytes | StandardClient | Mean     | Error | Allocated |
+|-------------- |------------- |--------------- |---------:|------:|----------:|
+| EchoRoundtrip | 128          | False          | 497.4 us |    NA |    1352 B |
+| EchoRoundtrip | 128          | True           | 506.9 us |    NA |     584 B |
+| EchoRoundtrip | 4096         | False          | 517.5 us |    NA |    8920 B |
+| EchoRoundtrip | 4096         | True           | 467.2 us |    NA |     584 B |
+
+// * Warnings *
+MinIterationTime
+  WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry -> The minimum observed iteration time is 497.437us which is very small. It's recommended to increase it to at least 100ms using more operations.
+  WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry -> The minimum observed iteration time is 506.905us which is very small. It's recommended to increase it to at least 100ms using more operations.
+  WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry -> The minimum observed iteration time is 517.525us which is very small. It's recommended to increase it to at least 100ms using more operations.
+  WebSocketRoundtripBenchmarks.EchoRoundtrip: Dry -> The minimum observed iteration time is 467.241us which is very small. It's recommended to increase it to at least 100ms using more operations.
+
+// * Legends *
+  PayloadBytes   : Value of the 'PayloadBytes' parameter
+  StandardClient : Value of the 'StandardClient' parameter
+  Mean           : Arithmetic mean of all measurements
+  Error          : Half of 99.9% confidence interval
+  Allocated      : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 us           : 1 Microsecond (0.000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:00 (0.85 sec), executed benchmarks: 4
+
+Global total time: 00:00:10 (10.9 sec), executed benchmarks: 4
+// * Artifacts cleanup *
+Artifacts cleanup is finished

@@ -150,7 +150,7 @@
       "source": "docs/lan-benchmark.md",
       "destination": "docs/lan-benchmark.md",
       "sourceSha256": "a18fcda297e17d1179c5a7304e47c8a2b2fb054944a89521999a096d1fd99281",
-      "destinationSha256": "0f0e9fa8ceb7b2df8ea2bdda9e73c90efdbdb1b173ead81658a55a79c2deccb7",
+      "destinationSha256": "c7062ce26ebc8b76f2becc7956735b5692bf4103185c25c83d8370fded0c0c74",
       "adaptation": "Current shared local/external streaming profile and generator instructions; historical portable package identified separately."
     },
     {

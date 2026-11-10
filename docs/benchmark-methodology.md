@@ -27,7 +27,6 @@ Without `--url`, the runner starts the same server executable on an ephemeral lo
 
 Warmup is excluded. Throughput uses completed messages divided by actual monotonic elapsed time. The unchanged periodic measurement protocol takes counter samples approximately once per second and includes their allocation, task scheduling and console output in receiver process counters. This is not an allocation trace of the transport alone. Fixed instrumentation costs divided by more messages give fewer bytes per message, even with identical transport allocation behavior. Summary files retain total allocated bytes and normalized values for every repetition; kB = 1000 bytes.
 
-Local delivery and physical Ethernet can produce different read completion patterns, segmentation and throughput. The local generator also competes for the host's CPU and memory bandwidth. Equal process boundaries and load parameters remove the previous harness mismatch; they do not make localhost and a physical link equivalent or establish the cause of any remaining difference.
 
 ## Echo roundtrips
 

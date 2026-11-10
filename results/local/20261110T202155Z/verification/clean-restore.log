@@ -1,0 +1,6 @@
+  Determining projects to restore...
+  Restored /home/m/projects/zero-split-work/receiver-loopback-20261110/clean/benchmarks/Pipelines.WebSockets.Benchmarks/Pipelines.WebSockets.Benchmarks.csproj (in 224 ms).
+  Restored /home/m/projects/zero-split-work/receiver-loopback-20261110/clean/src/Pipelines.WebSockets/Pipelines.WebSockets.csproj (in 222 ms).
+  Restored /home/m/projects/zero-split-work/receiver-loopback-20261110/clean/tests/Pipelines.WebSockets.Tests/Pipelines.WebSockets.Tests.csproj (in 222 ms).
+  Restored /home/m/projects/zero-split-work/receiver-loopback-20261110/clean/benchmarks/WebSocketLoadTest/WebSocketLoadTest.csproj (in 222 ms).
+  Restored /home/m/projects/zero-split-work/receiver-loopback-20261110/clean/samples/Pipelines.WebSockets.Demo/Pipelines.WebSockets.Demo.csproj (in 222 ms).

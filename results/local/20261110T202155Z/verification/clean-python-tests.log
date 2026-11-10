@@ -1,0 +1,16 @@
+Measuring standard 1/1, receiver-only.
+Measuring pipeline 1/1, receiver-only.
+test_explicit_endpoint_uses_same_receiver_profile (test_streaming_benchmarks.EvidenceTests.test_explicit_endpoint_uses_same_receiver_profile) ... Measuring standard 1/1, receiver-only.
+Measuring pipeline 1/1, receiver-only.
+ok
+test_incomplete_session_or_failed_shutdown_rejected (test_streaming_benchmarks.EvidenceTests.test_incomplete_session_or_failed_shutdown_rejected) ... ok
+test_scope_pid_endpoint_and_sample_corruption_rejected (test_streaming_benchmarks.EvidenceTests.test_scope_pid_endpoint_and_sample_corruption_rejected) ... ok
+test_valid_local_session (test_streaming_benchmarks.EvidenceTests.test_valid_local_session) ... ok
+test_generator_clean_shutdown (test_streaming_benchmarks.ProcessLifecycleTests.test_generator_clean_shutdown) ... ok
+test_generator_failure_kills_active_receiver (test_streaming_benchmarks.ProcessLifecycleTests.test_generator_failure_kills_active_receiver) ... ok
+test_missing_readiness_stops_child (test_streaming_benchmarks.ProcessLifecycleTests.test_missing_readiness_stops_child) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 5.178s
+
+OK

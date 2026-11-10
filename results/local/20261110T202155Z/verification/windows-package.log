@@ -1,0 +1,7 @@
+  Determining projects to restore...
+  Restored /tmp/zero-alloc-lan-build-378d63ry/benchmarks/WebSocketLoadTest/WebSocketLoadTest.csproj (in 248 ms).
+  Restored /tmp/zero-alloc-lan-build-378d63ry/src/Pipelines.WebSockets/Pipelines.WebSockets.csproj (in 248 ms).
+  Pipelines.WebSockets -> /tmp/zero-alloc-lan-build-378d63ry/src/Pipelines.WebSockets/bin/Release/net10.0/Pipelines.WebSockets.dll
+  WebSocketLoadTest -> /tmp/zero-alloc-lan-build-378d63ry/benchmarks/WebSocketLoadTest/bin/Release/net10.0/win-x64/WebSocketLoadTest.dll
+  WebSocketLoadTest -> /home/m/projects/pipelines-websocket/artifacts/lan-generator-win-x64/publish/
+/home/m/projects/pipelines-websocket/artifacts/lan-generator-win-x64/pipelines-websocket-generator-win-x64.zip
