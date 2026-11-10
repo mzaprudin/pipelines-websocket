@@ -1,0 +1,6 @@
+  Determining projects to restore...
+  Restored /home/m/projects/zero-split-work/clean-pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/Pipelines.WebSockets.Benchmarks.csproj (in 249 ms).
+  Restored /home/m/projects/zero-split-work/clean-pipelines-websocket/tests/Pipelines.WebSockets.Tests/Pipelines.WebSockets.Tests.csproj (in 249 ms).
+  Restored /home/m/projects/zero-split-work/clean-pipelines-websocket/benchmarks/WebSocketLoadTest/WebSocketLoadTest.csproj (in 249 ms).
+  Restored /home/m/projects/zero-split-work/clean-pipelines-websocket/src/Pipelines.WebSockets/Pipelines.WebSockets.csproj (in 249 ms).
+  Restored /home/m/projects/zero-split-work/clean-pipelines-websocket/samples/Pipelines.WebSockets.Demo/Pipelines.WebSockets.Demo.csproj (in 249 ms).

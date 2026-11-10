@@ -1,0 +1,1 @@
+e6e46e4310dd6093cbc4eaf070e6bf9e73c5ed959f1429f4f6f5cfe14b84bddf  pipelines-websocket-generator-win-x64.zip

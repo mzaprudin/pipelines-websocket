@@ -1,0 +1,174 @@
+[
+  {
+    "cwd": "/home/m/projects/zero-alloc-json",
+    "command": [
+      "dotnet",
+      "restore",
+      "ZeroAlloc.Json.sln"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-restore.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-alloc-json",
+    "command": [
+      "dotnet",
+      "restore",
+      "ZeroAlloc.Json.sln",
+      "--locked-mode"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-locked-restore.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-alloc-json",
+    "command": [
+      "dotnet",
+      "build",
+      "ZeroAlloc.Json.sln",
+      "-c",
+      "Release",
+      "--no-restore"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-build.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-alloc-json",
+    "command": [
+      "dotnet",
+      "test",
+      "tests/ZeroAlloc.Json.Tests",
+      "-c",
+      "Release",
+      "--no-build",
+      "--logger",
+      "trx;LogFileName=zero-alloc-json.trx",
+      "--results-directory",
+      "/home/m/projects/zero-split-work/verification"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-test.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-alloc-json",
+    "command": [
+      "dotnet",
+      "run",
+      "-c",
+      "Release",
+      "--no-build",
+      "--project",
+      "samples/ZeroAlloc.Json.Demo"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-sample.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-alloc-json",
+    "command": [
+      "git",
+      "add",
+      "."
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-stage.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-alloc-json",
+    "command": [
+      "git",
+      "commit",
+      "-m",
+      "feat: extract standalone JSON library"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-commit.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "dotnet",
+      "restore",
+      "Pipelines.WebSockets.sln"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-restore.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "dotnet",
+      "restore",
+      "Pipelines.WebSockets.sln",
+      "--locked-mode"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-locked-restore.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "dotnet",
+      "build",
+      "Pipelines.WebSockets.sln",
+      "-c",
+      "Release",
+      "--no-restore"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-build.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "dotnet",
+      "test",
+      "tests/Pipelines.WebSockets.Tests",
+      "-c",
+      "Release",
+      "--no-build",
+      "--logger",
+      "trx;LogFileName=pipelines-websocket.trx",
+      "--results-directory",
+      "/home/m/projects/zero-split-work/verification"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-test.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "dotnet",
+      "run",
+      "-c",
+      "Release",
+      "--no-build",
+      "--project",
+      "samples/Pipelines.WebSockets.Demo"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-sample.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "git",
+      "add",
+      "."
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-stage.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "git",
+      "commit",
+      "-m",
+      "feat: extract standalone WebSocket client"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-commit.log"
+  }
+]

@@ -27,6 +27,7 @@ jobs:
       - name: Validate split and retained evidence
         run: python scripts/verify-evidence.py
       - name: Exercise compact streaming for both clients
+        shell: bash
         run: |
           dotnet run -c Release --no-build --project benchmarks/WebSocketLoadTest -- --count 2 --duration 2 --warmup 1 --payload-bytes 87 --batch 20
           dotnet run -c Release --no-build --project benchmarks/WebSocketLoadTest -- --count 2 --duration 2 --warmup 1 --payload-bytes 87 --batch 20 --std

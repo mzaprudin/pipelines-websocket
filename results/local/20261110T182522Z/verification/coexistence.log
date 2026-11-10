@@ -1,0 +1,3 @@
+Pipelines: 100 ordered JSON roundtrips verified in 25.6 ms
+PASS: fixture parsing, JSON serialization, payload integrity, message ordering, and the public WebSocket client.
+PASS: 41 distinct exported types; original API retained except internal PoolRental; public router verified.

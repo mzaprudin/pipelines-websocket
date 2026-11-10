@@ -49,7 +49,7 @@ def main():
             bundle.writestr('START-GENERATOR.cmd', launcher)
             bundle.writestr('README.txt', readme)
             bundle.writestr('manifest.json', json.dumps(manifest, indent=2) + '\n')
-        (OUTPUT / 'package-sha256.txt').write_text(f'{sha256(archive)}  {archive.name}\n')
+        (OUTPUT / 'package-sha256.txt').write_text(f'{sha256(archive)}  {archive.name}\n', encoding='utf-8')
         print(archive)
 
 

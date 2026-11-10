@@ -1,0 +1,549 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 4 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/" /p:OutDir="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/bin/Release/net10.0/" /p:OutputPath="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/bin/Release/net10.0/" /p:PublishDir="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/publish/" in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1
+// command took 1.06 sec and exited with 0
+// start dotnet  build -c Release --no-restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/" /p:OutDir="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/bin/Release/net10.0/" /p:OutputPath="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/bin/Release/net10.0/" /p:PublishDir="/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/publish/" --output "/home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/bin/Release/net10.0/" in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1
+// command took 7.84 sec and exited with 0
+// ***** Done, took 00:00:08 (8.95 sec)   *****
+// Found 4 benchmarks:
+//   WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=128, StandardClient=False]
+//   WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=128, StandardClient=True]
+//   WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=4096, StandardClient=False]
+//   WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=4096, StandardClient=True]
+
+// **************************
+// Benchmark: WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=128, StandardClient=False]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1.dll --anonymousPipes 133 134 --benchmarkName "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 128, StandardClient: False)" --job "IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5" --benchmarkId 0 in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 148920.00 ns, 148.9200 us/op
+WorkloadJitting  1: 1 op, 419100.00 ns, 419.1000 us/op
+
+OverheadJitting  2: 16 op, 171694.00 ns, 10.7309 us/op
+WorkloadJitting  2: 16 op, 1086607.00 ns, 67.9129 us/op
+
+WorkloadPilot    1: 16 op, 919212.00 ns, 57.4508 us/op
+WorkloadPilot    2: 8704 op, 414413388.00 ns, 47.6118 us/op
+WorkloadPilot    3: 10512 op, 465005390.00 ns, 44.2357 us/op
+WorkloadPilot    4: 11312 op, 436156064.00 ns, 38.5569 us/op
+WorkloadPilot    5: 12976 op, 429872315.00 ns, 33.1283 us/op
+WorkloadPilot    6: 15104 op, 499128763.00 ns, 33.0461 us/op
+WorkloadPilot    7: 15136 op, 523912659.00 ns, 34.6137 us/op
+WorkloadPilot    8: 14448 op, 483030641.00 ns, 33.4324 us/op
+WorkloadPilot    9: 14960 op, 492713575.00 ns, 32.9354 us/op
+WorkloadPilot   10: 15184 op, 478725800.00 ns, 31.5283 us/op
+WorkloadPilot   11: 15872 op, 513813491.00 ns, 32.3723 us/op
+WorkloadPilot   12: 15456 op, 476275163.00 ns, 30.8149 us/op
+WorkloadPilot   13: 16240 op, 510734049.00 ns, 31.4491 us/op
+
+OverheadWarmup   1: 16240 op, 28373.00 ns, 1.7471 ns/op
+OverheadWarmup   2: 16240 op, 25758.00 ns, 1.5861 ns/op
+OverheadWarmup   3: 16240 op, 25638.00 ns, 1.5787 ns/op
+OverheadWarmup   4: 16240 op, 31399.00 ns, 1.9334 ns/op
+OverheadWarmup   5: 16240 op, 26911.00 ns, 1.6571 ns/op
+OverheadWarmup   6: 16240 op, 25619.00 ns, 1.5775 ns/op
+OverheadWarmup   7: 16240 op, 25548.00 ns, 1.5732 ns/op
+OverheadWarmup   8: 16240 op, 25628.00 ns, 1.5781 ns/op
+OverheadWarmup   9: 16240 op, 26791.00 ns, 1.6497 ns/op
+OverheadWarmup  10: 16240 op, 25548.00 ns, 1.5732 ns/op
+
+OverheadActual   1: 16240 op, 25868.00 ns, 1.5929 ns/op
+OverheadActual   2: 16240 op, 25919.00 ns, 1.5960 ns/op
+OverheadActual   3: 16240 op, 33924.00 ns, 2.0889 ns/op
+OverheadActual   4: 16240 op, 25899.00 ns, 1.5948 ns/op
+OverheadActual   5: 16240 op, 25618.00 ns, 1.5775 ns/op
+OverheadActual   6: 16240 op, 25939.00 ns, 1.5972 ns/op
+OverheadActual   7: 16240 op, 27311.00 ns, 1.6817 ns/op
+OverheadActual   8: 16240 op, 26119.00 ns, 1.6083 ns/op
+OverheadActual   9: 16240 op, 26189.00 ns, 1.6126 ns/op
+OverheadActual  10: 16240 op, 26370.00 ns, 1.6238 ns/op
+OverheadActual  11: 16240 op, 27501.00 ns, 1.6934 ns/op
+OverheadActual  12: 16240 op, 26300.00 ns, 1.6195 ns/op
+OverheadActual  13: 16240 op, 26370.00 ns, 1.6238 ns/op
+OverheadActual  14: 16240 op, 26260.00 ns, 1.6170 ns/op
+OverheadActual  15: 16240 op, 27251.00 ns, 1.6780 ns/op
+
+WorkloadWarmup   1: 16240 op, 535759720.00 ns, 32.9901 us/op
+WorkloadWarmup   2: 16240 op, 513307337.00 ns, 31.6076 us/op
+WorkloadWarmup   3: 16240 op, 503471474.00 ns, 31.0019 us/op
+WorkloadWarmup   4: 16240 op, 513406674.00 ns, 31.6137 us/op
+WorkloadWarmup   5: 16240 op, 561369732.00 ns, 34.5671 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 16240 op, 494172314.00 ns, 30.4293 us/op
+WorkloadActual   2: 16240 op, 506204334.00 ns, 31.1702 us/op
+WorkloadActual   3: 16240 op, 509604029.00 ns, 31.3796 us/op
+WorkloadActual   4: 16240 op, 535721648.00 ns, 32.9878 us/op
+WorkloadActual   5: 16240 op, 526498451.00 ns, 32.4199 us/op
+WorkloadActual   6: 16240 op, 508732708.00 ns, 31.3259 us/op
+WorkloadActual   7: 16240 op, 495163011.00 ns, 30.4903 us/op
+WorkloadActual   8: 16240 op, 575746160.00 ns, 35.4523 us/op
+WorkloadActual   9: 16240 op, 509357345.00 ns, 31.3644 us/op
+WorkloadActual  10: 16240 op, 525374273.00 ns, 32.3506 us/op
+WorkloadActual  11: 16240 op, 501196288.00 ns, 30.8618 us/op
+WorkloadActual  12: 16240 op, 520755991.00 ns, 32.0663 us/op
+WorkloadActual  13: 16240 op, 522136412.00 ns, 32.1513 us/op
+WorkloadActual  14: 16240 op, 521781543.00 ns, 32.1294 us/op
+WorkloadActual  15: 16240 op, 510573015.00 ns, 31.4392 us/op
+
+// AfterActualRun
+WorkloadResult   1: 16240 op, 494146054.00 ns, 30.4277 us/op
+WorkloadResult   2: 16240 op, 506178074.00 ns, 31.1686 us/op
+WorkloadResult   3: 16240 op, 509577769.00 ns, 31.3779 us/op
+WorkloadResult   4: 16240 op, 535695388.00 ns, 32.9862 us/op
+WorkloadResult   5: 16240 op, 526472191.00 ns, 32.4182 us/op
+WorkloadResult   6: 16240 op, 508706448.00 ns, 31.3243 us/op
+WorkloadResult   7: 16240 op, 495136751.00 ns, 30.4887 us/op
+WorkloadResult   8: 16240 op, 509331085.00 ns, 31.3628 us/op
+WorkloadResult   9: 16240 op, 525348013.00 ns, 32.3490 us/op
+WorkloadResult  10: 16240 op, 501170028.00 ns, 30.8602 us/op
+WorkloadResult  11: 16240 op, 520729731.00 ns, 32.0646 us/op
+WorkloadResult  12: 16240 op, 522110152.00 ns, 32.1496 us/op
+WorkloadResult  13: 16240 op, 521755283.00 ns, 32.1278 us/op
+WorkloadResult  14: 16240 op, 510546755.00 ns, 31.4376 us/op
+// GC:  0 0 0 9345016 16240
+// Threading:  48719 50 16240
+
+// AfterAll
+// Benchmark Process 2181620 has exited with code 0.
+
+Mean = 31.610 us, StdErr = 0.203 us (0.64%), N = 14, StdDev = 0.759 us
+Min = 30.428 us, Q1 = 31.208 us, Median = 31.408 us, Q3 = 32.144 us, Max = 32.986 us
+IQR = 0.937 us, LowerFence = 29.803 us, UpperFence = 33.549 us
+ConfidenceInterval = [30.754 us; 32.467 us] (CI 99.9%), Margin = 0.857 us (2.71% of Mean)
+Skewness = 0.05, Kurtosis = 1.81, MValue = 2
+
+// ** Remained 3 (75.0 %) benchmark(s) to run. Estimated finish 2026-11-10 18:32 (0h 0m from now) **
+// **************************
+// Benchmark: WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=128, StandardClient=True]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1.dll --anonymousPipes 133 134 --benchmarkName "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 128, StandardClient: True)" --job "IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5" --benchmarkId 1 in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 150524.00 ns, 150.5240 us/op
+WorkloadJitting  1: 1 op, 456219.00 ns, 456.2190 us/op
+
+OverheadJitting  2: 16 op, 207571.00 ns, 12.9732 us/op
+WorkloadJitting  2: 16 op, 1105754.00 ns, 69.1096 us/op
+
+WorkloadPilot    1: 16 op, 1046772.00 ns, 65.4233 us/op
+WorkloadPilot    2: 7648 op, 368651818.00 ns, 48.2024 us/op
+WorkloadPilot    3: 10384 op, 425965714.00 ns, 41.0214 us/op
+WorkloadPilot    4: 12192 op, 450054801.00 ns, 36.9139 us/op
+WorkloadPilot    5: 13552 op, 490960422.00 ns, 36.2279 us/op
+WorkloadPilot    6: 13808 op, 456600714.00 ns, 33.0678 us/op
+WorkloadPilot    7: 15120 op, 496821094.00 ns, 32.8585 us/op
+WorkloadPilot    8: 15232 op, 500356295.00 ns, 32.8490 us/op
+
+OverheadWarmup   1: 15232 op, 34796.00 ns, 2.2844 ns/op
+OverheadWarmup   2: 15232 op, 26080.00 ns, 1.7122 ns/op
+OverheadWarmup   3: 15232 op, 26510.00 ns, 1.7404 ns/op
+OverheadWarmup   4: 15232 op, 26210.00 ns, 1.7207 ns/op
+OverheadWarmup   5: 15232 op, 27101.00 ns, 1.7792 ns/op
+OverheadWarmup   6: 15232 op, 26410.00 ns, 1.7338 ns/op
+
+OverheadActual   1: 15232 op, 26430.00 ns, 1.7352 ns/op
+OverheadActual   2: 15232 op, 26430.00 ns, 1.7352 ns/op
+OverheadActual   3: 15232 op, 26971.00 ns, 1.7707 ns/op
+OverheadActual   4: 15232 op, 26129.00 ns, 1.7154 ns/op
+OverheadActual   5: 15232 op, 26700.00 ns, 1.7529 ns/op
+OverheadActual   6: 15232 op, 25257.00 ns, 1.6582 ns/op
+OverheadActual   7: 15232 op, 26781.00 ns, 1.7582 ns/op
+OverheadActual   8: 15232 op, 26089.00 ns, 1.7128 ns/op
+OverheadActual   9: 15232 op, 26881.00 ns, 1.7648 ns/op
+OverheadActual  10: 15232 op, 26740.00 ns, 1.7555 ns/op
+OverheadActual  11: 15232 op, 26871.00 ns, 1.7641 ns/op
+OverheadActual  12: 15232 op, 26901.00 ns, 1.7661 ns/op
+OverheadActual  13: 15232 op, 26490.00 ns, 1.7391 ns/op
+OverheadActual  14: 15232 op, 26190.00 ns, 1.7194 ns/op
+OverheadActual  15: 15232 op, 25949.00 ns, 1.7036 ns/op
+
+WorkloadWarmup   1: 15232 op, 497328360.00 ns, 32.6502 us/op
+WorkloadWarmup   2: 15232 op, 495629270.00 ns, 32.5387 us/op
+WorkloadWarmup   3: 15232 op, 498301984.00 ns, 32.7142 us/op
+WorkloadWarmup   4: 15232 op, 549993318.00 ns, 36.1078 us/op
+WorkloadWarmup   5: 15232 op, 550412427.00 ns, 36.1353 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 15232 op, 530398629.00 ns, 34.8213 us/op
+WorkloadActual   2: 15232 op, 504946013.00 ns, 33.1503 us/op
+WorkloadActual   3: 15232 op, 495748213.00 ns, 32.5465 us/op
+WorkloadActual   4: 15232 op, 489296107.00 ns, 32.1229 us/op
+WorkloadActual   5: 15232 op, 485667991.00 ns, 31.8847 us/op
+WorkloadActual   6: 15232 op, 493854726.00 ns, 32.4222 us/op
+WorkloadActual   7: 15232 op, 507991351.00 ns, 33.3503 us/op
+WorkloadActual   8: 15232 op, 510476734.00 ns, 33.5134 us/op
+WorkloadActual   9: 15232 op, 483436476.00 ns, 31.7382 us/op
+WorkloadActual  10: 15232 op, 482830295.00 ns, 31.6984 us/op
+WorkloadActual  11: 15232 op, 483357087.00 ns, 31.7330 us/op
+WorkloadActual  12: 15232 op, 481569488.00 ns, 31.6156 us/op
+WorkloadActual  13: 15232 op, 505532438.00 ns, 33.1888 us/op
+WorkloadActual  14: 15232 op, 497395176.00 ns, 32.6546 us/op
+WorkloadActual  15: 15232 op, 498934840.00 ns, 32.7557 us/op
+
+// AfterActualRun
+WorkloadResult   1: 15232 op, 530372139.00 ns, 34.8196 us/op
+WorkloadResult   2: 15232 op, 504919523.00 ns, 33.1486 us/op
+WorkloadResult   3: 15232 op, 495721723.00 ns, 32.5448 us/op
+WorkloadResult   4: 15232 op, 489269617.00 ns, 32.1212 us/op
+WorkloadResult   5: 15232 op, 485641501.00 ns, 31.8830 us/op
+WorkloadResult   6: 15232 op, 493828236.00 ns, 32.4204 us/op
+WorkloadResult   7: 15232 op, 507964861.00 ns, 33.3485 us/op
+WorkloadResult   8: 15232 op, 510450244.00 ns, 33.5117 us/op
+WorkloadResult   9: 15232 op, 483409986.00 ns, 31.7365 us/op
+WorkloadResult  10: 15232 op, 482803805.00 ns, 31.6967 us/op
+WorkloadResult  11: 15232 op, 483330597.00 ns, 31.7313 us/op
+WorkloadResult  12: 15232 op, 481542998.00 ns, 31.6139 us/op
+WorkloadResult  13: 15232 op, 505505948.00 ns, 33.1871 us/op
+WorkloadResult  14: 15232 op, 497368686.00 ns, 32.6529 us/op
+WorkloadResult  15: 15232 op, 498908350.00 ns, 32.7540 us/op
+// GC:  0 0 0 8821944 15232
+// Threading:  45697 9 15232
+
+// AfterAll
+// Benchmark Process 2182402 has exited with code 0.
+
+Mean = 32.611 us, StdErr = 0.229 us (0.70%), N = 15, StdDev = 0.889 us
+Min = 31.614 us, Q1 = 31.810 us, Median = 32.545 us, Q3 = 33.168 us, Max = 34.820 us
+IQR = 1.358 us, LowerFence = 29.773 us, UpperFence = 35.205 us
+ConfidenceInterval = [31.661 us; 33.561 us] (CI 99.9%), Margin = 0.950 us (2.91% of Mean)
+Skewness = 0.82, Kurtosis = 3.01, MValue = 2.25
+
+// ** Remained 2 (50.0 %) benchmark(s) to run. Estimated finish 2026-11-10 18:32 (0h 0m from now) **
+// **************************
+// Benchmark: WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=4096, StandardClient=False]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1.dll --anonymousPipes 133 134 --benchmarkName "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 4096, StandardClient: False)" --job "IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5" --benchmarkId 2 in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 147738.00 ns, 147.7380 us/op
+WorkloadJitting  1: 1 op, 443326.00 ns, 443.3260 us/op
+
+OverheadJitting  2: 16 op, 181201.00 ns, 11.3251 us/op
+WorkloadJitting  2: 16 op, 1736040.00 ns, 108.5025 us/op
+
+WorkloadPilot    1: 16 op, 1203778.00 ns, 75.2361 us/op
+WorkloadPilot    2: 6656 op, 424526106.00 ns, 63.7810 us/op
+WorkloadPilot    3: 7840 op, 490343023.00 ns, 62.5438 us/op
+WorkloadPilot    4: 8000 op, 390953410.00 ns, 48.8692 us/op
+WorkloadPilot    5: 10240 op, 413423226.00 ns, 40.3734 us/op
+WorkloadPilot    6: 12384 op, 506902353.00 ns, 40.9320 us/op
+WorkloadPilot    7: 12224 op, 468196847.00 ns, 38.3014 us/op
+WorkloadPilot    8: 13056 op, 498509460.00 ns, 38.1824 us/op
+WorkloadPilot    9: 13104 op, 508986701.00 ns, 38.8421 us/op
+WorkloadPilot   10: 12880 op, 510661065.00 ns, 39.6476 us/op
+
+OverheadWarmup   1: 12880 op, 22663.00 ns, 1.7595 ns/op
+OverheadWarmup   2: 12880 op, 30968.00 ns, 2.4043 ns/op
+OverheadWarmup   3: 12880 op, 28393.00 ns, 2.2044 ns/op
+OverheadWarmup   4: 12880 op, 24396.00 ns, 1.8941 ns/op
+OverheadWarmup   5: 12880 op, 19366.00 ns, 1.5036 ns/op
+OverheadWarmup   6: 12880 op, 22032.00 ns, 1.7106 ns/op
+OverheadWarmup   7: 12880 op, 19287.00 ns, 1.4974 ns/op
+
+OverheadActual   1: 12880 op, 19166.00 ns, 1.4880 ns/op
+OverheadActual   2: 12880 op, 19326.00 ns, 1.5005 ns/op
+OverheadActual   3: 12880 op, 19657.00 ns, 1.5262 ns/op
+OverheadActual   4: 12880 op, 21761.00 ns, 1.6895 ns/op
+OverheadActual   5: 12880 op, 19227.00 ns, 1.4928 ns/op
+OverheadActual   6: 12880 op, 19187.00 ns, 1.4897 ns/op
+OverheadActual   7: 12880 op, 19336.00 ns, 1.5012 ns/op
+OverheadActual   8: 12880 op, 19276.00 ns, 1.4966 ns/op
+OverheadActual   9: 12880 op, 21370.00 ns, 1.6592 ns/op
+OverheadActual  10: 12880 op, 19226.00 ns, 1.4927 ns/op
+OverheadActual  11: 12880 op, 19296.00 ns, 1.4981 ns/op
+OverheadActual  12: 12880 op, 19446.00 ns, 1.5098 ns/op
+OverheadActual  13: 12880 op, 19487.00 ns, 1.5130 ns/op
+OverheadActual  14: 12880 op, 21210.00 ns, 1.6467 ns/op
+OverheadActual  15: 12880 op, 19266.00 ns, 1.4958 ns/op
+
+WorkloadWarmup   1: 12880 op, 489005032.00 ns, 37.9662 us/op
+WorkloadWarmup   2: 12880 op, 487736463.00 ns, 37.8677 us/op
+WorkloadWarmup   3: 12880 op, 488980215.00 ns, 37.9643 us/op
+WorkloadWarmup   4: 12880 op, 552231039.00 ns, 42.8751 us/op
+WorkloadWarmup   5: 12880 op, 496561670.00 ns, 38.5529 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 12880 op, 482355544.00 ns, 37.4500 us/op
+WorkloadActual   2: 12880 op, 483676001.00 ns, 37.5525 us/op
+WorkloadActual   3: 12880 op, 481895287.00 ns, 37.4142 us/op
+WorkloadActual   4: 12880 op, 497370153.00 ns, 38.6157 us/op
+WorkloadActual   5: 12880 op, 485546927.00 ns, 37.6977 us/op
+WorkloadActual   6: 12880 op, 483537691.00 ns, 37.5417 us/op
+WorkloadActual   7: 12880 op, 497097740.00 ns, 38.5945 us/op
+WorkloadActual   8: 12880 op, 476597755.00 ns, 37.0029 us/op
+WorkloadActual   9: 12880 op, 485150911.00 ns, 37.6670 us/op
+WorkloadActual  10: 12880 op, 548563138.00 ns, 42.5903 us/op
+WorkloadActual  11: 12880 op, 529425700.00 ns, 41.1045 us/op
+WorkloadActual  12: 12880 op, 491403892.00 ns, 38.1525 us/op
+WorkloadActual  13: 12880 op, 475232854.00 ns, 36.8970 us/op
+WorkloadActual  14: 12880 op, 559821691.00 ns, 43.4644 us/op
+WorkloadActual  15: 12880 op, 484738824.00 ns, 37.6350 us/op
+
+// AfterActualRun
+WorkloadResult   1: 12880 op, 482336218.00 ns, 37.4485 us/op
+WorkloadResult   2: 12880 op, 483656675.00 ns, 37.5510 us/op
+WorkloadResult   3: 12880 op, 481875961.00 ns, 37.4127 us/op
+WorkloadResult   4: 12880 op, 497350827.00 ns, 38.6142 us/op
+WorkloadResult   5: 12880 op, 485527601.00 ns, 37.6962 us/op
+WorkloadResult   6: 12880 op, 483518365.00 ns, 37.5402 us/op
+WorkloadResult   7: 12880 op, 497078414.00 ns, 38.5930 us/op
+WorkloadResult   8: 12880 op, 476578429.00 ns, 37.0014 us/op
+WorkloadResult   9: 12880 op, 485131585.00 ns, 37.6655 us/op
+WorkloadResult  10: 12880 op, 491384566.00 ns, 38.1510 us/op
+WorkloadResult  11: 12880 op, 475213528.00 ns, 36.8955 us/op
+WorkloadResult  12: 12880 op, 484719498.00 ns, 37.6335 us/op
+// GC:  0 0 0 7469424 12880
+// Threading:  38640 13 12880
+
+// AfterAll
+// Benchmark Process 2183097 has exited with code 0.
+
+Mean = 37.684 us, StdErr = 0.155 us (0.41%), N = 12, StdDev = 0.537 us
+Min = 36.895 us, Q1 = 37.440 us, Median = 37.592 us, Q3 = 37.810 us, Max = 38.614 us
+IQR = 0.370 us, LowerFence = 36.884 us, UpperFence = 38.366 us
+ConfidenceInterval = [36.996 us; 38.371 us] (CI 99.9%), Margin = 0.687 us (1.82% of Mean)
+Skewness = 0.44, Kurtosis = 2.1, MValue = 2
+
+// ** Remained 1 (25.0 %) benchmark(s) to run. Estimated finish 2026-11-10 18:32 (0h 0m from now) **
+// **************************
+// Benchmark: WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=4096, StandardClient=True]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1.dll --anonymousPipes 133 134 --benchmarkName "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 4096, StandardClient: True)" --job "IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5" --benchmarkId 3 in /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/bin/Release/net10.0/Pipelines.WebSockets.Benchmarks-Job-KOVDBU-1/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5)
+
+OverheadJitting  1: 1 op, 150213.00 ns, 150.2130 us/op
+WorkloadJitting  1: 1 op, 470016.00 ns, 470.0160 us/op
+
+OverheadJitting  2: 16 op, 169690.00 ns, 10.6056 us/op
+WorkloadJitting  2: 16 op, 1285452.00 ns, 80.3408 us/op
+
+WorkloadPilot    1: 16 op, 1141701.00 ns, 71.3563 us/op
+WorkloadPilot    2: 7008 op, 402972836.00 ns, 57.5018 us/op
+WorkloadPilot    3: 8704 op, 409370280.00 ns, 47.0324 us/op
+WorkloadPilot    4: 10640 op, 448919015.00 ns, 42.1916 us/op
+WorkloadPilot    5: 11856 op, 445672889.00 ns, 37.5905 us/op
+WorkloadPilot    6: 13312 op, 486123813.00 ns, 36.5177 us/op
+WorkloadPilot    7: 13696 op, 530702617.00 ns, 38.7487 us/op
+WorkloadPilot    8: 12912 op, 501845235.00 ns, 38.8666 us/op
+WorkloadPilot    9: 12880 op, 533446366.00 ns, 41.4166 us/op
+
+OverheadWarmup   1: 12880 op, 23394.00 ns, 1.8163 ns/op
+OverheadWarmup   2: 12880 op, 22011.00 ns, 1.7089 ns/op
+OverheadWarmup   3: 12880 op, 21471.00 ns, 1.6670 ns/op
+OverheadWarmup   4: 12880 op, 21731.00 ns, 1.6872 ns/op
+OverheadWarmup   5: 12880 op, 21911.00 ns, 1.7012 ns/op
+OverheadWarmup   6: 12880 op, 27833.00 ns, 2.1609 ns/op
+OverheadWarmup   7: 12880 op, 22372.00 ns, 1.7370 ns/op
+OverheadWarmup   8: 12880 op, 22743.00 ns, 1.7658 ns/op
+OverheadWarmup   9: 12880 op, 22482.00 ns, 1.7455 ns/op
+
+OverheadActual   1: 12880 op, 22241.00 ns, 1.7268 ns/op
+OverheadActual   2: 12880 op, 23164.00 ns, 1.7984 ns/op
+OverheadActual   3: 12880 op, 22733.00 ns, 1.7650 ns/op
+OverheadActual   4: 12880 op, 22122.00 ns, 1.7175 ns/op
+OverheadActual   5: 12880 op, 22843.00 ns, 1.7735 ns/op
+OverheadActual   6: 12880 op, 22483.00 ns, 1.7456 ns/op
+OverheadActual   7: 12880 op, 22823.00 ns, 1.7720 ns/op
+OverheadActual   8: 12880 op, 22502.00 ns, 1.7470 ns/op
+OverheadActual   9: 12880 op, 22042.00 ns, 1.7113 ns/op
+OverheadActual  10: 12880 op, 22413.00 ns, 1.7401 ns/op
+OverheadActual  11: 12880 op, 22122.00 ns, 1.7175 ns/op
+OverheadActual  12: 12880 op, 22673.00 ns, 1.7603 ns/op
+OverheadActual  13: 12880 op, 22512.00 ns, 1.7478 ns/op
+OverheadActual  14: 12880 op, 22132.00 ns, 1.7183 ns/op
+OverheadActual  15: 12880 op, 22472.00 ns, 1.7447 ns/op
+
+WorkloadWarmup   1: 12880 op, 497092701.00 ns, 38.5942 us/op
+WorkloadWarmup   2: 12880 op, 489232761.00 ns, 37.9839 us/op
+WorkloadWarmup   3: 12880 op, 508053302.00 ns, 39.4451 us/op
+WorkloadWarmup   4: 12880 op, 483028471.00 ns, 37.5022 us/op
+WorkloadWarmup   5: 12880 op, 499189982.00 ns, 38.7570 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 12880 op, 566121580.00 ns, 43.9535 us/op
+WorkloadActual   2: 12880 op, 496781735.00 ns, 38.5700 us/op
+WorkloadActual   3: 12880 op, 531207568.00 ns, 41.2428 us/op
+WorkloadActual   4: 12880 op, 505970768.00 ns, 39.2834 us/op
+WorkloadActual   5: 12880 op, 497591761.00 ns, 38.6329 us/op
+WorkloadActual   6: 12880 op, 495561365.00 ns, 38.4753 us/op
+WorkloadActual   7: 12880 op, 510921015.00 ns, 39.6678 us/op
+WorkloadActual   8: 12880 op, 497635103.00 ns, 38.6363 us/op
+WorkloadActual   9: 12880 op, 467102205.00 ns, 36.2657 us/op
+WorkloadActual  10: 12880 op, 468871047.00 ns, 36.4030 us/op
+WorkloadActual  11: 12880 op, 559449499.00 ns, 43.4355 us/op
+WorkloadActual  12: 12880 op, 518388034.00 ns, 40.2475 us/op
+WorkloadActual  13: 12880 op, 511088270.00 ns, 39.6808 us/op
+WorkloadActual  14: 12880 op, 502054700.00 ns, 38.9794 us/op
+WorkloadActual  15: 12880 op, 493348416.00 ns, 38.3034 us/op
+
+// AfterActualRun
+WorkloadResult   1: 12880 op, 496759252.00 ns, 38.5683 us/op
+WorkloadResult   2: 12880 op, 531185085.00 ns, 41.2411 us/op
+WorkloadResult   3: 12880 op, 505948285.00 ns, 39.2817 us/op
+WorkloadResult   4: 12880 op, 497569278.00 ns, 38.6312 us/op
+WorkloadResult   5: 12880 op, 495538882.00 ns, 38.4735 us/op
+WorkloadResult   6: 12880 op, 510898532.00 ns, 39.6660 us/op
+WorkloadResult   7: 12880 op, 497612620.00 ns, 38.6345 us/op
+WorkloadResult   8: 12880 op, 467079722.00 ns, 36.2640 us/op
+WorkloadResult   9: 12880 op, 468848564.00 ns, 36.4013 us/op
+WorkloadResult  10: 12880 op, 518365551.00 ns, 40.2458 us/op
+WorkloadResult  11: 12880 op, 511065787.00 ns, 39.6790 us/op
+WorkloadResult  12: 12880 op, 502032217.00 ns, 38.9777 us/op
+WorkloadResult  13: 12880 op, 493325933.00 ns, 38.3017 us/op
+// GC:  0 0 0 7484440 12880
+// Threading:  38640 14 12880
+
+// AfterAll
+// Benchmark Process 2183747 has exited with code 0.
+
+Mean = 38.797 us, StdErr = 0.380 us (0.98%), N = 13, StdDev = 1.369 us
+Min = 36.264 us, Q1 = 38.474 us, Median = 38.635 us, Q3 = 39.666 us, Max = 41.241 us
+IQR = 1.193 us, LowerFence = 36.685 us, UpperFence = 41.455 us
+ConfidenceInterval = [37.158 us; 40.437 us] (CI 99.9%), Margin = 1.639 us (4.23% of Mean)
+Skewness = -0.33, Kurtosis = 2.53, MValue = 2
+
+// ** Remained 0 (0.0 %) benchmark(s) to run. Estimated finish 2026-11-10 18:32 (0h 0m from now) **
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  results/local/20261110T182522Z/bdn/results/GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks-report.csv
+  results/local/20261110T182522Z/bdn/results/GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks-report-github.md
+  results/local/20261110T182522Z/bdn/results/GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks-report.html
+  results/local/20261110T182522Z/bdn/results/GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks-report-full-compressed.json
+
+// * Detailed results *
+WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=128, StandardClient=False]
+Runtime = .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 31.610 us, StdErr = 0.203 us (0.64%), N = 14, StdDev = 0.759 us
+Min = 30.428 us, Q1 = 31.208 us, Median = 31.408 us, Q3 = 32.144 us, Max = 32.986 us
+IQR = 0.937 us, LowerFence = 29.803 us, UpperFence = 33.549 us
+ConfidenceInterval = [30.754 us; 32.467 us] (CI 99.9%), Margin = 0.857 us (2.71% of Mean)
+Skewness = 0.05, Kurtosis = 1.81, MValue = 2
+-------------------- Histogram --------------------
+[30.385 us ; 31.323 us) | @@@@
+[31.323 us ; 32.151 us) | @@@@@@@
+[32.151 us ; 33.081 us) | @@@
+---------------------------------------------------
+
+WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=128, StandardClient=True]
+Runtime = .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 32.611 us, StdErr = 0.229 us (0.70%), N = 15, StdDev = 0.889 us
+Min = 31.614 us, Q1 = 31.810 us, Median = 32.545 us, Q3 = 33.168 us, Max = 34.820 us
+IQR = 1.358 us, LowerFence = 29.773 us, UpperFence = 35.205 us
+ConfidenceInterval = [31.661 us; 33.561 us] (CI 99.9%), Margin = 0.950 us (2.91% of Mean)
+Skewness = 0.82, Kurtosis = 3.01, MValue = 2.25
+-------------------- Histogram --------------------
+[31.606 us ; 32.552 us) | @@@@@@@@
+[32.552 us ; 33.555 us) | @@@@@@
+[33.555 us ; 34.347 us) | 
+[34.347 us ; 35.293 us) | @
+---------------------------------------------------
+
+WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=4096, StandardClient=False]
+Runtime = .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 37.684 us, StdErr = 0.155 us (0.41%), N = 12, StdDev = 0.537 us
+Min = 36.895 us, Q1 = 37.440 us, Median = 37.592 us, Q3 = 37.810 us, Max = 38.614 us
+IQR = 0.370 us, LowerFence = 36.884 us, UpperFence = 38.366 us
+ConfidenceInterval = [36.996 us; 38.371 us] (CI 99.9%), Margin = 0.687 us (1.82% of Mean)
+Skewness = 0.44, Kurtosis = 2.1, MValue = 2
+-------------------- Histogram --------------------
+[36.588 us ; 37.930 us) | @@@@@@@@@
+[37.930 us ; 38.766 us) | @@@
+---------------------------------------------------
+
+WebSocketRoundtripBenchmarks.EchoRoundtrip: Job-KOVDBU(IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5) [PayloadBytes=4096, StandardClient=True]
+Runtime = .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 38.797 us, StdErr = 0.380 us (0.98%), N = 13, StdDev = 1.369 us
+Min = 36.264 us, Q1 = 38.474 us, Median = 38.635 us, Q3 = 39.666 us, Max = 41.241 us
+IQR = 1.193 us, LowerFence = 36.685 us, UpperFence = 41.455 us
+ConfidenceInterval = [37.158 us; 40.437 us] (CI 99.9%), Margin = 1.639 us (4.23% of Mean)
+Skewness = -0.33, Kurtosis = 2.53, MValue = 2
+-------------------- Histogram --------------------
+[35.500 us ; 37.097 us) | @@
+[37.097 us ; 38.226 us) | 
+[38.226 us ; 39.754 us) | @@@@@@@@@
+[39.754 us ; 41.508 us) | @@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet v0.15.8, Linux Ubuntu 24.04.3 LTS (Noble Numbat)
+AMD Ryzen 9 5950X 0.55GHz, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 10.0.114
+  [Host]     : .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+  Job-KOVDBU : .NET 10.0.14 (10.0.14, 10.0.1426.52326), X64 RyuJIT x86-64-v3
+
+IterationCount=15  IterationTime=500ms  LaunchCount=1  
+WarmupCount=5  
+
+| Method        | PayloadBytes | StandardClient | Mean     | Error    | StdDev   | Allocated |
+|-------------- |------------- |--------------- |---------:|---------:|---------:|----------:|
+| EchoRoundtrip | 128          | False          | 31.61 us | 0.857 us | 0.759 us |     575 B |
+| EchoRoundtrip | 128          | True           | 32.61 us | 0.950 us | 0.889 us |     579 B |
+| EchoRoundtrip | 4096         | False          | 37.68 us | 0.687 us | 0.537 us |     580 B |
+| EchoRoundtrip | 4096         | True           | 38.80 us | 1.639 us | 1.369 us |     581 B |
+
+// * Hints *
+Outliers
+  WebSocketRoundtripBenchmarks.EchoRoundtrip: IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5 -> 1 outlier  was  removed (35.45 us)
+  WebSocketRoundtripBenchmarks.EchoRoundtrip: IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5 -> 3 outliers were removed (41.10 us..43.46 us)
+  WebSocketRoundtripBenchmarks.EchoRoundtrip: IterationCount=15, IterationTime=500ms, LaunchCount=1, WarmupCount=5 -> 2 outliers were removed, 3 outliers were detected (36.27 us, 43.44 us, 43.95 us)
+
+// * Legends *
+  PayloadBytes   : Value of the 'PayloadBytes' parameter
+  StandardClient : Value of the 'StandardClient' parameter
+  Mean           : Arithmetic mean of all measurements
+  Error          : Half of 99.9% confidence interval
+  StdDev         : Standard deviation of all measurements
+  Allocated      : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 us           : 1 Microsecond (0.000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:01:00 (60.72 sec), executed benchmarks: 4
+
+Global total time: 00:01:09 (69.8 sec), executed benchmarks: 4
+// * Artifacts cleanup *
+Artifacts cleanup is finished

@@ -1,0 +1,6 @@
+  Determining projects to restore...
+  Restored /home/m/projects/pipelines-websocket/benchmarks/Pipelines.WebSockets.Benchmarks/Pipelines.WebSockets.Benchmarks.csproj (in 256 ms).
+  Restored /home/m/projects/pipelines-websocket/samples/Pipelines.WebSockets.Demo/Pipelines.WebSockets.Demo.csproj (in 256 ms).
+  Restored /home/m/projects/pipelines-websocket/tests/Pipelines.WebSockets.Tests/Pipelines.WebSockets.Tests.csproj (in 256 ms).
+  Restored /home/m/projects/pipelines-websocket/benchmarks/WebSocketLoadTest/WebSocketLoadTest.csproj (in 256 ms).
+  Restored /home/m/projects/pipelines-websocket/src/Pipelines.WebSockets/Pipelines.WebSockets.csproj (in 256 ms).

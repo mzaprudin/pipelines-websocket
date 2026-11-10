@@ -1,0 +1,153 @@
+{
+  "caseCount": 4,
+  "comparison": [
+    {
+      "name": "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 128, StandardClient: False)",
+      "parameters": "PayloadBytes=128&StandardClient=False",
+      "beforeMeanNs": 33048.85367051679,
+      "afterMeanNs": 31610.23804539057,
+      "afterToBefore": 0.95647002950636,
+      "beforeAllocatedBytes": 581,
+      "afterAllocatedBytes": 575
+    },
+    {
+      "name": "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 128, StandardClient: True)",
+      "parameters": "PayloadBytes=128&StandardClient=True",
+      "beforeMeanNs": 33288.090491025076,
+      "afterMeanNs": 32611.336720938376,
+      "afterToBefore": 0.9796697930069266,
+      "beforeAllocatedBytes": 579,
+      "afterAllocatedBytes": 579
+    },
+    {
+      "name": "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 4096, StandardClient: False)",
+      "parameters": "PayloadBytes=4096&StandardClient=False",
+      "beforeMeanNs": 39705.34732498011,
+      "afterMeanNs": 37683.56409808489,
+      "afterToBefore": 0.9490803288950644,
+      "beforeAllocatedBytes": 581,
+      "afterAllocatedBytes": 580
+    },
+    {
+      "name": "GapSonar.TransportLab.Benchmarks.WebSocketRoundtripBenchmarks.EchoRoundtrip(PayloadBytes: 4096, StandardClient: True)",
+      "parameters": "PayloadBytes=4096&StandardClient=True",
+      "beforeMeanNs": 37697.45824622533,
+      "afterMeanNs": 38797.35850453894,
+      "afterToBefore": 1.0291770402961782,
+      "beforeAllocatedBytes": 581,
+      "afterAllocatedBytes": 581
+    }
+  ],
+  "streaming": {
+    "standard": {
+      "messagesPerSecond": 45332014.78791472,
+      "allocatedBytesPerMillionMessages": 53.45987735724417,
+      "cpuMsPerMillionMessages": 356.4919272363415,
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        0,
+        -87
+      ]
+    },
+    "pipeline": {
+      "messagesPerSecond": 70983348.34111145,
+      "allocatedBytesPerMillionMessages": 12.466607978180432,
+      "cpuMsPerMillionMessages": 275.8955712122401,
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        -87,
+        0
+      ]
+    }
+  },
+  "baselineStreaming": {
+    "standard": {
+      "messagesPerSecond": 42420303.398585595,
+      "allocatedBytesPerMillionMessages": 58.385396563448,
+      "cpuMsPerMillionMessages": 386.30161427658715,
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "pipeline": {
+      "messagesPerSecond": 71206978.72588763,
+      "allocatedBytesPerMillionMessages": 9.615757750473662,
+      "cpuMsPerMillionMessages": 272.5585451907329,
+      "gcCounts": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "payloadCounterSkewBytes": [
+        0,
+        -87,
+        0
+      ]
+    }
+  }
+}

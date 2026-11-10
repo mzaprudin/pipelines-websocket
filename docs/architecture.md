@@ -13,3 +13,5 @@ The upgrade validates HTTP 101, required tokens and the accept challenge. TLS us
 The main implementation retains ReceiveBufferSize = 65536. The automatic TCP receive-buffer variant removes only that assignment in an isolated experimental build; it is neither the main library nor a runtime option. Send-buffer and receive algorithms remain the same.
 
 PoolRental<T> is private to this assembly and also privately copied in ZeroAlloc.Json. No JSON implementation, model, interner or fixture is required by the transport. LoopbackServer and RoundtripSession are test/sample support, not library APIs.
+
+StdWebSocketClient is internal, for tests, the sample and performance comparison. The public transport is FastWebSocketClient through IFastWebSocket and IWebSocketMessageHandler.

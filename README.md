@@ -4,6 +4,8 @@
 
 WebSocket clients for C# / .NET 10: direct TCP/TLS with System.IO.Pipelines and pooled buffers, alongside a ClientWebSocket adapter. Borrowed message memory and reusable buffers reduce allocation pressure during continuous reception.
 
+StdWebSocketClient remains an internal comparison adapter; public entry points are FastWebSocketClient, IFastWebSocket and the message handler.
+
 ## WebSocket over physical Ethernet
 
 Measured November 8, 2026: Windows generator → Linux receiver, 1-Gbit Ethernet, 128-byte JSON, 20 frames/write, 10 connections. Medians of three runs: 5 s warmup, 30 s measurement.
@@ -20,6 +22,24 @@ CPU and allocations cover the receiver including sampling; 1 kB = 1000 bytes. Th
 
 All original Ethernet bundles, dates, patches and manifests are preserved byte-for-byte. They measure the earlier combined assembly. Fresh results for the split assembly below use loopback; new physical measurements are a separate stage.
 
+<details>
+<summary>Additional Ethernet measurements: 1 KiB JSON</summary>
+
+<!-- LAN_RESULTS_START -->
+| Client | Messages/s | Payload Mbit/s | CPU ms / 1M messages | Allocated kB / 1M messages | GC 0/1/2 |
+|---|---:|---:|---:|---:|---:|
+| `ClientWebSocket` | 101,373 | 830.5 | 30,981 | 114.793 | 0/0/0 |
+| `FastWebSocketClient` · Pipelines | 96,201 | 788.1 | 30,210 | 7.715 | 0/0/0 |
+
+Allocations are normalized to 1,000,000 messages; 1 kB = 1000 bytes. GC shows observed collections.
+
+Medians of three runs: 10 connections, 10 s warmup and 60 s measurement; one frame per write. CPU, allocations and GC cover the Linux receiver process, including metric sampling.
+
+[Full results and conditions](results/lan-1kib/20261108T191616Z/README.md) · [JSON](results/lan-1kib/20261108T191616Z/summary.json)
+<!-- LAN_RESULTS_END -->
+
+</details>
+
 ## Run it
 
 ```sh
@@ -33,12 +53,25 @@ Requires the .NET 10 SDK. All **70 original tests** are retained. The example ve
 
 ## Fresh local measurements
 
-AMD Ryzen 9 5950X · Ubuntu 24.04 · .NET 10.0.14 · BenchmarkDotNet 0.15.8. Release/x64; 5 warmups, 15 measurement iterations with a 500 ms target, one launch.
+AMD Ryzen 9 5950X · Ubuntu 24.04 · .NET 10.0.14 · BenchmarkDotNet 0.15.8. Release/x64; 5 warmups, 15 measurement iterations with a 500 ms target, one launch per case.
 
 Echo measures a verified roundtrip through a local peer. Streaming: 87-byte JSON, 20 frames/write, 10 connections, three fresh processes per client; 5 s warmup and 30 s measurement. Streaming CPU and allocations include the local server, clients and sampling.
 
 <!-- LOCAL_RESULTS_START -->
-Measurements are being prepared.
+### Local echo roundtrips
+
+| Method | Mean | Error (99.9% CI) | Allocated B/op | Speedup |
+|---|---:|---:|---:|---:|
+| `EchoRoundtrip (PayloadBytes=128&StandardClient=False)` | 31.61 µs | 856.69 ns | 575 B | — |
+| `EchoRoundtrip (PayloadBytes=128&StandardClient=True)` | 32.61 µs | 950.02 ns | 579 B | — |
+| `EchoRoundtrip (PayloadBytes=4096&StandardClient=False)` | 37.68 µs | 687.36 ns | 580 B | — |
+| `EchoRoundtrip (PayloadBytes=4096&StandardClient=True)` | 38.80 µs | 1.64 µs | 581 B | — |
+
+| Client | Messages/s | CPU ms / 1M | Allocated kB / 1M |
+|---|---:|---:|---:|
+| standard | 45,332,015 | 356 | 0.053 |
+| pipeline | 70,983,348 | 276 | 0.012 |
+
 <!-- LOCAL_RESULTS_END -->
 
 [Complete reports, raw samples and before/after comparison](results/local/README.md) · [Methodology](docs/benchmark-methodology.md)

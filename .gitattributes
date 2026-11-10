@@ -1,4 +1,9 @@
+# Preserve exact source and evidence bytes on every platform.
+* -text
 # Unified patches preserve the space prefix on empty context lines.
 results/lan-controls/*/*.patch -whitespace
 # Raw ss output keeps its original column padding.
 results/lan-controls/*/*.tcp.txt -whitespace
+
+# Preserve spacing in raw measurement exports.
+results/** -whitespace

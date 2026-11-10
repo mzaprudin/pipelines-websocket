@@ -1,0 +1,187 @@
+[
+  {
+    "cwd": "/home/m/projects/zero-alloc-json",
+    "command": [
+      "git",
+      "add",
+      "."
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-final-stage.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-alloc-json",
+    "command": [
+      "git",
+      "commit",
+      "--amend",
+      "--no-edit"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-final-seed.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work",
+    "command": [
+      "git",
+      "clone",
+      "--no-hardlinks",
+      "/home/m/projects/zero-alloc-json",
+      "/home/m/projects/zero-split-work/clean-zero-alloc-json"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-clone.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work/clean-zero-alloc-json",
+    "command": [
+      "dotnet",
+      "restore",
+      "ZeroAlloc.Json.sln",
+      "--locked-mode"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-clean-restore.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work/clean-zero-alloc-json",
+    "command": [
+      "dotnet",
+      "build",
+      "ZeroAlloc.Json.sln",
+      "-c",
+      "Release",
+      "--no-restore"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-clean-build.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work/clean-zero-alloc-json",
+    "command": [
+      "dotnet",
+      "test",
+      "tests/ZeroAlloc.Json.Tests",
+      "-c",
+      "Release",
+      "--no-build",
+      "--logger",
+      "trx;LogFileName=clean-zero-alloc-json.trx",
+      "--results-directory",
+      "/home/m/projects/zero-split-work/verification"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-clean-test.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work/clean-zero-alloc-json",
+    "command": [
+      "dotnet",
+      "run",
+      "-c",
+      "Release",
+      "--no-build",
+      "--project",
+      "samples/ZeroAlloc.Json.Demo"
+    ],
+    "exitCode": 0,
+    "log": "zero-alloc-json-clean-sample.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "git",
+      "add",
+      "."
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-final-stage.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "git",
+      "commit",
+      "--amend",
+      "--no-edit"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-final-seed.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work",
+    "command": [
+      "git",
+      "clone",
+      "--no-hardlinks",
+      "/home/m/projects/pipelines-websocket",
+      "/home/m/projects/zero-split-work/clean-pipelines-websocket"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-clone.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work/clean-pipelines-websocket",
+    "command": [
+      "dotnet",
+      "restore",
+      "Pipelines.WebSockets.sln",
+      "--locked-mode"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-clean-restore.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work/clean-pipelines-websocket",
+    "command": [
+      "dotnet",
+      "build",
+      "Pipelines.WebSockets.sln",
+      "-c",
+      "Release",
+      "--no-restore"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-clean-build.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work/clean-pipelines-websocket",
+    "command": [
+      "dotnet",
+      "test",
+      "tests/Pipelines.WebSockets.Tests",
+      "-c",
+      "Release",
+      "--no-build",
+      "--logger",
+      "trx;LogFileName=clean-pipelines-websocket.trx",
+      "--results-directory",
+      "/home/m/projects/zero-split-work/verification"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-clean-test.log"
+  },
+  {
+    "cwd": "/home/m/projects/zero-split-work/clean-pipelines-websocket",
+    "command": [
+      "dotnet",
+      "run",
+      "-c",
+      "Release",
+      "--no-build",
+      "--project",
+      "samples/Pipelines.WebSockets.Demo"
+    ],
+    "exitCode": 0,
+    "log": "pipelines-websocket-clean-sample.log"
+  },
+  {
+    "cwd": "/home/m/projects/pipelines-websocket",
+    "command": [
+      "python3",
+      "scripts/build-windows-generator.py"
+    ],
+    "exitCode": 0,
+    "log": "windows-generator-build.log"
+  }
+]

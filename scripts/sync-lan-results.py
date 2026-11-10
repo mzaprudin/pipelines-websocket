@@ -40,7 +40,7 @@ def same(actual, expected, label):
 
 def read_run(path, client):
     """Validate profile, scope, sample deltas and process-metric arithmetic."""
-    run = json.loads(path.read_text())
+    run = json.loads(path.read_text(encoding='utf-8'))
     expected = {
         'ClientType': client, 'ClientCount': CLIENT_COUNT, 'PayloadBytes': PAYLOAD_BYTES,
         'FramesPerBatch': 1, 'BatchBytes': PAYLOAD_BYTES + FRAME_HEADER_BYTES,
@@ -115,7 +115,7 @@ def main():
         for number in range(1, RUN_COUNT + 1)] for client in CLIENTS}
     for client in CLIENTS:
         for number in range(1, RUN_COUNT + 1):
-            log = (directory / f'{client}-{number}.log').read_text()
+            log = (directory / f'{client}-{number}.log').read_text(encoding='utf-8')
             if COMPLETION_LOG_PREFIX not in log or FAILURE_LOG_PREFIX in log:
                 raise ValueError(f'{client}-{number}: unsuccessful benchmark log')
     endpoints = {run['Endpoint'] for runs in groups.values() for run in runs}
@@ -131,12 +131,12 @@ def main():
     for client, runs in groups.items():
         summary['median'][client]['AllocatedBytesPerMillionMessages'] = statistics.median(
             run['AllocatedBytes'] * MESSAGES_PER_MILLION / run['Messages'] for run in runs)
-    (directory / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
+    (directory / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
     for filename, russian in (('README.md', False), ('README.ru.md', True)):
         path = ROOT / filename
-        before, rest = path.read_text().split(START, 1)
+        before, rest = path.read_text(encoding='utf-8').split(START, 1)
         _, after = rest.split(END, 1)
-        path.write_text(before + START + '\n' + render(groups, relative_dir, russian) + '\n' + END + after)
+        path.write_text(before + START + '\n' + render(groups, relative_dir, russian) + '\n' + END + after, encoding='utf-8')
     print(f'Validated all six physical-LAN runs; rendered {relative_dir}/summary.json and both README tables.')
 
 

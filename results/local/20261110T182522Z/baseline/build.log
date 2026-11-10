@@ -1,0 +1,11 @@
+  GapSonar.TransportLab -> /home/m/projects/zero-split-work/source/src/GapSonar.TransportLab/bin/Release/net10.0/GapSonar.TransportLab.dll
+  WebSocketLoadTest -> /home/m/projects/zero-split-work/source/benchmarks/WebSocketLoadTest/bin/Release/net10.0/WebSocketLoadTest.dll
+  GapSonar.TransportLab.Demo -> /home/m/projects/zero-split-work/source/samples/GapSonar.TransportLab.Demo/bin/Release/net10.0/GapSonar.TransportLab.Demo.dll
+  GapSonar.TransportLab.Benchmarks -> /home/m/projects/zero-split-work/source/benchmarks/GapSonar.TransportLab.Benchmarks/bin/Release/net10.0/GapSonar.TransportLab.Benchmarks.dll
+  GapSonar.TransportLab.Tests -> /home/m/projects/zero-split-work/source/tests/GapSonar.TransportLab.Tests/bin/Release/net10.0/GapSonar.TransportLab.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.01

@@ -6,7 +6,8 @@
     "Build/package boundaries, global imports and friend assemblies",
     "PoolRental<T> is internal in each assembly",
     "JSON routing implementations moved verbatim from benchmark file to library; namespaces preserved",
-    "Harness paths and standalone samples/scripts"
+    "Harness paths and standalone samples/scripts",
+    "Text tooling explicitly uses UTF-8 on Linux and Windows; preserved test assembly name supports unchanged process tests"
   ],
   "files": [
     {
@@ -19,7 +20,7 @@
       "source": ".gitattributes",
       "destination": ".gitattributes",
       "sourceSha256": "a177afd6d9fae872964ab8bf53e4f455b9add510f91ad8a7b609022f8b368e8f",
-      "destinationSha256": "a177afd6d9fae872964ab8bf53e4f455b9add510f91ad8a7b609022f8b368e8f"
+      "destinationSha256": "066d3493dcd6a611cc71f7d226896041e2af1eda0e2a4ebf751560b4ad6bed85"
     },
     {
       "source": ".gitignore",
@@ -1609,13 +1610,13 @@
       "source": "scripts/build-windows-generator.py",
       "destination": "scripts/build-windows-generator.py",
       "sourceSha256": "559189795d272a318f365b679d095206a439c011da660a72c6b7518bde382d05",
-      "destinationSha256": "cb6cc1f8e63576b222a84b240fbf69d08c10f06971258fa899bc35889f0dcff7"
+      "destinationSha256": "e34d3766748b4382e51183d1cbe9ed702be51b5d49960a55183cd0353c8a0871"
     },
     {
       "source": "scripts/lan-controls.py",
       "destination": "scripts/lan-controls.py",
       "sourceSha256": "2ea163271bffef1bb1afdce11dad60ad65f8fc939532924c605d36dda7129c42",
-      "destinationSha256": "d40eb2bcf6ef129f905e854c3e528d468459ff3a46422b35859ed94b7c23fe41"
+      "destinationSha256": "9bbeda1f4d76ef3c281bfb7056abdcaa821ad6abcbe34462c30531b462f2c7b5"
     },
     {
       "source": "scripts/run-lan-benchmarks.sh",
@@ -1627,7 +1628,7 @@
       "source": "scripts/sync-lan-results.py",
       "destination": "scripts/sync-lan-results.py",
       "sourceSha256": "5181056277dab41178c1fccd9b41aecb5cefb3787228119082e0ed9c905ba296",
-      "destinationSha256": "5181056277dab41178c1fccd9b41aecb5cefb3787228119082e0ed9c905ba296"
+      "destinationSha256": "2cd4bedc7951b15bc83e9ecb90ee7b28b135137b2b5d9011ff37e337e6718caf"
     },
     {
       "source": "results/environment.json",

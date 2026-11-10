@@ -52,7 +52,7 @@ def digest(path):
 
 def write_json(path, value):
     """Store human-readable evidence outside measured receiver processes."""
-    path.write_text(json.dumps(value, indent=2) + '\n')
+    path.write_text(json.dumps(value, indent=2) + '\n', encoding='utf-8')
 
 
 def verify_generator(host, batch, port, payload_bytes=DEFAULT_PAYLOAD_BYTES):
@@ -84,14 +84,14 @@ def prepare_variant(directory, automatic, output, log_suffix=''):
         shutil.copytree(ROOT / name, directory / name, ignore=shutil.ignore_patterns('bin', 'obj'))
     if automatic:
         path = directory / CORE_SOURCE
-        before = path.read_text()
+        before = path.read_text(encoding='utf-8')
         if before.count(RECEIVE_BUFFER_ASSIGNMENT) != 1:
             raise RuntimeError('Expected exactly one original receive-buffer assignment')
         after = before.replace(RECEIVE_BUFFER_ASSIGNMENT, '', 1)
-        path.write_text(after)
+        path.write_text(after, encoding='utf-8')
         patch = ''.join(difflib.unified_diff(before.splitlines(True), after.splitlines(True),
             fromfile=f'a/{CORE_SOURCE}', tofile=f'b/{CORE_SOURCE}'))
-        (output / 'auto-receive.patch').write_text(patch)
+        (output / 'auto-receive.patch').write_text(patch, encoding='utf-8')
     sources = {str(path.relative_to(directory)): digest(path)
         for path in sorted(directory.rglob('*')) if path.is_file()}
     commands = [
@@ -145,7 +145,7 @@ def measure_case(host, batch, port, variant, repetition, builds, output, payload
                 raise RuntimeError(f'{stem}: receiver exited before the socket snapshot')
             except subprocess.TimeoutExpired:
                 snapshot = subprocess.check_output(snapshot_command, text=True)
-                (output / f'{stem}.tcp.txt').write_text(snapshot)
+                (output / f'{stem}.tcp.txt').write_text(snapshot, encoding='utf-8')
             lifecycle_allowance_seconds = 30
             code = receiver.wait(timeout=WARMUP_SECONDS + DURATION_SECONDS + lifecycle_allowance_seconds)
             if code:
@@ -167,7 +167,7 @@ def equal(actual, expected, label):
 def validate_case(output, case, host, payload_bytes=DEFAULT_PAYLOAD_BYTES):
     """Verify one completed profile, metric scope, raw samples and derived arithmetic."""
     path = output / f'{case["name"]}.json'
-    run = json.loads(path.read_text())
+    run = json.loads(path.read_text(encoding='utf-8'))
     if dict(PROFILES).get(case['batch']) != case['port']:
         raise ValueError(f'{path.name}: mismatched generator port/profile')
     expected_name = f'batch-{case["batch"]}-{case["variant"]}-{case["repetition"]}'
@@ -207,12 +207,12 @@ def validate_case(output, case, host, payload_bytes=DEFAULT_PAYLOAD_BYTES):
     for field in ('Messages', 'Bytes'):
         if sum(sample[field] for sample in run['Samples']) != run[field]:
             raise ValueError(f'{path.name}: sample {field} do not sum to total')
-    log = (output / f'{case["name"]}.log').read_text()
+    log = (output / f'{case["name"]}.log').read_text(encoding='utf-8')
     if COMPLETION_PREFIX not in log or FAILURE_PREFIX in log:
         raise ValueError(f'{path.name}: unsuccessful log')
     if len(case['observedReceiveBufferBytes']) != CLIENT_COUNT:
         raise ValueError(f'{path.name}: missing TCP socket observations')
-    snapshot = (output / f'{case["name"]}.tcp.txt').read_text()
+    snapshot = (output / f'{case["name"]}.tcp.txt').read_text(encoding='utf-8')
     observed = established_receive_capacities(snapshot)
     if observed != case['observedReceiveBufferBytes']:
         raise ValueError(f'{path.name}: socket snapshot disagrees with metadata')
@@ -227,7 +227,7 @@ def validate_case(output, case, host, payload_bytes=DEFAULT_PAYLOAD_BYTES):
 
 def validate_builds(output, environment):
     """Require matched source sets, exactly one removed assignment, and successful full tests."""
-    builds = json.loads((output / 'builds.json').read_text())
+    builds = json.loads((output / 'builds.json').read_text(encoding='utf-8'))
     if digest(output / 'runner-source.py') != environment['runnerSha256']:
         raise ValueError('Executed runner snapshot does not match its fingerprint')
     for resumption in environment.get('resumptions', []):
@@ -240,9 +240,11 @@ def validate_builds(output, environment):
         raise ValueError('Receiver variants must use identical source-file sets')
     changed = [name for name in source_sets[0]
         if builds['fixed']['sourceSha256'][name] != builds['auto']['sourceSha256'][name]]
-    if changed != [str(CORE_SOURCE)]:
+    legacy_core_source = 'src/GapSonar.TransportLab/Networking/Core/FastWebSocketClient.cs'
+    expected_core_source = str(CORE_SOURCE) if str(CORE_SOURCE) in source_sets[0] else legacy_core_source
+    if changed != [expected_core_source]:
         raise ValueError(f'Unexpected source differences: {changed}')
-    patch = (output / 'auto-receive.patch').read_text().splitlines(True)
+    patch = (output / 'auto-receive.patch').read_text(encoding='utf-8').splitlines(True)
     removed = [line[1:] for line in patch if line.startswith('-') and not line.startswith('---')]
     added = [line for line in patch if line.startswith('+') and not line.startswith('+++')]
     if removed != [RECEIVE_BUFFER_ASSIGNMENT] or added:
@@ -251,7 +253,7 @@ def validate_builds(output, environment):
     for variant in ('fixed', 'auto'):
         if builds[variant]['exitCodes'] != [0] * len(builds[variant]['commands']):
             raise ValueError(f'{variant}: unsuccessful build/test command')
-        log = (output / f'{variant}-setup.log').read_text()
+        log = (output / f'{variant}-setup.log').read_text(encoding='utf-8')
         result = re.search(r'Passed!\s+-\s+Failed:\s+0,\s+Passed:\s+(\d+),\s+Skipped:\s+0,', log)
         if result is None or int(result.group(1)) <= 0 or 'Build succeeded.' not in log:
             raise ValueError(f'{variant}: successful full test/build result missing')
@@ -259,12 +261,12 @@ def validate_builds(output, environment):
     if counts['fixed'] != counts['auto']:
         raise ValueError('Receiver variants did not pass the same test suite')
     return builds, {'testsPassed': counts, 'sourceFilesPerVariant': len(source_sets[0]),
-        'onlyChangedSource': str(CORE_SOURCE), 'executedRunnerSha256': environment['runnerSha256']}
+        'onlyChangedSource': expected_core_source, 'executedRunnerSha256': environment['runnerSha256']}
 
 
 def summarize(output):
     """Validate the full matrix and render every receiver/batch combination."""
-    environment = json.loads((output / 'environment.json').read_text())
+    environment = json.loads((output / 'environment.json').read_text(encoding='utf-8'))
     payload_bytes = environment['profile']['payloadBytes']
     if payload_bytes not in CONTROL_PAYLOAD_SIZES:
         raise ValueError('Unsupported control payload size')
@@ -360,7 +362,7 @@ def summarize(output):
         'CPU and allocation metrics cover the Linux receiver process, including sampling.', '',
         '[Environment, exact case order and socket observations](environment.json) · '
         '[Build/source manifests](builds.json) · [Exact source patch](auto-receive.patch) · [Summary JSON](summary.json)', ''])
-    (output / 'README.md').write_text('\n'.join(lines))
+    (output / 'README.md').write_text('\n'.join(lines), encoding='utf-8')
     write_json(output / 'summary.json', {'cases': expected_count, 'runsPerCase': RUN_COUNT, 'medians': medians,
         'automaticVsFixed': effects,
         'allocationComparisons': allocation_comparisons,
@@ -381,10 +383,10 @@ def run(host, payload_bytes):
     environment = {'startedAtUtc': datetime.now(timezone.utc).isoformat(), 'host': host,
         'sourceCommit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         'runnerSha256': digest(Path(__file__)), 'platform': platform.platform(),
-        'cpu': next(line.split(':', 1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines() if line.startswith('model name')),
+        'cpu': next(line.split(':', 1)[1].strip() for line in Path('/proc/cpuinfo').read_text(encoding='utf-8').splitlines() if line.startswith('model name')),
         'dotnetInfo': subprocess.check_output(['dotnet', '--info'], text=True),
         'route': subprocess.check_output(['ip', 'route', 'get', host], text=True),
-        'sysctls': {name: Path('/proc/sys/' + name.replace('.', '/')).read_text().strip()
+        'sysctls': {name: Path('/proc/sys/' + name.replace('.', '/')).read_text(encoding='utf-8').strip()
             for name in ('net.ipv4.tcp_moderate_rcvbuf', 'net.ipv4.tcp_rmem', 'net.core.rmem_max')},
         'profile': {'payloadBytes': payload_bytes, 'connections': CLIENT_COUNT, 'repetitions': RUN_COUNT,
             'warmupSeconds': WARMUP_SECONDS, 'measurementSeconds': DURATION_SECONDS, 'batchPorts': PROFILES},
@@ -393,8 +395,8 @@ def run(host, payload_bytes):
         'cases': []}
     interface = re.search(r'\bdev (\S+)', environment['route']).group(1)
     environment['interface'] = {'name': interface,
-        'linkMbps': int(Path(f'/sys/class/net/{interface}/speed').read_text()),
-        'duplex': Path(f'/sys/class/net/{interface}/duplex').read_text().strip()}
+        'linkMbps': int(Path(f'/sys/class/net/{interface}/speed').read_text(encoding='utf-8')),
+        'duplex': Path(f'/sys/class/net/{interface}/duplex').read_text(encoding='utf-8').strip()}
     write_json(output / 'environment.json', environment)
     print(f'Control evidence: {output}', flush=True)
     with tempfile.TemporaryDirectory(prefix='zero-alloc-lan-controls-') as temporary:
@@ -424,14 +426,14 @@ def run(host, payload_bytes):
 
 def resume(output):
     """Continue an interrupted observer run only after reproducing identical source and binary hashes."""
-    environment = json.loads((output / 'environment.json').read_text())
-    builds = json.loads((output / 'builds.json').read_text())
+    environment = json.loads((output / 'environment.json').read_text(encoding='utf-8'))
+    builds = json.loads((output / 'builds.json').read_text(encoding='utf-8'))
     payload_bytes = environment['profile']['payloadBytes']
     for batch, port in PROFILES:
         verify_generator(environment['host'], batch, port, payload_bytes)
     original_cases = len(environment['cases'])
     for case in environment['cases']:
-        raw_snapshot = (output / f'{case["name"]}.tcp.txt').read_text()
+        raw_snapshot = (output / f'{case["name"]}.tcp.txt').read_text(encoding='utf-8')
         case['observedReceiveBufferBytes'] = established_receive_capacities(raw_snapshot)
         validate_case(output, case, environment['host'], payload_bytes)
     locations = {variant: Path(build['entryPoint']).parents[5] for variant, build in builds.items()}

@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../zero-alloc-json/src/ZeroAlloc.Json/ZeroAlloc.Json.csproj" />
+    <ProjectReference Include="../../pipelines-websocket/src/Pipelines.WebSockets/Pipelines.WebSockets.csproj" />
+    <None Include="fixtures/trade.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
