@@ -5,13 +5,15 @@ using WebSocketLoadTest.Server;
 
 namespace WebSocketLoadTest;
 
-/// <summary>Runs configurable loopback, standalone generator and remote LAN receiver benchmarks.</summary>
+/// <summary>Runs the same independent receiver against a local or remote streaming generator.</summary>
 internal static class Program
 {
     /// <summary>Sampling and connection/shutdown deadlines.</summary>
     private static readonly TimeSpan SAMPLE_INTERVAL = TimeSpan.FromSeconds(1), LIFECYCLE_ALLOWANCE = TimeSpan.FromSeconds(30);
     /// <summary>Human-readable result serialization outside the measured window.</summary>
     private static readonly JsonSerializerOptions JSON_OPTIONS = new() { WriteIndented = true };
+    /// <summary>Graceful shutdown command used by the owning benchmark runner.</summary>
+    private const string SERVER_STOP_COMMAND = "stop";
 
     /// <summary>Runs one standalone streaming measurement and returns nonzero on failure.</summary>
     private static async Task<int> Main(string[] args)
@@ -20,18 +22,15 @@ internal static class Program
         {
             if (args.Contains("--help", StringComparer.Ordinal))
             {
-                Console.WriteLine("Generator: --mode server --listen 0.0.0.0 --port 5050 --payload-bytes 1024 --batch 20");
-                Console.WriteLine("Receiver: --mode client --url ws://WINDOWS-IP:5050 --count 10 --duration 60 --warmup 10 [--std] --json result.json");
-                Console.WriteLine("Local: --mode loopback --payload-bytes 1024 --batch 20 --count 10 --duration 30 --warmup 5");
+                Console.WriteLine("Generator: --mode server --listen 0.0.0.0 --port 5050 --payload-bytes 128 --batch 20");
+                Console.WriteLine("Receiver: --mode client --url ws://HOST:5050 --payload-bytes 128 --batch 20 --count 10 --duration 30 --warmup 5 [--std] --json result.json");
+                Console.WriteLine("Local or LAN comparison: python3 scripts/streaming_benchmarks.py [--url ws://HOST:5050]");
                 return 0;
             }
             var options = Options.Parse(args);
             if (options.Mode == WorkloadMode.Server) return await RunServerAsync(options).ConfigureAwait(false);
             using var deadline = new CancellationTokenSource(options.Warmup + options.Duration + LIFECYCLE_ALLOWANCE);
-            await using var server = options.Mode == WorkloadMode.Loopback
-                ? new LoadServer(options.Port, options.PayloadBytes, options.FramesPerBatch)
-                : null;
-            var endpoint = server?.Uri ?? LoadServer.ProfileEndpoint(options.RemoteUri!, options.PayloadBytes, options.FramesPerBatch);
+            var endpoint = LoadServer.ProfileEndpoint(options.RemoteUri!, options.PayloadBytes, options.FramesPerBatch);
             var clients = new List<ILoadTestClient>(options.ClientCount);
             try
             {
@@ -42,9 +41,8 @@ internal static class Program
                 await Task.WhenAll(connections).ConfigureAwait(false);
                 Console.WriteLine($"Connected {clients.Count} {(options.Standard ? "ClientWebSocket" : "Pipelines")} clients to {endpoint}; {options.PayloadBytes} payload bytes, {options.FramesPerBatch} frames/batch; warmup {options.Warmup.TotalSeconds}s.");
                 await Task.Delay(options.Warmup, deadline.Token).ConfigureAwait(false);
-                var summary = await MeasureAsync(clients, server, endpoint, options, args, deadline.Token).ConfigureAwait(false);
+                var summary = await MeasureAsync(clients, endpoint, options, args, deadline.Token).ConfigureAwait(false);
                 foreach (var client in clients) client.EnsureHealthy();
-                server?.EnsureHealthy();
                 if (summary.Messages <= 0 || summary.Bytes <= 0) throw new InvalidDataException("No streaming traffic was measured.");
                 Console.WriteLine(FormattableString.Invariant($"Avg Msg/s: {summary.MessagesPerSecond:N0}; payload Mbps: {summary.MegabitsPerSecond:F2}; GC {summary.Gen0Collections}/{summary.Gen1Collections}/{summary.Gen2Collections}"));
                 if (options.JsonPath is not null)
@@ -55,7 +53,7 @@ internal static class Program
             }
             finally
             {
-                // Stop/observe clients before stopping the owning server; these operations are outside timing.
+                // Stop/observe clients outside timing; the generator belongs to another process.
                 var shutdownTasks = new Task[clients.Count];
                 for (int i = 0; i < clients.Count; i++) shutdownTasks[i] = clients[i].DisposeAsync().AsTask();
                 await Task.WhenAll(shutdownTasks).ConfigureAwait(false);
@@ -82,7 +80,20 @@ internal static class Program
             var listenUri = new UriBuilder(server.Uri) { Host = options.ListenAddress.ToString() }.Uri;
             Console.WriteLine($"Listening: {listenUri}");
             Console.WriteLine($"Payload {options.PayloadBytes} bytes; batch {options.FramesPerBatch} frames / {server.BatchBytes} bytes. Stop with Ctrl+C.");
-            try { await Task.Delay(Timeout.InfiniteTimeSpan, stop.Token).ConfigureAwait(false); }
+            try
+            {
+                if (options.ControlStdin)
+                {
+                    var command = await Console.In.ReadLineAsync(stop.Token).ConfigureAwait(false);
+                    if (command is not null && command != SERVER_STOP_COMMAND)
+                        throw new ArgumentException("Expected the generator stop command or end of input.");
+                    await stop.CancelAsync().ConfigureAwait(false);
+                }
+                else
+                {
+                    await Task.Delay(Timeout.InfiniteTimeSpan, stop.Token).ConfigureAwait(false);
+                }
+            }
             catch (OperationCanceledException) when (stop.IsCancellationRequested) { }
             server.EnsureHealthy();
             return 0;
@@ -91,7 +102,7 @@ internal static class Program
     }
 
     /// <summary>Records actual counter deltas over elapsed time after all clients have warmed up.</summary>
-    private static async Task<StreamingSummary> MeasureAsync(List<ILoadTestClient> clients, LoadServer? server, Uri endpoint, Options options, string[] args, CancellationToken token)
+    private static async Task<StreamingSummary> MeasureAsync(List<ILoadTestClient> clients, Uri endpoint, Options options, string[] args, CancellationToken token)
     {
         var samples = new List<StreamingSample>();
         using var process = Process.GetCurrentProcess();
@@ -114,7 +125,6 @@ internal static class Program
             var window = MeasurementWindow.Between(previous.Messages, previous.Bytes, current.Messages, current.Bytes, seconds - previousSeconds);
             samples.Add(new StreamingSample(seconds, window.Messages, window.Bytes, window.MessagesPerSecond));
             foreach (var client in clients) client.EnsureHealthy();
-            server?.EnsureHealthy();
             Console.WriteLine(FormattableString.Invariant($"{seconds:F2}s: {window.MessagesPerSecond:N0} msg/s"));
             previous = current;
             previousSeconds = seconds;
@@ -125,7 +135,7 @@ internal static class Program
             total.Messages, total.Bytes, total.MessagesPerSecond, total.MegabitsPerSecond,
             (process.TotalProcessorTime - cpuBefore).TotalMilliseconds, GC.GetTotalAllocatedBytes(precise: true) - allocatedBefore,
             GC.CollectionCount(0) - gen0Before, GC.CollectionCount(1) - gen1Before, GC.CollectionCount(2) - gen2Before, samples,
-            options.Mode == WorkloadMode.Client ? (endpoint.IsLoopback ? "separate-process-loopback" : "remote-client") : "loopback", endpoint.ToString());
+            endpoint.IsLoopback ? "separate-process-loopback" : "remote-client", endpoint.ToString());
     }
 
 }
@@ -147,7 +157,11 @@ internal sealed record StreamingSummary(DateTimeOffset StartedAtUtc, string Comm
     /// <summary>Mean logical-core consumption; 100 percent means one fully occupied logical core.</summary>
     public double CpuCorePercent => CpuMilliseconds / (DurationSeconds * MILLISECONDS_PER_SECOND) * PERCENT_SCALE;
     /// <summary>Roles included in CPU, allocation and GC counters for this process.</summary>
-    public string CpuScope => Topology == "loopback" ? "generator-and-clients" : "receiver-only";
+    public string CpuScope => "receiver-only";
+    /// <summary>Identity of the measured process, independent of the generator and runner.</summary>
+    public int ReceiverProcessId => Environment.ProcessId;
+    /// <summary>Shared local/LAN sampling contract; periodic instrumentation is included.</summary>
+    public string MeasurementProtocol => "receiver-process-periodic-v1";
     /// <summary>Presentation unit conversions.</summary>
     private const double MESSAGES_PER_MILLION = 1_000_000, MILLISECONDS_PER_SECOND = 1_000, PERCENT_SCALE = 100;
 }

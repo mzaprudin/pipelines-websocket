@@ -1,105 +1,44 @@
-# One-KiB WebSocket benchmark over Ethernet
+# Local and Ethernet streaming benchmark
 
-The generator and receiver run on separate computers:
+[English](lan-benchmark.md) · [Русский](lan-benchmark.ru.md)
 
-```text
-Windows PC                         Ethernet                      Linux PC
-JSON depth generator  ─────────────────────────────────────────► receiver
-1024 payload bytes / message                         ClientWebSocket or Pipelines
-```
-
-## Windows generator
-
-Download the portable Windows x64 package from
-[LAN benchmark tools](https://github.com/mzaprudin/zero-alloc-json-ws/releases/tag/lan-benchmark-1kib),
-extract it, and run `START-GENERATOR.cmd`. The package includes its .NET runtime.
-The generator listens on TCP port 5050 and stays available for successive runs.
-Stop it with Ctrl+C.
-
-Equivalent command:
-
-```powershell
-.\WebSocketLoadTest.exe --mode server --listen 0.0.0.0 --port 5050 --payload-bytes 1024 --batch 1
-```
-
-Use the PC's Ethernet IPv4 address for the Linux client. If Windows displays a
-firewall prompt, allow the generator on the private network. To check negotiated
-link speed:
-
-```powershell
-Get-NetAdapter -Physical | Select-Object Name, Status, LinkSpeed
-```
-
-## Linux receiver
+One receiver executable measures both clients against a generator in another process. Without an address the runner hosts that generator on localhost; with `--url` it connects to another machine. The default is 128-byte JSON, 20 frames/write, 10 connections, 5 s warmup, 30 s measurement, three fresh processes per client.
 
 ```sh
-bash scripts/run-lan-benchmarks.sh ws://WINDOWS-IP:5050
+python3 scripts/streaming_benchmarks.py
+python3 scripts/streaming_benchmarks.py --url ws://GENERATOR-IP:5050
 ```
 
-This builds the receiver and alternates three fresh-process runs per client.
-Each run uses ten connections, ten seconds of warmup and sixty seconds of
-measurement. The generator profile is checked during the HTTP upgrade, so
-payload and batch settings agree at both ends.
+CPU, GC and allocations cover only the receiver, including periodic metric sampling. The local generator has a distinct PID and shares the host's resources. See [methodology and limitations](benchmark-methodology.md).
 
-For a shorter first check:
+## External generator
+
+On the server machine, using the current source:
 
 ```sh
 dotnet run -c Release --project benchmarks/WebSocketLoadTest -- \
-  --mode client --url ws://WINDOWS-IP:5050 --payload-bytes 1024 --batch 1 \
-  --count 2 --warmup 1 --duration 3 --json results/lan-1kib/check.json
+  --mode server --listen 0.0.0.0 --port 5050 --payload-bytes 128 --batch 20
 ```
 
-Add `--std` to select the direct `ClientWebSocket` baseline. Without it the
-receiver uses `FastWebSocketClient`.
+On Windows, build the portable x64 package with `python scripts/build-windows-generator.py`, copy `artifacts/lan-generator-win-x64/pipelines-websocket-generator-win-x64.zip` to the generator PC, extract it and run `START-GENERATOR.cmd`. The package includes its .NET runtime. The launcher uses the same compact profile. Stop the external generator with Ctrl+C after all runs. If prompted, allow access on the private Ethernet network. Use the server's Ethernet address, rather than `0.0.0.0`, in `--url`.
 
-Both receivers connect directly to the specified PC. The native baseline sets
-`ClientWebSocket.Options.Proxy = null`, so ambient HTTP proxy settings cannot
-redirect the Ethernet workload.
+The ZIP includes source/binary fingerprints, the exact publish command, profile and executable SHA-256. Publishing uses an isolated source copy without lock files and `RestorePackagesWithLockFile=false`; normal development lock files remain unchanged. Linux and Windows CI exercise the common process runner; Windows also launches the unpacked portable executable.
 
-The first Windows package prints a loopback address in its startup banner even
-when launched with `--listen 0.0.0.0`. Its listener still binds to all IPv4
-interfaces as requested by the launcher. Current source displays the configured
-bind address. Connect the Linux receiver to the Windows PC's Ethernet address.
+## Controls
 
-## Payload and results
-
-The default profile is exactly 1024 bytes of valid UTF-8 JSON containing depth
-levels. `--payload-bytes` supports 128 bytes through one MiB; `87` selects the
-original compact trade message. `--batch` configures complete frames per write.
-The LAN profile uses one frame per write; TCP packet boundaries are managed by
-the operating system.
-
-Each JSON report includes:
-
-- Actual completed messages/s and application payload Mbit/s.
-- Receiver-process CPU milliseconds per million completed messages.
-- Logical-core utilization, managed bytes per message, and GC counts.
-- Payload size, frame batch size, endpoint, execution topology, and every sample.
-
-At a one-Gbit link, the frame-only calculation for this profile is
-`1,000,000,000 / ((1024 + 4) × 8)`, approximately 122 thousand messages/s before
-TCP/Ethernet overhead. CPU cost at the same delivered traffic rate makes the
-receiver implementation's efficiency visible alongside throughput.
-
-`loopback` tags a combined local process. `separate-process-loopback` tags a
-receiver connected to a loopback address in another process. `remote-client`
-tags the remote receiver role; actual physical-LAN runs use the other PC's address.
-
-## Build from source
+Use the same explicit payload/batch on the external generator and receiver. The profile route is verified during HTTP upgrade. For the historic one-KiB profile:
 
 ```sh
-python3 scripts/build-windows-generator.py
+# Generator machine:
+dotnet run -c Release --project benchmarks/WebSocketLoadTest -- \
+  --mode server --listen 0.0.0.0 --port 5050 --payload-bytes 1024 --batch 1
+# Receiver machine:
+python3 scripts/streaming_benchmarks.py --url ws://GENERATOR-IP:5050 \
+  --payload-bytes 1024 --batch 1 --count 10 --warmup 10 --duration 60
 ```
 
-The builder publishes a self-contained `win-x64` executable, including native
-runtime libraries through `IncludeNativeLibrariesForSelfExtract=true`, from an isolated
-source copy without lock files, using `RestorePackagesWithLockFile=false` for
-that copy. Normal development restore files remain unchanged. The ZIP and its
-SHA-256 file are saved to `artifacts/lan-generator-win-x64/`. The ZIP includes
-the launcher and a manifest of source/binary hashes and the exact publish command.
+`bash scripts/run-lan-benchmarks.sh ws://GENERATOR-IP:5050` is a wrapper for the same runner and accepts its profile options. Both receiver implementations bypass ambient HTTP proxies. Valid payload sizes are 87 (original trade fixture) or 128 through 1 MiB (depth JSON). `--batch` controls complete frames per write, not TCP packet boundaries.
 
-## Controlled tuning experiment
+The [November 8 portable release](https://github.com/mzaprudin/zero-alloc-json-ws/releases/tag/lan-benchmark-1kib) is historical and its launcher selects 1024 bytes / one frame. Its original startup banner may display loopback while binding all IPv4 interfaces. Preserve its identity when reproducing archived data; build the current package for the default compact profile.
 
-To compare automatic TCP receive sizing and batches of 1, 4 and 20 frames,
-use the [controlled experiment guide](lan-controls.md). It builds isolated
-fixed/automatic receiver variants and measures a balanced 27-run matrix.
+The [buffer and batch controls](lan-controls.md) document the historical fixed/automatic TCP receive-buffer matrix. Current production code still requests 64 KiB.

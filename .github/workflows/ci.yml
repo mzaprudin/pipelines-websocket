@@ -26,11 +26,10 @@ jobs:
         run: dotnet run -c Release --no-build --project benchmarks/Pipelines.WebSockets.Benchmarks -- --filter '*' --job dry
       - name: Validate split and retained evidence
         run: python scripts/verify-evidence.py
-      - name: Exercise compact streaming for both clients
-        shell: bash
-        run: |
-          dotnet run -c Release --no-build --project benchmarks/WebSocketLoadTest -- --count 2 --duration 2 --warmup 1 --payload-bytes 87 --batch 20
-          dotnet run -c Release --no-build --project benchmarks/WebSocketLoadTest -- --count 2 --duration 2 --warmup 1 --payload-bytes 87 --batch 20 --std
+      - name: Exercise the common streaming runner and lifecycle failures
+        run: python -m unittest discover -s scripts -p test_streaming_benchmarks.py -v
+      - name: Exercise separate-process streaming for both clients
+        run: python scripts/streaming_benchmarks.py --no-build --output artifacts/ci-streaming --count 2 --warmup 1 --duration 2 --runs 1
       - name: Build portable Windows generator
         if: runner.os == 'Windows'
         run: python scripts/build-windows-generator.py
@@ -40,5 +39,5 @@ jobs:
         run: |
           $packageDir = Join-Path $env:RUNNER_TEMP 'lan-generator-package'
           Expand-Archive -Path '.\artifacts\lan-generator-win-x64\pipelines-websocket-generator-win-x64.zip' -DestinationPath $packageDir
-          & (Join-Path $packageDir 'WebSocketLoadTest.exe') --mode server --listen 127.0.0.1 --port 0 --duration 1 --batch 1
+          & (Join-Path $packageDir 'WebSocketLoadTest.exe') --mode server --listen 127.0.0.1 --port 0 --duration 1 --payload-bytes 128 --batch 20
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

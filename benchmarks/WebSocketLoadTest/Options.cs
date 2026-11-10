@@ -4,16 +4,17 @@ using WebSocketLoadTest.Server;
 
 namespace WebSocketLoadTest;
 
-/// <summary>Execution roles for a colocated benchmark or independent LAN processes.</summary>
-internal enum WorkloadMode { Loopback, Server, Client }
+/// <summary>Independent generator and receiver process roles for local or remote peers.</summary>
+internal enum WorkloadMode { Server, Client }
 
 /// <summary>Validated connection, payload and measurement configuration.</summary>
 internal sealed record Options(int ClientCount, TimeSpan Duration, TimeSpan Warmup, bool Standard, int Port,
-    string? JsonPath, WorkloadMode Mode, Uri? RemoteUri, IPAddress ListenAddress, int PayloadBytes, int FramesPerBatch)
+    string? JsonPath, WorkloadMode Mode, Uri? RemoteUri, IPAddress ListenAddress, int PayloadBytes, int FramesPerBatch,
+    bool ControlStdin)
 {
     /// <summary>Portable benchmark defaults and network bounds.</summary>
     private const int DEFAULT_CLIENTS = 10, DEFAULT_DURATION_SECONDS = 30, DEFAULT_WARMUP_SECONDS = 5,
-        DEFAULT_SERVER_PORT = 5_050, MAX_PORT = 65_535;
+        DEFAULT_SERVER_PORT = 5_050, MAX_PORT = 65_535, DEFAULT_PAYLOAD_BYTES = 128;
     /// <summary>Wire bytes per prepared server write.</summary>
     public int BatchBytes => (PayloadBytes + StreamingPayload.HeaderBytes(PayloadBytes)) * FramesPerBatch;
 
@@ -21,22 +22,23 @@ internal sealed record Options(int ClientCount, TimeSpan Duration, TimeSpan Warm
     public static Options Parse(string[] args)
     {
         int clients = DEFAULT_CLIENTS, duration = DEFAULT_DURATION_SECONDS, warmup = DEFAULT_WARMUP_SECONDS, port = 0;
-        int payload = StreamingPayload.DEFAULT_BYTES, batch = LoadServer.FRAMES_PER_BATCH;
-        bool standard = false, explicitPort = false, explicitDuration = false;
+        int payload = DEFAULT_PAYLOAD_BYTES, batch = LoadServer.FRAMES_PER_BATCH;
+        bool standard = false, explicitPort = false, explicitDuration = false, controlStdin = false;
         string? json = null;
-        var mode = WorkloadMode.Loopback;
+        var mode = WorkloadMode.Client;
         Uri? remote = null;
         IPAddress? listen = null;
         for (int i = 0; i < args.Length; i++)
         {
             var argument = args[i];
             if (argument == "--std") { standard = true; continue; }
+            if (argument == "--control-stdin") { controlStdin = true; continue; }
             if (i + 1 >= args.Length) throw new ArgumentException($"Missing value for {argument}.");
             var value = args[++i];
             switch (argument)
             {
                 case "--json": json = value; continue;
-                case "--mode": mode = value switch { "loopback" => WorkloadMode.Loopback, "server" => WorkloadMode.Server, "client" => WorkloadMode.Client, _ => throw new ArgumentException("Use mode loopback, server or client.") }; continue;
+                case "--mode": mode = value switch { "server" => WorkloadMode.Server, "client" => WorkloadMode.Client, _ => throw new ArgumentException("Use mode server or client; scripts/streaming_benchmarks.py starts a local generator automatically.") }; continue;
                 case "--url": remote = new Uri(value, UriKind.Absolute); continue;
                 case "--listen": listen = IPAddress.Parse(value); continue;
             }
@@ -61,9 +63,10 @@ internal sealed record Options(int ClientCount, TimeSpan Duration, TimeSpan Warm
         if (mode == WorkloadMode.Client && (remote is null || remote.Scheme != "ws" || remote.UserInfo.Length != 0))
             throw new ArgumentException("Client mode requires --url ws://HOST:PORT without credentials.");
         if (mode != WorkloadMode.Client && remote is not null) throw new ArgumentException("--url requires --mode client.");
+        if (controlStdin && mode != WorkloadMode.Server) throw new ArgumentException("--control-stdin requires --mode server.");
         if (mode == WorkloadMode.Server && !explicitPort) port = DEFAULT_SERVER_PORT;
         return new Options(clients, mode == WorkloadMode.Server && !explicitDuration ? Timeout.InfiniteTimeSpan : TimeSpan.FromSeconds(duration),
             TimeSpan.FromSeconds(warmup), standard, port, json, mode, remote,
-            listen ?? (mode == WorkloadMode.Server ? IPAddress.Any : IPAddress.Loopback), payload, batch);
+            listen ?? (mode == WorkloadMode.Server ? IPAddress.Any : IPAddress.Loopback), payload, batch, controlStdin);
     }
 }

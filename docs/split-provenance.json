@@ -8,7 +8,8 @@
     "JSON routing implementations moved verbatim from benchmark file to library; namespaces preserved",
     "Harness paths and standalone samples/scripts",
     "Text tooling explicitly uses UTF-8 on Linux and Windows; preserved test assembly name supports unchanged process tests",
-    "Loopback TLS test peer imports an owned temporary named private key on Windows for Schannel; library and test assertions unchanged"
+    "Loopback TLS test peer imports an owned temporary named private key on Windows for Schannel; library and test assertions unchanged",
+    "Separate-process local streaming uses the same receiver-only protocol and compact profile as remote streaming; test changes are documented per file."
   ],
   "files": [
     {
@@ -99,13 +100,15 @@
       "source": "benchmarks/WebSocketLoadTest/Options.cs",
       "destination": "benchmarks/WebSocketLoadTest/Options.cs",
       "sourceSha256": "9b99101bdd13078f0078f63c6b367e87b30311990176c66357c647a825f0a277",
-      "destinationSha256": "9b99101bdd13078f0078f63c6b367e87b30311990176c66357c647a825f0a277"
+      "destinationSha256": "3223ccb767585a65c71ed807ab310fcac10f1c2b5e5acefe891bfb1ffd828298",
+      "adaptation": "Explicit independent server/client roles; shared compact default and controlled server shutdown option."
     },
     {
       "source": "benchmarks/WebSocketLoadTest/Program.cs",
       "destination": "benchmarks/WebSocketLoadTest/Program.cs",
       "sourceSha256": "15da07cab9c28f12e9e93fbf22362143b06d18ea230625429e2c70dea15ff27a",
-      "destinationSha256": "15da07cab9c28f12e9e93fbf22362143b06d18ea230625429e2c70dea15ff27a"
+      "destinationSha256": "52eb81125beed00d57d36b8e166ebdb370f673892c49211e2ba23c700f4ae581",
+      "adaptation": "Receiver-only measurement in independent process; periodic sampling retained; PID/protocol metadata and graceful managed generator shutdown."
     },
     {
       "source": "benchmarks/WebSocketLoadTest/Server/LoadServer.cs",
@@ -147,7 +150,8 @@
       "source": "docs/lan-benchmark.md",
       "destination": "docs/lan-benchmark.md",
       "sourceSha256": "a18fcda297e17d1179c5a7304e47c8a2b2fb054944a89521999a096d1fd99281",
-      "destinationSha256": "a18fcda297e17d1179c5a7304e47c8a2b2fb054944a89521999a096d1fd99281"
+      "destinationSha256": "0f0e9fa8ceb7b2df8ea2bdda9e73c90efdbdb1b173ead81658a55a79c2deccb7",
+      "adaptation": "Current shared local/external streaming profile and generator instructions; historical portable package identified separately."
     },
     {
       "source": "docs/lan-controls-128-findings.md",
@@ -1593,13 +1597,15 @@
       "source": "tests/GapSonar.TransportLab.Tests/LanBenchmarkTests.cs",
       "destination": "tests/Pipelines.WebSockets.Tests/LanBenchmarkTests.cs",
       "sourceSha256": "aae10c4e26a8aca87d32646e7beb8ce693f4a036830ba714405f368dd7c3eeaf",
-      "destinationSha256": "aae10c4e26a8aca87d32646e7beb8ce693f4a036830ba714405f368dd7c3eeaf"
+      "destinationSha256": "049a8f254179653f0a556c9e7c718b2a0cf8c0aa3c4df1e787f2ba27b729a026",
+      "adaptation": "Retain original one-KiB cases and assertions; add compact profile, independent PID/protocol checks and graceful generator exit."
     },
     {
       "source": "tests/GapSonar.TransportLab.Tests/StreamingBenchmarkTests.cs",
       "destination": "tests/Pipelines.WebSockets.Tests/StreamingBenchmarkTests.cs",
       "sourceSha256": "3166f4f93759c8905c8112f983d34bbf3e986682559cf4389955d0eb72b92640",
-      "destinationSha256": "3166f4f93759c8905c8112f983d34bbf3e986682559cf4389955d0eb72b92640"
+      "destinationSha256": "b55dc4b4f5d66ae278c1caef69d8eff554b17dcdaacf507572ab02dd31300365",
+      "adaptation": "Default-role expectations follow explicit receiver endpoint; shared compact defaults and invalid role/credential checks; existing framing and payload assertions retained."
     },
     {
       "source": "tests/GapSonar.TransportLab.Tests/TransportTests.cs",
@@ -1611,7 +1617,8 @@
       "source": "scripts/build-windows-generator.py",
       "destination": "scripts/build-windows-generator.py",
       "sourceSha256": "559189795d272a318f365b679d095206a439c011da660a72c6b7518bde382d05",
-      "destinationSha256": "e34d3766748b4382e51183d1cbe9ed702be51b5d49960a55183cd0353c8a0871"
+      "destinationSha256": "5598b18113eb2e106931a5b75c7637fb2ff6aef6f43e2be037a75d801aae034c",
+      "adaptation": "Portable launcher uses the shared compact profile; package records that profile."
     },
     {
       "source": "scripts/lan-controls.py",
@@ -1623,7 +1630,8 @@
       "source": "scripts/run-lan-benchmarks.sh",
       "destination": "scripts/run-lan-benchmarks.sh",
       "sourceSha256": "d2f1b13f5b0f999a2d9dfe54776d97c16dace6e15d6a1029483c484f39c6fc8d",
-      "destinationSha256": "d2f1b13f5b0f999a2d9dfe54776d97c16dace6e15d6a1029483c484f39c6fc8d"
+      "destinationSha256": "41ec24eb97d8c6e1a66990f822a2c54295a24bcb1865bf4a80c022a063bf5f37",
+      "adaptation": "Delegate to the common streaming runner; same profile for local and external endpoints."
     },
     {
       "source": "scripts/sync-lan-results.py",

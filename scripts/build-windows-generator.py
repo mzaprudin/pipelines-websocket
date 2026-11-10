@@ -11,6 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'artifacts' / 'lan-generator-win-x64'
+PROFILE = json.loads((ROOT / 'scripts/streaming-profile.json').read_text(encoding='utf-8'))
 
 
 def sha256(path):
@@ -36,11 +37,11 @@ def main():
         subprocess.run(command, check=True, cwd=ROOT)
         executable = OUTPUT / 'publish' / 'WebSocketLoadTest.exe'
         manifest = {'runtime': 'win-x64', 'selfContained': True, 'nativeLibrariesBundled': True,
-                    'dotnetSdk': subprocess.check_output(['dotnet', '--version'], text=True).strip(), 'payloadBytes': 1024, 'framesPerBatch': 1,
+                    'dotnetSdk': subprocess.check_output(['dotnet', '--version'], text=True).strip(), 'payloadBytes': PROFILE['payloadBytes'], 'framesPerBatch': PROFILE['framesPerBatch'], 'streamingProfile': PROFILE,
                     'executableSha256': sha256(executable), 'sourceSha256': sources, 'publishCommand': command}
-        launcher = '@echo off\r\n"%~dp0WebSocketLoadTest.exe" --mode server --listen 0.0.0.0 --port 5050 --payload-bytes 1024 --batch 1\r\npause\r\n'
+        launcher = f'@echo off\r\n"%~dp0WebSocketLoadTest.exe" --mode server --listen 0.0.0.0 --port 5050 --payload-bytes {PROFILE["payloadBytes"]} --batch {PROFILE["framesPerBatch"]}\r\npause\r\n'
         readme = ('Run START-GENERATOR.cmd. The executable includes .NET; no SDK install is required.\r\n'
-                  'Generator: TCP port 5050, 1024-byte JSON messages, one frame per write.\r\n'
+                  f'Generator: TCP port 5050, {PROFILE["payloadBytes"]}-byte JSON messages, {PROFILE["framesPerBatch"]} frames per write.\r\n'
                   'Allow access on the private Ethernet network if Windows asks. Stop with Ctrl+C.\r\n'
                   'Keep it running while the Linux receiver benchmarks both implementations.\r\n')
         archive = OUTPUT / 'pipelines-websocket-generator-win-x64.zip'

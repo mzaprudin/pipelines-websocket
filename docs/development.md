@@ -20,3 +20,5 @@ python3 scripts/build-windows-generator.py
 ```
 
 [LAN generator instructions](lan-benchmark.md) · [TCP controls](lan-controls.md)
+
+The common streaming runner uses a separate local server by default. Add `--url ws://HOST:5050` to use an external server with the same profile. CI also runs `python -m unittest discover -s scripts -p test_streaming_benchmarks.py -v` for process lifecycle and report validation. See [methodology](benchmark-methodology.md).

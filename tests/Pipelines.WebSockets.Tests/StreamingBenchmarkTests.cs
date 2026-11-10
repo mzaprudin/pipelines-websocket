@@ -40,7 +40,7 @@ public sealed class StreamingBenchmarkTests
     [InlineData("--port", "99999")]
     [InlineData("--unknown", "1")]
     public void Parse_InvalidOptions_Throws(string name, string value) =>
-        Assert.ThrowsAny<ArgumentException>(() => Options.Parse([name, value]));
+        Assert.ThrowsAny<ArgumentException>(() => Options.Parse(["--url", "ws://127.0.0.1:5050", name, value]));
 
     /// <summary>The restored server emits the original complete text messages, twenty frames per batch.</summary>
     [Fact]
@@ -85,18 +85,26 @@ public sealed class StreamingBenchmarkTests
         Assert.True(document.RootElement.GetProperty("data").GetArrayLength() > 0);
     }
 
-    /// <summary>The new primary profile is one KiB and roles remain explicit.</summary>
+    /// <summary>Local and remote receivers have the same compact profile and require an external endpoint.</summary>
     [Fact]
-    public void Parse_DefaultAndRemoteProfile_UsesOneKiB()
+    public void Parse_DefaultReceiver_UsesSharedCompactProfileAndExplicitEndpoint()
     {
-        const int EXPECTED_BYTES = 1_024;
-        var local = Options.Parse([]);
-        var remote = Options.Parse(["--mode", "client", "--url", "ws://127.0.0.1:5050", "--batch", "1"]);
+        const int EXPECTED_BYTES = 128, EXPECTED_BATCH = 20, EXPECTED_CLIENTS = 10,
+            EXPECTED_WARMUP_SECONDS = 5, EXPECTED_DURATION_SECONDS = 30;
+        var local = Options.Parse(["--url", "ws://127.0.0.1:5050"]);
+        var remote = Options.Parse(["--mode", "client", "--url", "ws://192.0.2.1:5050"]);
         Assert.Equal(EXPECTED_BYTES, local.PayloadBytes);
-        Assert.Equal(WorkloadMode.Loopback, local.Mode);
+        Assert.Equal(WorkloadMode.Client, local.Mode);
         Assert.Equal(EXPECTED_BYTES, remote.PayloadBytes);
         Assert.Equal(WorkloadMode.Client, remote.Mode);
-        Assert.Equal(1, remote.FramesPerBatch);
+        Assert.Equal(EXPECTED_BATCH, local.FramesPerBatch);
+        Assert.Equal(local.FramesPerBatch, remote.FramesPerBatch);
+        Assert.Equal(EXPECTED_CLIENTS, local.ClientCount);
+        Assert.Equal(TimeSpan.FromSeconds(EXPECTED_WARMUP_SECONDS), local.Warmup);
+        Assert.Equal(TimeSpan.FromSeconds(EXPECTED_DURATION_SECONDS), local.Duration);
+        Assert.Throws<ArgumentException>(() => Options.Parse([]));
+        Assert.Throws<ArgumentException>(() => Options.Parse(["--mode", "loopback"]));
+        Assert.Throws<ArgumentException>(() => Options.Parse(["--url", "ws://localhost", "--control-stdin"]));
     }
 
     /// <summary>Malformed roles, endpoints and bounded-buffer settings fail before I/O.</summary>
@@ -107,10 +115,15 @@ public sealed class StreamingBenchmarkTests
     [InlineData("--batch", "0")]
     [InlineData("--batch", "999999")]
     [InlineData("--mode", "unknown")]
-    [InlineData("--mode", "client")]
-    [InlineData("--url", "ws://127.0.0.1")]
+    [InlineData("--url", "https://127.0.0.1")]
+    [InlineData("--url", "ws://user:password@127.0.0.1")]
     public void Parse_InvalidProfileOrRole_Throws(string option, string value) =>
-        Assert.ThrowsAny<ArgumentException>(() => Options.Parse([option, value]));
+        Assert.ThrowsAny<ArgumentException>(() => Options.Parse(["--url", "ws://127.0.0.1:5050", option, value]));
+
+    /// <summary>An explicitly selected receiver still requires its peer address.</summary>
+    [Fact]
+    public void Parse_ClientRoleWithoutEndpoint_Throws() =>
+        Assert.Throws<ArgumentException>(() => Options.Parse(["--mode", "client"]));
 
     /// <summary>Both clients receive complete one-KiB messages over extended-length server frames.</summary>
     [Theory]

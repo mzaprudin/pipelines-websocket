@@ -52,7 +52,7 @@ Medians of three runs: 10 connections, 10 s warmup and 60 s measurement; one fra
 
 ## Local reception and echo benchmarks
 
-AMD Ryzen 9 5950X · Ubuntu 24.04 · .NET 10.0.14 · Release/x64. Streaming measures continuous reception; echo measures a complete verified roundtrip. These are different workloads with different allocation scopes.
+AMD Ryzen 9 5950X · Ubuntu 24.04 · .NET 10.0.14 · Release/x64. Streaming uses the same receiver and load profile locally and over the network; the local generator runs in a separate process. Echo measures a complete verified roundtrip as a separate workload.
 
 <!-- LOCAL_RESULTS_START -->
 ### Continuous reception on loopback
@@ -84,6 +84,13 @@ Echo measures a complete roundtrip with its own allocation profile. Continuous r
 Echo uses BenchmarkDotNet 0.15.8: five warmup and fifteen measurement iterations at a 500 ms target, one launch per case. Allocations are managed bytes per roundtrip; error is the half-width of the 99.9% confidence interval.
 
 [Raw local reports and samples](results/local/20261110T184649Z/) · [Measurement methodology and reproduction](docs/benchmark-methodology.md)
+
+Run the same streaming comparison locally or against an external generator:
+
+```sh
+python3 scripts/streaming_benchmarks.py
+python3 scripts/streaming_benchmarks.py --url ws://GENERATOR-IP:5050
+```
 
 ## Build and run the example
 

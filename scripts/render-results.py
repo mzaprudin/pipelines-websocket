@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Validate local measurements and generate README tables from unrounded reports."""
-import argparse,json,math,statistics
+import argparse,json,math,statistics,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts'))
+from streaming_benchmarks import validate_session
 KIND='websocket'
 EXPECTED_CASES=22 if KIND=='json' else 4
 ZERO_METHODS={'JsonPopulator_Class_Reused_Interned','JsonPopulator_Struct_Ref','Gate_JsonPopulator_FastList_Reused_Interned','Gate_JsonPopulator_FastList_Reused_Interned_Struct','Standard_Serialize_Writer','JsonPushulator_Class','JsonPushulator_Struct','Manual_Utf8JsonWriter_Direct','Route10kMessages_JsonReader','Route10kMessages_Custom','Route10kMessages_Regex','PopulatorReusedInterned','SystemTextJsonGenerated','PushulatorReusedWriter'}
@@ -49,6 +51,14 @@ def reports(directory):
 
 def streaming(directory):
     """Validate healthy profiles, sample arithmetic, elapsed rates and byte counts."""
+    if (directory / 'streaming-session.json').exists():
+        profile, runs = validate_session(directory)
+        topologies = {run['Topology'] for values in runs.values() for run in values}
+        if len(topologies) != 1:raise ValueError('Mixed streaming topologies')
+        groups = {'_profile': profile, '_topology': topologies.pop()}
+        for client, values in runs.items():
+            groups[client] = summarize_streams(values)
+        return groups
     groups={}
     for client in ('standard','pipeline'):
         runs=[]
@@ -72,8 +82,20 @@ def streaming(directory):
             if run['Topology']!='loopback' or run['CpuScope']!='generator-and-clients':raise ValueError(f'Invalid loopback measurement scope: {path}')
             if not math.isclose(run['CpuMilliseconds']*1_000_000/run['Messages'],run['CpuMillisecondsPerMillionMessages'],rel_tol=1e-12):raise ValueError(f'Invalid CPU normalization: {path}')
             runs.append(run)
-        groups[client]={'messagesPerSecond':statistics.median(r['MessagesPerSecond'] for r in runs),'allocatedBytesPerMillionMessages':statistics.median(r['AllocatedBytes']*1_000_000/r['Messages'] for r in runs),'cpuMsPerMillionMessages':statistics.median(r['CpuMillisecondsPerMillionMessages'] for r in runs),'gcCounts':[[r[f'Gen{g}Collections'] for g in range(3)] for r in runs],'payloadCounterSkewBytes':[r['Bytes']-r['Messages']*r['PayloadBytes'] for r in runs]}
+        groups[client]=summarize_streams(runs)
     return groups
+
+def summarize_streams(runs):
+    """Retain per-run dispersion and total allocations alongside median rates."""
+    return {'messagesPerSecond': statistics.median(r['MessagesPerSecond'] for r in runs),
+            'allocatedBytesPerMillionMessages': statistics.median(r['AllocatedBytes'] * 1_000_000 / r['Messages'] for r in runs),
+            'cpuMsPerMillionMessages': statistics.median(r['CpuMillisecondsPerMillionMessages'] for r in runs),
+            'messagesPerSecondByRun': [r['MessagesPerSecond'] for r in runs],
+            'allocatedBytesByRun': [r['AllocatedBytes'] for r in runs],
+            'allocatedBytesPerMillionMessagesByRun': [r['AllocatedBytes'] * 1_000_000 / r['Messages'] for r in runs],
+            'gcCounts': [[r[f'Gen{g}Collections'] for g in range(3)] for r in runs],
+            'payloadCounterSkewBytes': [r['Bytes'] - r['Messages'] * r['PayloadBytes'] for r in runs]}
+
 
 def duration(ns):
     """Display nanoseconds without changing the ratios computed from raw values."""
@@ -105,16 +127,27 @@ def render(cases, russian):
 
 def render_streaming(groups, russian):
     """Render continuous-reception results with explicit workload and process scope."""
-    title = '### Непрерывный приём через loopback' if russian else '### Continuous reception on loopback'
-    explanation = ('JSON по 87 байт, 20 фреймов на запись, 10 соединений. Медианы трёх запусков: 5 с прогрева и 30 с измерения. CPU и аллокации включают генератор, клиентов и сбор метрик.' if russian else
-                   '87-byte JSON, 20 frames/write, 10 connections. Medians of three runs: 5 s warmup and 30 s measurement. CPU and allocations include the generator, clients and sampling.')
+    local = groups.get('_topology', 'separate-process-loopback') == 'separate-process-loopback'
+    title = (('### Непрерывный приём через loopback' if russian else '### Continuous reception on loopback') if local else
+             ('### Непрерывный приём с внешнего адреса' if russian else '### Continuous reception from an external endpoint'))
+    profile = groups.get('_profile')
+    if profile:
+        server = (('Сервер работает в отдельном локальном процессе.' if russian else 'The server runs in a separate local process.') if local else
+                  ('Использован внешний адрес генератора.' if russian else 'The generator uses the supplied external endpoint.'))
+        explanation = (f"JSON по {profile['payloadBytes']} байт, {profile['framesPerBatch']} фреймов на запись, {profile['clientCount']} соединений. Медианы {profile['runsPerClient']} запусков: {profile['warmupSeconds']} с прогрева и {profile['durationSeconds']} с измерения. {server} CPU, GC и аллокации относятся только к приёмнику, включая сбор метрик." if russian else
+                       f"{profile['payloadBytes']}-byte JSON, {profile['framesPerBatch']} frames/write, {profile['clientCount']} connections. Medians of {profile['runsPerClient']} runs: {profile['warmupSeconds']} s warmup and {profile['durationSeconds']} s measurement. {server} CPU, GC and allocations cover only the receiver, including sampling.")
+    else:
+        explanation = ('Исторический профиль: 87 байт, 20 фреймов на запись, 10 соединений; 3 запуска, 5 с прогрева и 30 с измерения. CPU и аллокации включают генератор и клиентов в одном процессе.' if russian else
+                       'Historical profile: 87 bytes, 20 frames/write, 10 connections; 3 runs, 5 s warmup and 30 s measurement. CPU and allocations include generator and clients in one process.')
     heading = '| Клиент | Сообщений/с | CPU мс / млн сообщений | Аллокации, кБ / млн сообщений |' if russian else '| Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |'
     blocks = [title, '', explanation, '', heading, '|---|---:|---:|---:|']
     for key, label in [('standard', 'ClientWebSocket'), ('pipeline', 'Pipelines')]:
         stats = groups[key]
         blocks.append(f'| {label} | {stats["messagesPerSecond"]:,.0f} | {stats["cpuMsPerMillionMessages"]:,.0f} | {stats["allocatedBytesPerMillionMessages"] / BYTES_PER_KILOBYTE:.3f} |')
-    blocks.extend(['', 'Это локальный потоковый тест. Его скорость и стоимость CPU относятся к указанной нагрузке и отличаются от измерений физической сети.' if russian else
-                   'This is a local streaming workload. Its rates and CPU costs apply to this setup and differ from the physical-network measurements.', ''])
+    caveat = ('Результаты относятся к окружению и адресу этого запуска; топология и команды сохранены в отчётах.' if russian else
+              'Results apply to this endpoint and environment; reports retain topology and exact commands.')
+    blocks.extend(['', ('Приёмный код и профиль нагрузки совпадают с сетевым запуском. Loopback меняет условия доставки: нет физического канала, а сервер делит CPU и память машины с приёмником. Байт на сообщение может быть меньше при большей скорости из-за амортизации затрат метрик; разницу нельзя целиком приписать транспорту.' if russian else
+                   'Receiver code and workload profile match the network runner. Loopback changes delivery conditions: there is no physical link, and the server shares host CPU and memory with the receiver. Higher throughput amortizes sampling allocations over more messages; the difference cannot be attributed entirely to transport.') if local else caveat, ''])
     return '\n'.join(blocks)
 
 def render_local(cases, streams, russian):
@@ -124,13 +157,8 @@ def render_local(cases, streams, russian):
 def render_ethernet(russian):
     """Render the recorded network comparison and its current-versus-control labels."""
     medians = json.loads((ROOT / ETHERNET_BUNDLE / 'summary.json').read_text(encoding='utf-8'))['medians']
-    standard = medians['batch-20-standard']
-    fixed = medians['batch-20-fixed']
-    ratio = standard['AllocatedBytesPerMillionMessages'] / fixed['AllocatedBytesPerMillionMessages']
-    highlight = (f'**Основной вариант: {fixed["MessagesPerSecond"]:,.0f} сообщений/с и в {ratio:.2f} раза меньше выделенной памяти на сообщение, чем ClientWebSocket.**' if russian else
-                 f'**Main implementation: {fixed["MessagesPerSecond"]:,.0f} messages/s and {ratio:.2f}× less managed memory allocated per message than ClientWebSocket.**')
     heading = '| Клиент | Сообщений/с | CPU мс / млн сообщений | Аллокации, кБ / млн сообщений |' if russian else '| Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |'
-    blocks = [highlight, '', heading, '|---|---:|---:|---:|']
+    blocks = [heading, '|---|---:|---:|---:|']
     labels = [('standard', 'ClientWebSocket', 'ClientWebSocket'),
               ('fixed', 'Pipelines · fixed 64 KiB buffer', 'Pipelines · фиксированный буфер 64 KiB'),
               ('auto', 'Pipelines · automatic buffer (control)', 'Pipelines · автоматический буфер (контроль)')]

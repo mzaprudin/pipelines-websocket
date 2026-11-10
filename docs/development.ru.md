@@ -20,3 +20,5 @@ python3 scripts/build-windows-generator.py
 ```
 
 [LAN generator instructions](lan-benchmark.md) · [TCP controls](lan-controls.md)
+
+Общий streaming-раннер по умолчанию запускает локальный сервер в отдельном процессе. Параметр `--url ws://HOST:5050` выбирает внешний сервер с тем же профилем. CI также выполняет `python -m unittest discover -s scripts -p test_streaming_benchmarks.py -v`: жизненный цикл процессов и валидация отчётов. См. [методику](benchmark-methodology.ru.md).
