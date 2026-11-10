@@ -105,13 +105,10 @@ def duration(ns):
 BYTES_PER_KILOBYTE = 1_000
 ETHERNET_BUNDLE = 'results/lan-controls/20261108T202415Z'
 
-def render(cases, russian):
-    """Describe all echo cases by client and payload rather than benchmark parameters."""
-    title = '### Полный обмен с локальным echo-сервером' if russian else '### Complete local echo roundtrips'
-    explanation = ('Полный обмен с побайтной проверкой; счётчики процесса включают echo-сервер и асинхронный измеритель.' if russian else
-                   'Complete roundtrips with byte-for-byte validation; process counters include the echo peer and asynchronous harness.')
+def render_echo(cases, russian):
+    """Render the supplementary echo table for benchmark documentation."""
     heading = '| Клиент | Сообщение | Время | Погрешность | Аллокации |' if russian else '| Client | Payload | Mean | Error | Allocated |'
-    blocks = [title, '', explanation, '', heading, '|---|---:|---:|---:|---:|']
+    blocks = [heading, '|---|---:|---:|---:|---:|']
     for case in cases:
         parameters = dict(field.split('=', 1) for field in case['Parameters'].split('&'))
         client = 'ClientWebSocket adapter' if parameters['StandardClient'] == 'True' else 'Pipelines'
@@ -146,9 +143,9 @@ def render_streaming(groups, russian):
     blocks.append('')
     return '\n'.join(blocks)
 
-def render_local(cases, streams, russian):
-    """Keep streaming and echo clearly separated in the reproducible README region."""
-    return render_streaming(streams, russian) + '\n' + render(cases, russian)
+def render_local(streams, russian):
+    """Keep continuous-reception measurements in the main README."""
+    return render_streaming(streams, russian)
 
 def render_ethernet(russian):
     """Render the recorded network comparison and its current-versus-control labels."""
@@ -179,12 +176,17 @@ def main():
     (directory/'summary.json').write_text(json.dumps(summary,indent=2)+'\n', encoding='utf-8')
     for filename,russian in [('README.md',False),('README.ru.md',True)]:
         p=ROOT/filename;s=p.read_text(encoding='utf-8');start='<!-- LOCAL_RESULTS_START -->';end='<!-- LOCAL_RESULTS_END -->';head,rest=s.split(start);_,tail=rest.split(end)
-        table=render_local(cases,summary.get('streaming'),russian)
+        table=render_local(summary.get('streaming'),russian)
         rendered=head+start+'\n'+table+'\n'+end+tail
         if KIND=='websocket':
             eth_start='<!-- ETHERNET_RESULTS_START -->';eth_end='<!-- ETHERNET_RESULTS_END -->'
             before_eth,eth_rest=rendered.split(eth_start);_,after_eth=eth_rest.split(eth_end)
             rendered=before_eth+eth_start+'\n'+render_ethernet(russian)+'\n'+eth_end+after_eth
         p.write_text(rendered, encoding='utf-8')
-    print(f'Validated {len(cases)} measured cases'+(' and before/after comparison' if before else '')+(' plus streaming' if KIND=='websocket' else '')+'; generated both READMEs.')
+        methodology=ROOT/'docs'/('benchmark-methodology.ru.md' if russian else 'benchmark-methodology.md')
+        echo_start='<!-- ECHO_RESULTS_START -->';echo_end='<!-- ECHO_RESULTS_END -->'
+        echo_head,echo_rest=methodology.read_text(encoding='utf-8').split(echo_start)
+        _,echo_tail=echo_rest.split(echo_end)
+        methodology.write_text(echo_head+echo_start+'\n'+render_echo(cases,russian)+'\n'+echo_end+echo_tail,encoding='utf-8')
+    print(f'Validated {len(cases)} measured cases'+(' and before/after comparison' if before else '')+(' plus streaming' if KIND=='websocket' else '')+'; generated README and methodology tables in both languages.')
 if __name__=='__main__':main()

@@ -27,16 +27,29 @@ Without `--url`, the runner starts the same server executable on an ephemeral lo
 
 Warmup is excluded. Throughput uses completed messages divided by actual monotonic elapsed time. The unchanged periodic measurement protocol takes counter samples approximately once per second and includes their allocation, task scheduling and console output in receiver process counters. This is not an allocation trace of the transport alone. Fixed instrumentation costs divided by more messages give fewer bytes per message, even with identical transport allocation behavior. Summary files retain total allocated bytes and normalized values for every repetition; kB = 1000 bytes.
 
-
 ## Echo roundtrips
 
-The four BenchmarkDotNet cases cover 128/4096 bytes × Pipelines/ClientWebSocket adapter, checking every returned byte. Each operation sends a message, waits for the echo and verifies it. Both peers and the asynchronous harness live in the measured process; the standard adapter also uses a Pipe to expose the callback API. Shared scheduling, tasks and adapter work contribute to allocations. Similar bytes per roundtrip do not establish equal receive-path allocation.
+A supplementary benchmark for tracking complete request-response regressions. One request at a time runs over an established connection, with byte-for-byte response validation. Four cases: 128 bytes / 4 KiB × Pipelines / ClientWebSocket adapter.
 
-Echo remains a separate workload. It uses Release/x64, five warmup and fifteen measurement iterations targeting 500 ms, one launch. Error is the half-width of the BenchmarkDotNet 99.9% confidence interval. Full raw samples, intervals, GC, allocations and stdout are retained. Iteration time is a target rather than a hard duration; outlier handling is recorded by BenchmarkDotNet. No tail-latency measurement is claimed.
+The measured process includes the client, echo peer and asynchronous harness. The framework adapter uses a Pipe for the callback API. Allocations cover all these components.
+
+<!-- ECHO_RESULTS_START -->
+| Client | Payload | Mean | Error | Allocated |
+|---|---:|---:|---:|---:|
+| Pipelines | 128 B | 32.49 µs | 908.36 ns | 581 B |
+| ClientWebSocket adapter | 128 B | 33.29 µs | 1.22 µs | 581 B |
+| Pipelines | 4 KiB | 39.23 µs | 1.04 µs | 580 B |
+| ClientWebSocket adapter | 4 KiB | 37.76 µs | 909.96 ns | 581 B |
+
+<!-- ECHO_RESULTS_END -->
+
+BenchmarkDotNet 0.15.8 · Release/x64 · five warmup and fifteen measurement iterations at a 500 ms target · one launch per case. Error is the half-width of the 99.9% confidence interval. Allocations are managed bytes per complete roundtrip. Full samples, outlier handling, GC and stdout are retained in the reports; latency percentiles are not measured.
+
+[Raw echo reports](../results/local/20261110T202155Z/bdn/results/) · [Benchmark setup](../benchmarks/Pipelines.WebSockets.Benchmarks/WebSocketBenchmarks.cs) · [Harness](../support/RoundtripSession.cs)
 
 ## Evidence and historical measurements
 
-Every fresh run retains environment, source revision and SHA-256, binary hashes, exact child commands, raw samples, logs and artifact hashes. `render-results.py` validates the complete session and arithmetic before generating both README tables. `verify-evidence.py` checks the published bundle, measured runtime inputs, source mappings and immutable historical artifacts. Linux and Windows CI exercise the common runner, both receivers, normal server shutdown and failure cleanup.
+Every fresh run retains environment, source revision and SHA-256, binary hashes, exact child commands, raw samples, logs and artifact hashes. `render-results.py` validates the complete session and arithmetic before generating the README streaming tables and the supplementary echo tables here. `verify-evidence.py` checks the published bundle, measured runtime inputs, source mappings and immutable historical artifacts. Linux and Windows CI exercise the common runner, both receivers, normal server shutdown and failure cleanup.
 
 The November 8 Ethernet matrices retain their original dates, sources and manifests. Their main compact profile is also 128 bytes / 20 frames / 10 connections / 5 s / 30 s, with receiver-only process counters. The library still requests a fixed 64 KiB TCP receive buffer; automatic sizing is a separate historical control. New physical Ethernet measurements require another run with the current source and environment. The former 87-byte colocated loopback bundles remain available as historical evidence; their generator-inclusive resource counters are not a matched baseline for current streaming.
 

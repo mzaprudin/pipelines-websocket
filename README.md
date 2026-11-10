@@ -48,7 +48,7 @@ Medians of three runs: 10 connections, 10 s warmup and 60 s measurement; one fra
 
 </details>
 
-## Local reception and echo benchmarks
+## Local streaming benchmark
 
 AMD Ryzen 9 5950X · Ubuntu 24.04 · .NET 10.0.14 · Release/x64.
 
@@ -62,20 +62,7 @@ AMD Ryzen 9 5950X · Ubuntu 24.04 · .NET 10.0.14 · Release/x64.
 | ClientWebSocket | 30,651,369 | 404 | 0.411 |
 | Pipelines | 54,427,112 | 235 | 0.013 |
 
-### Complete local echo roundtrips
-
-Complete roundtrips with byte-for-byte validation; process counters include the echo peer and asynchronous harness.
-
-| Client | Payload | Mean | Error | Allocated |
-|---|---:|---:|---:|---:|
-| Pipelines | 128 B | 32.49 µs | 908.36 ns | 581 B |
-| ClientWebSocket adapter | 128 B | 33.29 µs | 1.22 µs | 581 B |
-| Pipelines | 4 KiB | 39.23 µs | 1.04 µs | 580 B |
-| ClientWebSocket adapter | 4 KiB | 37.76 µs | 909.96 ns | 581 B |
-
 <!-- LOCAL_RESULTS_END -->
-
-Echo uses BenchmarkDotNet 0.15.8: five warmup and fifteen measurement iterations at a 500 ms target, one launch per case. Allocations are managed bytes per roundtrip; error is the half-width of the 99.9% confidence interval.
 
 [Raw local reports and samples](results/local/20261110T202155Z/) · [Measurement methodology and reproduction](docs/benchmark-methodology.md)
 

@@ -40,9 +40,13 @@ def main():
     streams=module.streaming(run) if module.KIND=='websocket' else None
     for filename,russian in [('README.md',False),('README.ru.md',True)]:
         section=(ROOT/filename).read_text(encoding='utf-8').split('<!-- LOCAL_RESULTS_START -->')[1].split('<!-- LOCAL_RESULTS_END -->')[0].strip()
-        if section!=module.render_local(after,streams,russian).strip():
+        if section!=module.render_local(streams,russian).strip():
             raise ValueError(f'Generated benchmark table differs from measured reports: {filename}')
         if module.KIND=='websocket':
+            methodology=ROOT/'docs'/('benchmark-methodology.ru.md' if russian else 'benchmark-methodology.md')
+            echo=methodology.read_text(encoding='utf-8').split('<!-- ECHO_RESULTS_START -->')[1].split('<!-- ECHO_RESULTS_END -->')[0].strip()
+            if echo!=module.render_echo(after,russian).strip():
+                raise ValueError(f'Generated echo table differs from measured reports: {methodology.name}')
             ethernet=(ROOT/filename).read_text(encoding='utf-8').split('<!-- ETHERNET_RESULTS_START -->')[1].split('<!-- ETHERNET_RESULTS_END -->')[0].strip()
             if ethernet!=module.render_ethernet(russian).strip():
                 raise ValueError(f'Generated Ethernet table differs from measured reports: {filename}')
