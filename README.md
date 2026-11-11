@@ -25,12 +25,13 @@ The receive path follows a **zero-allocation approach**: a warmed, unfragmented 
 
 CPU and allocations cover the receiver process including sampling; 1 kB = 1000 bytes.
 
+*On .NET 10.0.14, profiling found `StateMachineBox` allocations in ClientWebSocket's receive path on pool cache misses ([analysis and traces](results/streaming/20261110T205733Z/README.md#allocation-traces)).*
+
 <!-- ETHERNET_RESULTS_END -->
 
 Measured November 10, 2026: [matched Ethernet/loopback run and allocation traces](results/streaming/20261110T205733Z/README.md), [source revision](https://github.com/mzaprudin/pipelines-websocket/tree/d35c490b8dd6121a471b6ee06d63d73c4c12bbef). Historical November 8 controls: [128-byte fixed/automatic buffer matrix](results/lan-controls/20261108T202415Z/README.md) and [one-KiB matrix](results/lan-controls/20261108T194624Z/README.md).
 
-<details>
-<summary>Ethernet: 1 KiB JSON, one frame per write</summary>
+### Ethernet: 1 KiB JSON, one frame per write
 
 <!-- LAN_RESULTS_START -->
 | Client | Messages/s | Payload Mbit/s | CPU ms / 1M messages | Allocated kB / 1M messages | GC 0/1/2 |
@@ -44,8 +45,6 @@ Medians of three runs: 10 connections, 10 s warmup and 60 s measurement; one fra
 
 [Full results and conditions](results/lan-1kib/20261108T191616Z/README.md) · [JSON](results/lan-1kib/20261108T191616Z/summary.json)
 <!-- LAN_RESULTS_END -->
-
-</details>
 
 ## Local streaming benchmark
 

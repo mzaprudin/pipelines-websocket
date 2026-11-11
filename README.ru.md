@@ -25,12 +25,13 @@ WebSocket-клиент на TCP/TLS для непрерывного потока
 
 CPU и аллокации — процесс приёмника, включая сбор метрик; 1 кБ = 1000 байт.
 
+*В .NET 10.0.14 трассировка выявила аллокации `StateMachineBox` в приёмном пути ClientWebSocket при промахах кеша пула ([разбор и трассы](results/streaming/20261110T205733Z/README.ru.md#трассы-аллокаций)).*
+
 <!-- ETHERNET_RESULTS_END -->
 
 Измерено 10 ноября 2026 года: [парный Ethernet/loopback-прогон и трассы аллокаций](results/streaming/20261110T205733Z/README.ru.md), [ревизия кода](https://github.com/mzaprudin/pipelines-websocket/tree/d35c490b8dd6121a471b6ee06d63d73c4c12bbef). Исторические контроли от 8 ноября: [матрица фиксированного и автоматического буфера, 128 байт](results/lan-controls/20261108T202415Z/README.md) и [матрица 1 KiB](results/lan-controls/20261108T194624Z/README.md).
 
-<details>
-<summary>Ethernet: JSON по 1 KiB, один фрейм на запись</summary>
+### Ethernet: JSON по 1 KiB, один фрейм на запись
 
 <!-- LAN_RESULTS_START -->
 | Клиент | Сообщений/с | Полезные Мбит/с | CPU мс / млн сообщений | Аллокации, кБ / млн сообщений | GC 0/1/2 |
@@ -44,8 +45,6 @@ CPU и аллокации — процесс приёмника, включая 
 
 [Полные результаты и условия](results/lan-1kib/20261108T191616Z/README.md) · [JSON](results/lan-1kib/20261108T191616Z/summary.json)
 <!-- LAN_RESULTS_END -->
-
-</details>
 
 ## Локальный streaming-бенчмарк
 

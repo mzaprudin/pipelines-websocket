@@ -182,8 +182,11 @@ def render_ethernet(russian):
         for client, label in [('standard', 'ClientWebSocket'), ('pipeline', 'Pipelines · фиксированный буфер 64 KiB' if russian else 'Pipelines · fixed 64 KiB buffer')]:
             stats = groups[client]
             blocks.append(f'| {label} | {stats["messagesPerSecond"]:,.0f} | {stats["cpuMsPerMillionMessages"]:,.0f} | {stats["allocatedBytesPerMillionMessages"] / BYTES_PER_KILOBYTE:.3f} |')
+        report = (paired/('README.ru.md' if russian else 'README.md')).relative_to(ROOT).as_posix()
+        note = (f'*В .NET 10.0.14 трассировка выявила аллокации `StateMachineBox` в приёмном пути ClientWebSocket при промахах кеша пула ([разбор и трассы]({report}#трассы-аллокаций)).*' if russian else
+                f"*On .NET 10.0.14, profiling found `StateMachineBox` allocations in ClientWebSocket's receive path on pool cache misses ([analysis and traces]({report}#allocation-traces)).*")
         blocks.extend(['', 'CPU и аллокации — процесс приёмника, включая сбор метрик; 1 кБ = 1000 байт.' if russian else
-                       'CPU and allocations cover the receiver process including sampling; 1 kB = 1000 bytes.', ''])
+                       'CPU and allocations cover the receiver process including sampling; 1 kB = 1000 bytes.', '', note, ''])
         return '\n'.join(blocks)
     medians = json.loads((ROOT / ETHERNET_BUNDLE / 'summary.json').read_text(encoding='utf-8'))['medians']
     heading = '| Клиент | Сообщений/с | CPU мс / млн сообщений | Аллокации, кБ / млн сообщений |' if russian else '| Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |'
