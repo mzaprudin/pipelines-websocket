@@ -178,7 +178,11 @@ def render_ethernet(russian):
     if paired:
         groups = streaming(paired/'ethernet')
         heading = '| Клиент | Сообщений/с | CPU мс / млн сообщений | Аллокации, кБ / млн сообщений |' if russian else '| Client | Messages/s | CPU ms / 1M messages | Allocated kB / 1M messages |'
-        blocks = [heading, '|---|---:|---:|---:|']
+        standard_kb = groups['standard']['allocatedBytesPerMillionMessages'] / BYTES_PER_KILOBYTE
+        pipeline_kb = groups['pipeline']['allocatedBytesPerMillionMessages'] / BYTES_PER_KILOBYTE
+        highlight = (f'`ClientWebSocket` → `Pipelines`: **{standard_kb:.1f} → {pipeline_kb:.1f} кБ выделенной памяти на миллион сообщений** в этом Ethernet-профиле.' if russian else
+                     f'`ClientWebSocket` → `Pipelines`: **{standard_kb:.1f} → {pipeline_kb:.1f} kB allocated per million messages** in this Ethernet profile.')
+        blocks = [highlight, '', heading, '|---|---:|---:|---:|']
         for client, label in [('standard', 'ClientWebSocket'), ('pipeline', 'Pipelines · фиксированный буфер 64 KiB' if russian else 'Pipelines · fixed 64 KiB buffer')]:
             stats = groups[client]
             blocks.append(f'| {label} | {stats["messagesPerSecond"]:,.0f} | {stats["cpuMsPerMillionMessages"]:,.0f} | {stats["allocatedBytesPerMillionMessages"] / BYTES_PER_KILOBYTE:.3f} |')

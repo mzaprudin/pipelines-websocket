@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="270" viewBox="0 0 1200 270" role="img" aria-labelledby="title desc">
+  <title id="title">pipelines-websocket — WebSocket-потоки с меньшей нагрузкой на GC</title>
+  <desc id="desc">WebSocket-клиент на C# / .NET 10 с памятью из пула для непрерывного приёма данных.</desc>
+  <rect width="1200" height="270" rx="12" fill="#15232d"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="56" y="48" fill="#acbfcd" font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace" font-size="22" letter-spacing="1">C# / .NET 10</text>
+    <text x="50" y="140" fill="#f4f6f8" font-size="80" font-weight="700" letter-spacing="-2.5">pipelines-websocket<tspan fill="#93d9f0">.</tspan></text>
+    <text x="56" y="212" fill="#93d9f0" font-size="40">WebSocket-потоки с меньшей нагрузкой на GC</text>
+  </g>
+</svg>
