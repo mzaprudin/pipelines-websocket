@@ -1,10 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="270" viewBox="0 0 1200 270" role="img" aria-labelledby="title desc">
-  <title id="title">pipelines-websocket — WebSocket-потоки с меньшей нагрузкой на GC</title>
-  <desc id="desc">WebSocket-клиент на C# / .NET 10 с памятью из пула для непрерывного приёма данных.</desc>
-  <rect width="1200" height="270" rx="12" fill="#15232d"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">Pipelines WebSocket — WebSocket-потоки с меньшей нагрузкой на GC</title>
+  <desc id="desc">Pipelines WebSocket принимает непрерывные потоки данных на C# / .NET 10. Блоки общего приёмного буфера, выделенное окно чтения и обратная стрелка показывают переиспользование памяти.</desc>
+  <rect width="1200" height="400" rx="16" fill="#15232d"/>
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-    <text x="56" y="48" fill="#acbfcd" font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace" font-size="22" letter-spacing="1">C# / .NET 10</text>
-    <text x="50" y="140" fill="#f4f6f8" font-size="80" font-weight="700" letter-spacing="-2.5">pipelines-websocket<tspan fill="#93d9f0">.</tspan></text>
-    <text x="56" y="212" fill="#93d9f0" font-size="40">WebSocket-потоки с меньшей нагрузкой на GC</text>
+    <text x="64" y="58" fill="#acbfcd" font-family="ui-monospace, 'SFMono-Regular', Consolas, monospace" font-size="23">C# / .NET 10</text>
+    <g id="identity" font-size="104" font-weight="700" letter-spacing="-3">
+      <text x="58" y="170" fill="#f4f6f8">Pipelines</text>
+      <text x="58" y="274" fill="#93d9f0">WebSocket</text>
+    </g>
+    <g id="shared-receive-buffer">
+      <rect x="774" y="148" width="322" height="80" rx="14" fill="#93d9f0" fill-opacity="0.04" stroke="#93d9f0" stroke-opacity="0.45" stroke-width="1.5"/>
+      <g fill="#93d9f0">
+        <rect x="790" y="168" width="43" height="40" rx="4" opacity="0.2"/>
+        <rect x="845" y="168" width="43" height="40" rx="4" opacity="0.35"/>
+        <rect x="900" y="168" width="43" height="40" rx="4"/>
+        <rect x="955" y="168" width="43" height="40" rx="4" opacity="0.75"/>
+        <rect x="1010" y="168" width="70" height="40" rx="4" opacity="0.25"/>
+      </g>
+      <rect x="892" y="130" width="114" height="116" rx="12" fill="#93d9f0" fill-opacity="0.04" stroke="#93d9f0" stroke-width="2"/>
+      <g fill="none" stroke="#93d9f0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M724 188h42m-10-9 10 9-10 9M1108 188h28m-10-9 10 9-10 9"/>
+        <path d="M1080 256Q1080 296 1032 296H840Q790 296 790 246"/>
+        <path d="M782 258l8-12 8 12"/>
+      </g>
+    </g>
+    <text x="64" y="350" fill="#f4f6f8" font-size="42" letter-spacing="-0.5">WebSocket-потоки с меньшей нагрузкой на GC</text>
   </g>
 </svg>

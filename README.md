@@ -2,7 +2,7 @@
 
 <h1><img src="assets/readme/hero-en.svg" width="100%" alt="pipelines-websocket — WebSocket streams with less GC pressure"></h1>
 
-A C# / .NET 10 WebSocket client for continuous data reception with low overhead. System.IO.Pipelines reuses receive memory to reduce allocations in the receive path. The goal is less GC pressure and more predictable processing under sustained load.
+A C# / .NET 10 WebSocket client for continuous reception with **near-zero allocations**. System.IO.Pipelines reuses receive buffers and hands unfragmented messages directly to the handler. The goal is less GC pressure and more predictable processing under sustained load.
 
 [Ethernet measurements](#websocket-over-physical-ethernet) · [Memory reuse](#receive-from-pooled-memory) · [Run the example](#build-and-run-the-example)
 
@@ -10,7 +10,7 @@ A C# / .NET 10 WebSocket client for continuous data reception with low overhead.
 
 **128-byte JSON · 20 frames/write · 10 connections · 1-Gbit Ethernet.** Windows generator → Linux receiver. Medians of three runs, with 5 s warmup and 30 s measurement.
 
-In the November 10 paired run, throughput and CPU cost are similar. The main measured gain is lower receiver-process allocation.
+In the November 10 paired run, throughput and CPU cost are similar. The main measured result is **near-zero receiver-process allocations**.
 
 <!-- ETHERNET_RESULTS_START -->
 `ClientWebSocket` → `Pipelines`: **95.6 → 0.6 kB allocated per million messages** in this Ethernet profile.
